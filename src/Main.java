@@ -5,5 +5,6 @@ public class Main {
         System.out.println("Hello Leader sie melduje");
         System.out.println("Hello world!");
         System.out.println("Hello od Adama");
+        System.out.println("Hello od Bogacz");
     }
 }
