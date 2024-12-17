@@ -10,5 +10,6 @@ public class Main {
         System.out.println("Hello od Bogacz");
         System.out.println("Hello imxantek");
         System.out.println("Hello kgazda");
+        System.out.println("Hello od Iwana");
     }
 }
