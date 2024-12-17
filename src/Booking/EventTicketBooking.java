@@ -38,10 +38,10 @@ public class EventTicketBooking extends Booking {
     public void setDate(LocalDate date) {
         this.date = date;
     }
-    public boolean reserveTickets(){
+    /*public boolean reserveTickets(){
         //tu bedzie rezerwowanie (nw czy ma byc boolean)
     }
     public boolean cancelBooking(){
         //tutaj cancelowanie
-    }
+    }*/
 }

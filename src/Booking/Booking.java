@@ -60,5 +60,14 @@ public abstract class Booking {
         this.user = user;
     }
 
+    public String toString() {
+        return "Id: " + id + "\n" +
+                "Name: " + name + "\n" +
+                "Location: " + location + "\n" +
+                "Price: " + price + "\n" +
+                "StartDate: " + startDate + "\n" +
+                "EndDate: " + endDate + "\n";
+    }
+
 
 }
