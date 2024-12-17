@@ -7,18 +7,20 @@ public abstract class Booking {
     private String name;
     private String location;
     private double price;
-    private Boolean status = true;
+    private Boolean status;
 
     private String startDate;
     private String endDate;
     private User user = null;
 
-    public Booking(String id, String name, String location, double price, Boolean status) {
+    public Booking(String id, String name, String location, double price, String startDate, String endDate) {
         this.id = id;
         this.name = name;
         this.location = location;
         this.price = price;
-        this.status = status;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        status = true;
     }
 
     public String getId() {
