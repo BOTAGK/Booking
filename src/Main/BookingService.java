@@ -9,14 +9,15 @@ public class BookingService {
     //private SearchStrategy strategy;
 
     public BookingService() {
-
+        bookings = new ArrayList<Booking>();
+        observers = new ArrayList<User>();
+        //strategy = new SearchStrategy();
     }
 
     public Booking createBooking(User user, Booking booking, String startDate, String endDate) {
         booking.setUser(user);
         booking.setStartDate(startDate);
         booking.setEndDate(endDate);
-        bookings.add(booking);
         return booking;
     }
 
@@ -54,6 +55,5 @@ public class BookingService {
         }
     }
      */
-
 
 }
