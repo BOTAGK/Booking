@@ -7,7 +7,7 @@ public abstract class Booking {
     private String name;
     private String location;
     private double price;
-    private Boolean status;
+    private Boolean status; //true - rezerwacja jest dostępna, false - nie można rezerwować
 
     private String startDate;
     private String endDate;
@@ -35,12 +35,18 @@ public abstract class Booking {
     public double getPrice() {
         return price;
     }
-    public Boolean getStatus() {
+
+    public Boolean isFree() {
         return status;
     }
-    public void setStatus(Boolean status) {
-        this.status = status;
+    public void book(User user) {
+        this.user = user;
+        this.status = false;
     }
+    public void cancelBooking(User user) {
+        this.status = true;
+    }
+
     public String getStartDate() {
         return startDate;
     }
@@ -59,6 +65,8 @@ public abstract class Booking {
     public void setUser(User user) {
         this.user = user;
     }
+
+
 
     public String toString() {
         return "Id: " + id + "\n" +

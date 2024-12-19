@@ -2,6 +2,8 @@ package Main;
 
 import Booking.Booking;
 import java.util.ArrayList;
+import java.util.Scanner;
+
 import SearchStrategy.*;
 
 public class BookingService {
@@ -15,25 +17,58 @@ public class BookingService {
         strategy = new TypeSearchStrategy();
     }
 
-    public Booking createBooking(User user, Booking booking, String startDate, String endDate) {
-        booking.setUser(user);
-        booking.setStartDate(startDate);
-        booking.setEndDate(endDate);
-        return booking;
+    public void createBooking(Booking booking) {
+        bookings.add(booking);
     }
 
-    public void cancelBooking(String bookingId) {
-        boolean found = false;
-        for (int i = 0; !found && i < bookings.size(); i++) {
-            if (bookings.get(i).getId().equals(bookingId)) {
-                bookings.remove(i);
-                found = true;
+    public void addBooking(User user) {
+
+        System.out.println("Which booking do you want to book?\n");
+        System.out.print("Insert the correct booking Id: ");
+        showBookings();
+        Scanner sc = new Scanner(System.in);
+        String id = sc.nextLine();
+
+        for(Booking booking : bookings) {
+            if(booking.getId().equals(id) && booking.isFree()) {
+                user.addBooking(booking.getId());
+                booking.book(user);
+                return;
+            }
+        }
+        System.out.println("Booking id: " + id + " not found");
+    }
+
+    public void cancelBooking(User user) {
+
+        System.out.println("Which booking do you want to remove?\n");
+        System.out.print("Insert the correct booking Id: ");
+        showBookings(user);
+        Scanner sc = new Scanner(System.in);
+        String id;
+        id = sc.nextLine();
+
+        for(Booking booking : bookings) {
+            if(booking.getId().equals(id)) {
+                booking.cancelBooking(user);
+                user.removeBooking(id);
+                return;
             }
         }
     }
 
-    public ArrayList<Booking> getBookingsForUser(User user) {
-        return user.getBookings();
+
+    public void showBookings(User user) {
+        for(Booking booking : bookings) {
+            if(user.hasBooking(booking.getId())) {
+                System.out.println(booking);
+            }
+        }
+    }
+    public void showBookings() {
+        for(Booking booking : bookings) {
+            System.out.println(booking);
+        }
     }
 
     public ArrayList<Booking> getBookings() {
@@ -47,11 +82,12 @@ public class BookingService {
     public void setStrategy(SearchStrategy strategy) {
         this.strategy = strategy;
     }
-        public void showBookings (SearchStrategy strategy){
-            bookings =(ArrayList<Booking>)strategy.search(bookings);
-            for (int i = 0; i < bookings.size(); i++) {
-                System.out.println(bookings.get(i));
-            }
+
+    public void showBookings (SearchStrategy strategy){
+        bookings =(ArrayList<Booking>)strategy.search(bookings);
+        for (int i = 0; i < bookings.size(); i++) {
+            System.out.println(bookings.get(i));
         }
+    }
 }
 
