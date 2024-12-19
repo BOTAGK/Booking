@@ -47,11 +47,12 @@ public class BookingService {
     public void setStrategy(SearchStrategy strategy) {
         this.strategy = strategy;
     }
-        public void showBookings (SearchStrategy strategy){
-            bookings =(ArrayList<Booking>)strategy.search(bookings);
-            for (int i = 0; i < bookings.size(); i++) {
-                System.out.println(bookings.get(i));
-            }
+
+    public void showBookings (){
+        bookings = strategy.search(bookings);
+        for (int i = 0; i < bookings.size(); i++) {
+            System.out.println(bookings.get(i));
         }
+    }
 }
 

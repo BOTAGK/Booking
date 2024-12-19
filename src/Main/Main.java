@@ -1,13 +1,14 @@
 package Main;
 
 import Booking.Booking;
+import SearchStrategy.PriceRangeStrategy;
 
 public class Main {
     public static void main(String[] args) {
 
         /*
         System.out.println("Hello world!");
-        System.out.println("Hello leader sie melduje");
+        System.out.println("Hello Wojtek sie melduje");
         System.out.println("Hello world!");
         System.out.println("Hello od Adama");
         System.out.println("Hello od Bogacz");
@@ -23,6 +24,9 @@ public class Main {
         testUser.addBooking(testBooking1);
         testUser.addBooking(testBooking2);
         testUser.cancelBooking();
-        */
+
+        BookingService bookingService = new BookingService();
+        bookingService.showBookings();
+         */
     }
 }

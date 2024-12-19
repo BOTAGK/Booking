@@ -1,9 +1,11 @@
 package SearchStrategy;
 
 import Booking.Booking;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public interface SearchStrategy {
-    List<Booking> search(List<Booking> bookings);
+    ArrayList<Booking> search(ArrayList<Booking> bookings);
 
 }
