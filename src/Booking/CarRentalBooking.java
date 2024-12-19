@@ -26,20 +26,14 @@ public class CarRentalBooking extends Booking {
         return rentLength;
     }
 
-//      czy setRentLength jak chcemy narzucać?
-//    public void setRentLength(int rentLength) {
-//        this.rentLength = rentLength;
-//    }
-
-//    public boolean reserveService(){
-//      tu będzie rezerwowanie samochodów
-//    }
-
-//    public boolean cancelBooking(){
-//        tu anulowanie rezerwacji
-//    }
+    /*
+    public boolean reserveService(){
+      tu będzie rezerwowanie samochodów
+    }
 
 
-
-
+    public boolean cancelBooking(){
+        tu anulowanie rezerwacji
+    }
+    */
 }
