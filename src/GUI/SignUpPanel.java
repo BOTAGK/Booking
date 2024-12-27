@@ -10,6 +10,7 @@ public class SignUpPanel extends JPanel {
 
 
     private JTextField nameTxt, lastNameTxt, emailTxt, usernameTxt;
+    private JLabel statusLbl;
     private JPasswordField txtPassword;
 
     public SignUpPanel(JFrame parentFrame) {
@@ -93,7 +94,7 @@ public class SignUpPanel extends JPanel {
         gbc.anchor = GridBagConstraints.CENTER;
         add(signUpButton, gbc);
 
-        JLabel statusLbl = new JLabel(" ");
+        statusLbl = new JLabel(" ");
         gbc.gridx = 0;
         gbc.gridy = 4;
         gbc.gridwidth = 4;
@@ -102,17 +103,20 @@ public class SignUpPanel extends JPanel {
 
 
         List<String> takenUsernames = List.of("admin", "user1", "guest");
+        List<String> takenEmails = List.of("kuba@gmail.com" , "pawel@gmail.com");
 
         signUpButton.addActionListener(e -> {
 
-            if (validateFields(takenUsernames)) {
+            if (validateFields(takenUsernames, takenEmails)) {
                 JOptionPane.showMessageDialog(this, "You have successfully signed up!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                parentFrame.dispose();
+                new LoginGui();
             }
         });
     }
 
-
-    private boolean validateFields(List<String> takenUsernames) {
+//Niedokonczone domysknie caly user list i sprawdzanie po kolei oraz ulepszone metody
+    private boolean validateFields(List<String> takenUsernames, List<String> takenEmails) {
 
         String name = nameTxt.getText().trim();
         String lastName = lastNameTxt.getText().trim();
@@ -121,18 +125,27 @@ public class SignUpPanel extends JPanel {
         String password = new String(txtPassword.getPassword()).trim();
 
         if (name.isEmpty() || lastName.isEmpty() || email.isEmpty() || username.isEmpty() || password.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "All fields are required!", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            statusLbl.setText("Please fill all the fields");
+            statusLbl.setForeground(Color.RED);
+            return false;
+        }
+
+        if(takenEmails.contains(email)) {
+            statusLbl.setText("Email is taken!");
+            statusLbl.setForeground(Color.RED);
             return false;
         }
 
         if (takenUsernames.contains(username)) {
-            JOptionPane.showMessageDialog(this, "Username is already taken!", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            statusLbl.setText("Username is taken!");
+            statusLbl.setForeground(Color.RED);
             return false;
         }
 
 
         if (!email.contains("@") || !email.contains(".")) {
-            JOptionPane.showMessageDialog(this, "Invalid email address!", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            statusLbl.setText("Please enter a valid email address!");
+            statusLbl.setForeground(Color.RED);
             return false;
         }
 
