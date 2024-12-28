@@ -53,9 +53,8 @@ public class LoginPanel extends JPanel {
         signUplbl.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                // Zamknięcie aktualnego JFrame i otwarcie nowego
                 parentFrame.dispose();
-                new SignUpGui(); // Zakładam, że SignUpGui istnieje i tworzy nowe okno
+                new SignUpGui();
             }
         });
 

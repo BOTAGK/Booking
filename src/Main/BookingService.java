@@ -5,14 +5,24 @@ import java.util.ArrayList;
 import SearchStrategy.*;
 
 public class BookingService {
+
+    private static BookingService instance;
     private ArrayList<Booking> bookings;
     private ArrayList<User> observers;
     private SearchStrategy strategy;
 
+
     public BookingService() {
-        bookings = new ArrayList<Booking>();
-        observers = new ArrayList<User>();
-        strategy = new TypeSearchStrategy();
+        this.bookings = new ArrayList<Booking>();
+        this.observers = new ArrayList<User>();
+        this.strategy = new TypeSearchStrategy();
+    }
+
+    public static BookingService getInstance() {
+        if (instance == null) {
+            instance = new BookingService();
+        }
+        return instance;
     }
 
     public Booking createBooking(User user, Booking booking, String startDate, String endDate) {
