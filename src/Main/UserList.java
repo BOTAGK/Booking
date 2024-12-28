@@ -1,6 +1,7 @@
 package Main;
 
 import java.util.ArrayList;
+import Booking.Booking;
 
 public class UserList {
 
@@ -18,6 +19,8 @@ public class UserList {
         }
         return instance;
     }
+
+    public ArrayList<User> getUsers() { return users; }
 
     public void createrUser(String name, String lastName, String email, String username, String password) {
         users.add(new User(name, lastName, email, username, password));

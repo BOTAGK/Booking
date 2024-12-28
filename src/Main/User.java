@@ -2,10 +2,11 @@ package Main;
 
 import Booking.Booking;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class User {
+public class User implements Serializable {
 
     private String username;
     private String name;
