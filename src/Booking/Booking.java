@@ -2,7 +2,9 @@ package Booking;
 
 import Main.User;
 
-public abstract class Booking {
+import java.io.Serializable;
+
+public abstract class Booking implements Serializable {
     private String id;
     private String name;
     private String location;

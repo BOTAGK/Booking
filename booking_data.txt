@@ -1,0 +1,180 @@
+A1,Sunny Penthouse 1,Barcelona District 1,110,True,2024-01-01,2024-01-07,Null,2,5.5
+A2,Cozy Haven 2,Tokyo District 2,120,True,2024-01-01,2024-01-07,Null,3,5.0
+A3,Charming Retreat 3,New York District 3,130,True,2024-01-01,2024-01-07,Null,4,4.5
+A4,Cozy Villa 4,Paris District 4,140,True,2024-01-01,2024-01-07,Null,5,5.5
+A5,Charming Cottage 5,New York District 5,150,True,2024-01-01,2024-01-07,Null,1,5.0
+A6,Rustic Loft 6,Sydney District 6,160,True,2024-01-01,2024-01-07,Null,2,4.5
+A7,Charming Haven 7,Cape Town District 7,170,True,2024-01-01,2024-01-07,Null,3,5.5
+A8,Modern Retreat 8,Barcelona District 8,180,True,2024-01-01,2024-01-07,Null,4,5.0
+A9,Luxurious Penthouse 9,New York District 9,190,True,2024-01-01,2024-01-07,Null,5,4.5
+A10,Sunny Penthouse 10,Tokyo District 0,200,True,2024-01-01,2024-01-07,Null,1,5.5
+A11,Luxurious Cottage 11,Tokyo District 1,210,True,2024-01-01,2024-01-07,Null,2,5.0
+A12,Luxurious Loft 12,Barcelona District 2,220,True,2024-01-01,2024-01-07,Null,3,4.5
+A13,Sunny Penthouse 13,Cape Town District 3,230,True,2024-01-01,2024-01-07,Null,4,5.5
+A14,Modern Retreat 14,Sydney District 4,240,True,2024-01-01,2024-01-07,Null,5,5.0
+A15,Rustic Penthouse 15,Tokyo District 5,250,True,2024-01-01,2024-01-07,Null,1,4.5
+A16,Luxurious Haven 16,Cape Town District 6,260,True,2024-01-01,2024-01-07,Null,2,5.5
+A17,Charming Loft 17,Barcelona District 7,270,True,2024-01-01,2024-01-07,Null,3,5.0
+A18,Charming Haven 18,Tokyo District 8,280,True,2024-01-01,2024-01-07,Null,4,4.5
+A19,Cozy Haven 19,Paris District 9,290,True,2024-01-01,2024-01-07,Null,5,5.5
+A20,Cozy Haven 20,Cape Town District 0,300,True,2024-01-01,2024-01-07,Null,1,5.0
+A21,Charming Penthouse 21,Tokyo District 1,310,True,2024-01-01,2024-01-07,Null,2,4.5
+A22,Modern Cottage 22,Tokyo District 2,320,True,2024-01-01,2024-01-07,Null,3,5.5
+A23,Charming Haven 23,Cape Town District 3,330,True,2024-01-01,2024-01-07,Null,4,5.0
+A24,Sunny Penthouse 24,Barcelona District 4,340,True,2024-01-01,2024-01-07,Null,5,4.5
+A25,Luxurious Villa 25,Cape Town District 5,350,True,2024-01-01,2024-01-07,Null,1,5.5
+A26,Luxurious Retreat 26,Sydney District 6,360,True,2024-01-01,2024-01-07,Null,2,5.0
+A27,Rustic Penthouse 27,Tokyo District 7,370,True,2024-01-01,2024-01-07,Null,3,4.5
+A28,Luxurious Villa 28,New York District 8,380,True,2024-01-01,2024-01-07,Null,4,5.5
+A29,Cozy Penthouse 29,Tokyo District 9,390,True,2024-01-01,2024-01-07,Null,5,5.0
+A30,Rustic Loft 30,New York District 0,400,True,2024-01-01,2024-01-07,Null,1,4.5
+A31,Sunny Retreat 31,Paris District 1,410,True,2024-01-01,2024-01-07,Null,2,5.5
+A32,Modern Loft 32,Sydney District 2,420,True,2024-01-01,2024-01-07,Null,3,5.0
+A33,Charming Cottage 33,Tokyo District 3,430,True,2024-01-01,2024-01-07,Null,4,4.5
+A34,Modern Loft 34,Cape Town District 4,440,True,2024-01-01,2024-01-07,Null,5,5.5
+A35,Luxurious Haven 35,Paris District 5,450,True,2024-01-01,2024-01-07,Null,1,5.0
+A36,Rustic Cottage 36,Tokyo District 6,460,True,2024-01-01,2024-01-07,Null,2,4.5
+A37,Rustic Loft 37,New York District 7,470,True,2024-01-01,2024-01-07,Null,3,5.5
+A38,Charming Loft 38,Cape Town District 8,480,True,2024-01-01,2024-01-07,Null,4,5.0
+A39,Rustic Retreat 39,Tokyo District 9,490,True,2024-01-01,2024-01-07,Null,5,4.5
+A40,Charming Haven 40,New York District 0,500,True,2024-01-01,2024-01-07,Null,1,5.5
+A41,Cozy Villa 41,Sydney District 1,510,True,2024-01-01,2024-01-07,Null,2,5.0
+A42,Charming Retreat 42,Tokyo District 2,520,True,2024-01-01,2024-01-07,Null,3,4.5
+A43,Cozy Penthouse 43,Tokyo District 3,530,True,2024-01-01,2024-01-07,Null,4,5.5
+A44,Cozy Penthouse 44,Sydney District 4,540,True,2024-01-01,2024-01-07,Null,5,5.0
+A45,Sunny Villa 45,Barcelona District 5,550,True,2024-01-01,2024-01-07,Null,1,4.5
+A46,Rustic Villa 46,Barcelona District 6,560,True,2024-01-01,2024-01-07,Null,2,5.5
+A47,Cozy Cottage 47,Sydney District 7,570,True,2024-01-01,2024-01-07,Null,3,5.0
+A48,Charming Penthouse 48,Sydney District 8,580,True,2024-01-01,2024-01-07,Null,4,4.5
+A49,Charming Cottage 49,New York District 9,590,True,2024-01-01,2024-01-07,Null,5,5.5
+A50,Cozy Haven 50,Tokyo District 0,600,True,2024-01-01,2024-01-07,Null,1,5.0
+A51,Cozy Loft 51,Tokyo District 1,610,True,2024-01-01,2024-01-07,Null,2,4.5
+A52,Sunny Haven 52,Paris District 2,620,True,2024-01-01,2024-01-07,Null,3,5.5
+A53,Charming Haven 53,Cape Town District 3,630,True,2024-01-01,2024-01-07,Null,4,5.0
+A54,Modern Haven 54,Sydney District 4,640,True,2024-01-01,2024-01-07,Null,5,4.5
+A55,Modern Haven 55,Barcelona District 5,650,True,2024-01-01,2024-01-07,Null,1,5.5
+A56,Charming Cottage 56,Cape Town District 6,660,True,2024-01-01,2024-01-07,Null,2,5.0
+A57,Luxurious Villa 57,Paris District 7,670,True,2024-01-01,2024-01-07,Null,3,4.5
+A58,Luxurious Penthouse 58,Paris District 8,680,True,2024-01-01,2024-01-07,Null,4,5.5
+A59,Rustic Villa 59,New York District 9,690,True,2024-01-01,2024-01-07,Null,5,5.0
+A60,Rustic Villa 60,Cape Town District 0,700,True,2024-01-01,2024-01-07,Null,1,4.5
+C1,Luxurious Haven 1,Cape Town District 1,55,True,2024-02-01,2024-02-05,Null,Sedan,Ford X5
+C2,Modern Penthouse 2,Paris District 2,60,True,2024-02-01,2024-02-05,Null,Sedan,Ford Mustang
+C3,Charming Loft 3,Tokyo District 3,65,True,2024-02-01,2024-02-05,Null,Sedan,Tesla Impala
+C4,Rustic Haven 4,Sydney District 4,70,True,2024-02-01,2024-02-05,Null,Sedan,BMW Impala
+C5,Luxurious Loft 5,Cape Town District 5,75,True,2024-02-01,2024-02-05,Null,Sedan,Audi Camry
+C6,Modern Loft 6,Cape Town District 6,80,True,2024-02-01,2024-02-05,Null,Sedan,BMW X5
+C7,Modern Retreat 7,Paris District 7,85,True,2024-02-01,2024-02-05,Null,Sedan,Tesla Impala
+C8,Cozy Cottage 8,Sydney District 8,90,True,2024-02-01,2024-02-05,Null,Sedan,Toyota Model S
+C9,Sunny Loft 9,Cape Town District 9,95,True,2024-02-01,2024-02-05,Null,Sedan,Audi X5
+C10,Sunny Villa 10,Cape Town District 0,100,True,2024-02-01,2024-02-05,Null,Sedan,BMW Impala
+C11,Rustic Haven 11,Paris District 1,105,True,2024-02-01,2024-02-05,Null,Sedan,Chevrolet Impala
+C12,Cozy Villa 12,Sydney District 2,110,True,2024-02-01,2024-02-05,Null,Sedan,Audi Camry
+C13,Charming Penthouse 13,Sydney District 3,115,True,2024-02-01,2024-02-05,Null,Sedan,Tesla Camry
+C14,Luxurious Loft 14,Cape Town District 4,120,True,2024-02-01,2024-02-05,Null,Sedan,BMW Camry
+C15,Modern Penthouse 15,Sydney District 5,125,True,2024-02-01,2024-02-05,Null,Sedan,Tesla A4
+C16,Charming Cottage 16,Tokyo District 6,130,True,2024-02-01,2024-02-05,Null,Sedan,Chevrolet Impala
+C17,Cozy Penthouse 17,Cape Town District 7,135,True,2024-02-01,2024-02-05,Null,Sedan,Audi Camry
+C18,Sunny Retreat 18,New York District 8,140,True,2024-02-01,2024-02-05,Null,Sedan,BMW Mustang
+C19,Sunny Haven 19,Tokyo District 9,145,True,2024-02-01,2024-02-05,Null,Sedan,Chevrolet A4
+C20,Sunny Haven 20,Paris District 0,150,True,2024-02-01,2024-02-05,Null,Sedan,Tesla A4
+C21,Sunny Penthouse 21,Cape Town District 1,155,True,2024-02-01,2024-02-05,Null,Sedan,Audi A4
+C22,Charming Villa 22,New York District 2,160,True,2024-02-01,2024-02-05,Null,Sedan,Ford A4
+C23,Charming Loft 23,Barcelona District 3,165,True,2024-02-01,2024-02-05,Null,Sedan,Toyota Camry
+C24,Cozy Haven 24,Paris District 4,170,True,2024-02-01,2024-02-05,Null,Sedan,Chevrolet X5
+C25,Sunny Loft 25,Sydney District 5,175,True,2024-02-01,2024-02-05,Null,Sedan,BMW A4
+C26,Rustic Villa 26,Paris District 6,180,True,2024-02-01,2024-02-05,Null,Sedan,Chevrolet X5
+C27,Cozy Cottage 27,Barcelona District 7,185,True,2024-02-01,2024-02-05,Null,Sedan,BMW Mustang
+C28,Charming Haven 28,New York District 8,190,True,2024-02-01,2024-02-05,Null,Sedan,BMW Camry
+C29,Charming Retreat 29,Tokyo District 9,195,True,2024-02-01,2024-02-05,Null,Sedan,Ford Model S
+C30,Cozy Loft 30,New York District 0,200,True,2024-02-01,2024-02-05,Null,Sedan,Chevrolet X5
+C31,Modern Penthouse 31,Tokyo District 1,205,True,2024-02-01,2024-02-05,Null,Sedan,Toyota Impala
+C32,Charming Loft 32,Paris District 2,210,True,2024-02-01,2024-02-05,Null,Sedan,Tesla Model S
+C33,Sunny Villa 33,Sydney District 3,215,True,2024-02-01,2024-02-05,Null,Sedan,Tesla Mustang
+C34,Charming Haven 34,Tokyo District 4,220,True,2024-02-01,2024-02-05,Null,Sedan,Toyota Camry
+C35,Luxurious Cottage 35,Barcelona District 5,225,True,2024-02-01,2024-02-05,Null,Sedan,BMW Model S
+C36,Luxurious Haven 36,Cape Town District 6,230,True,2024-02-01,2024-02-05,Null,Sedan,Ford Model S
+C37,Charming Haven 37,Sydney District 7,235,True,2024-02-01,2024-02-05,Null,Sedan,BMW X5
+C38,Sunny Haven 38,Paris District 8,240,True,2024-02-01,2024-02-05,Null,Sedan,Toyota Model S
+C39,Modern Retreat 39,Sydney District 9,245,True,2024-02-01,2024-02-05,Null,Sedan,BMW X5
+C40,Modern Loft 40,Tokyo District 0,250,True,2024-02-01,2024-02-05,Null,Sedan,BMW Camry
+C41,Cozy Retreat 41,Paris District 1,255,True,2024-02-01,2024-02-05,Null,Sedan,Toyota Impala
+C42,Cozy Cottage 42,Barcelona District 2,260,True,2024-02-01,2024-02-05,Null,Sedan,Ford A4
+C43,Rustic Loft 43,Paris District 3,265,True,2024-02-01,2024-02-05,Null,Sedan,Toyota Mustang
+C44,Rustic Retreat 44,Tokyo District 4,270,True,2024-02-01,2024-02-05,Null,Sedan,Toyota Model S
+C45,Sunny Haven 45,Barcelona District 5,275,True,2024-02-01,2024-02-05,Null,Sedan,Ford X5
+C46,Rustic Loft 46,Cape Town District 6,280,True,2024-02-01,2024-02-05,Null,Sedan,Ford Impala
+C47,Modern Loft 47,Barcelona District 7,285,True,2024-02-01,2024-02-05,Null,Sedan,Chevrolet Camry
+C48,Charming Retreat 48,Paris District 8,290,True,2024-02-01,2024-02-05,Null,Sedan,BMW Mustang
+C49,Cozy Penthouse 49,Paris District 9,295,True,2024-02-01,2024-02-05,Null,Sedan,Audi A4
+C50,Luxurious Retreat 50,Barcelona District 0,300,True,2024-02-01,2024-02-05,Null,Sedan,Tesla Camry
+C51,Sunny Loft 51,New York District 1,305,True,2024-02-01,2024-02-05,Null,Sedan,BMW A4
+C52,Luxurious Villa 52,Paris District 2,310,True,2024-02-01,2024-02-05,Null,Sedan,Tesla X5
+C53,Modern Retreat 53,Cape Town District 3,315,True,2024-02-01,2024-02-05,Null,Sedan,Audi Impala
+C54,Luxurious Villa 54,New York District 4,320,True,2024-02-01,2024-02-05,Null,Sedan,Tesla Impala
+C55,Rustic Cottage 55,Cape Town District 5,325,True,2024-02-01,2024-02-05,Null,Sedan,Toyota X5
+C56,Rustic Penthouse 56,Barcelona District 6,330,True,2024-02-01,2024-02-05,Null,Sedan,Chevrolet Impala
+C57,Modern Penthouse 57,Tokyo District 7,335,True,2024-02-01,2024-02-05,Null,Sedan,Audi X5
+C58,Rustic Haven 58,Cape Town District 8,340,True,2024-02-01,2024-02-05,Null,Sedan,Ford Camry
+C59,Sunny Villa 59,Sydney District 9,345,True,2024-02-01,2024-02-05,Null,Sedan,Tesla Mustang
+C60,Cozy Cottage 60,Sydney District 0,350,True,2024-02-01,2024-02-05,Null,Sedan,Chevrolet X5
+E1,Sunny Villa 1,Tokyo District 1,33,True,2024-03-01,2024-03-01,Null,football match,Real Madrid,110
+E2,Sunny Haven 2,Barcelona District 2,36,True,2024-03-01,2024-03-01,Null,concert,Beyoncé,120
+E3,Rustic Villa 3,Paris District 3,39,True,2024-03-01,2024-03-01,Null,football match,Golden State Warriors,130
+E4,Luxurious Retreat 4,Cape Town District 4,42,True,2024-03-01,2024-03-01,Null,concert,Beyoncé,140
+E5,Modern Haven 5,Sydney District 5,45,True,2024-03-01,2024-03-01,Null,football match,Real Madrid,150
+E6,Charming Cottage 6,Barcelona District 6,48,True,2024-03-01,2024-03-01,Null,concert,Ed Sheeran,160
+E7,Charming Loft 7,Paris District 7,51,True,2024-03-01,2024-03-01,Null,football match,New York Yankees,170
+E8,Sunny Cottage 8,Tokyo District 8,54,True,2024-03-01,2024-03-01,Null,concert,The Lumineers,180
+E9,Cozy Penthouse 9,New York District 9,57,True,2024-03-01,2024-03-01,Null,football match,Golden State Warriors,190
+E10,Luxurious Cottage 10,Paris District 0,60,True,2024-03-01,2024-03-01,Null,concert,Coldplay,200
+E11,Charming Cottage 11,Sydney District 1,63,True,2024-03-01,2024-03-01,Null,football match,Manchester United,210
+E12,Charming Penthouse 12,Paris District 2,66,True,2024-03-01,2024-03-01,Null,concert,The Lumineers,220
+E13,Cozy Penthouse 13,Sydney District 3,69,True,2024-03-01,2024-03-01,Null,football match,Golden State Warriors,230
+E14,Sunny Loft 14,Cape Town District 4,72,True,2024-03-01,2024-03-01,Null,concert,Adele,240
+E15,Charming Haven 15,Paris District 5,75,True,2024-03-01,2024-03-01,Null,football match,Real Madrid,250
+E16,Modern Loft 16,Cape Town District 6,78,True,2024-03-01,2024-03-01,Null,concert,Beyoncé,260
+E17,Modern Retreat 17,Barcelona District 7,81,True,2024-03-01,2024-03-01,Null,football match,Real Madrid,270
+E18,Modern Loft 18,Barcelona District 8,84,True,2024-03-01,2024-03-01,Null,concert,Coldplay,280
+E19,Luxurious Haven 19,New York District 9,87,True,2024-03-01,2024-03-01,Null,football match,New York Yankees,290
+E20,Modern Loft 20,Barcelona District 0,90,True,2024-03-01,2024-03-01,Null,concert,Coldplay,300
+E21,Charming Villa 21,Barcelona District 1,93,True,2024-03-01,2024-03-01,Null,football match,Real Madrid,310
+E22,Luxurious Villa 22,Sydney District 2,96,True,2024-03-01,2024-03-01,Null,concert,Coldplay,320
+E23,Rustic Penthouse 23,Paris District 3,99,True,2024-03-01,2024-03-01,Null,football match,Golden State Warriors,330
+E24,Rustic Retreat 24,Paris District 4,102,True,2024-03-01,2024-03-01,Null,concert,The Lumineers,340
+E25,Modern Retreat 25,Paris District 5,105,True,2024-03-01,2024-03-01,Null,football match,Real Madrid,350
+E26,Rustic Retreat 26,Sydney District 6,108,True,2024-03-01,2024-03-01,Null,concert,Beyoncé,360
+E27,Rustic Villa 27,Tokyo District 7,111,True,2024-03-01,2024-03-01,Null,football match,Real Madrid,370
+E28,Charming Penthouse 28,Paris District 8,114,True,2024-03-01,2024-03-01,Null,concert,Coldplay,380
+E29,Rustic Penthouse 29,Barcelona District 9,117,True,2024-03-01,2024-03-01,Null,football match,Manchester United,390
+E30,Luxurious Cottage 30,Barcelona District 0,120,True,2024-03-01,2024-03-01,Null,concert,Adele,400
+E31,Charming Retreat 31,Barcelona District 1,123,True,2024-03-01,2024-03-01,Null,football match,Golden State Warriors,410
+E32,Luxurious Haven 32,Paris District 2,126,True,2024-03-01,2024-03-01,Null,concert,The Lumineers,420
+E33,Luxurious Cottage 33,New York District 3,129,True,2024-03-01,2024-03-01,Null,football match,Golden State Warriors,430
+E34,Luxurious Loft 34,Barcelona District 4,132,True,2024-03-01,2024-03-01,Null,concert,The Lumineers,440
+E35,Luxurious Loft 35,New York District 5,135,True,2024-03-01,2024-03-01,Null,football match,Manchester United,450
+E36,Charming Retreat 36,Cape Town District 6,138,True,2024-03-01,2024-03-01,Null,concert,Coldplay,460
+E37,Cozy Haven 37,Barcelona District 7,141,True,2024-03-01,2024-03-01,Null,football match,Real Madrid,470
+E38,Charming Haven 38,Tokyo District 8,144,True,2024-03-01,2024-03-01,Null,concert,The Lumineers,480
+E39,Modern Cottage 39,Cape Town District 9,147,True,2024-03-01,2024-03-01,Null,football match,Real Madrid,490
+E40,Modern Loft 40,Cape Town District 0,150,True,2024-03-01,2024-03-01,Null,concert,Adele,500
+E41,Sunny Loft 41,Sydney District 1,153,True,2024-03-01,2024-03-01,Null,football match,Real Madrid,510
+E42,Charming Cottage 42,Barcelona District 2,156,True,2024-03-01,2024-03-01,Null,concert,Beyoncé,520
+E43,Modern Haven 43,New York District 3,159,True,2024-03-01,2024-03-01,Null,football match,Real Madrid,530
+E44,Charming Haven 44,Barcelona District 4,162,True,2024-03-01,2024-03-01,Null,concert,The Lumineers,540
+E45,Cozy Penthouse 45,Tokyo District 5,165,True,2024-03-01,2024-03-01,Null,football match,Golden State Warriors,550
+E46,Sunny Retreat 46,Tokyo District 6,168,True,2024-03-01,2024-03-01,Null,concert,Adele,560
+E47,Modern Loft 47,Paris District 7,171,True,2024-03-01,2024-03-01,Null,football match,Real Madrid,570
+E48,Sunny Cottage 48,Tokyo District 8,174,True,2024-03-01,2024-03-01,Null,concert,Ed Sheeran,580
+E49,Modern Loft 49,Cape Town District 9,177,True,2024-03-01,2024-03-01,Null,football match,Manchester United,590
+E50,Modern Haven 50,Tokyo District 0,180,True,2024-03-01,2024-03-01,Null,concert,The Lumineers,600
+E51,Luxurious Loft 51,Tokyo District 1,183,True,2024-03-01,2024-03-01,Null,football match,Real Madrid,610
+E52,Modern Haven 52,New York District 2,186,True,2024-03-01,2024-03-01,Null,concert,Coldplay,620
+E53,Sunny Cottage 53,Paris District 3,189,True,2024-03-01,2024-03-01,Null,football match,New York Yankees,630
+E54,Rustic Penthouse 54,Cape Town District 4,192,True,2024-03-01,2024-03-01,Null,concert,Beyoncé,640
+E55,Sunny Haven 55,Sydney District 5,195,True,2024-03-01,2024-03-01,Null,football match,Golden State Warriors,650
+E56,Luxurious Villa 56,Sydney District 6,198,True,2024-03-01,2024-03-01,Null,concert,Ed Sheeran,660
+E57,Modern Haven 57,Sydney District 7,201,True,2024-03-01,2024-03-01,Null,football match,Manchester United,670
+E58,Luxurious Penthouse 58,Barcelona District 8,204,True,2024-03-01,2024-03-01,Null,concert,Adele,680
+E59,Luxurious Penthouse 59,New York District 9,207,True,2024-03-01,2024-03-01,Null,football match,Golden State Warriors,690
+E60,Sunny Haven 60,Paris District 0,210,True,2024-03-01,2024-03-01,Null,concert,The Lumineers,700

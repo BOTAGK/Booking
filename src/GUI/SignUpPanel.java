@@ -33,7 +33,6 @@ public class SignUpPanel extends JPanel {
         gbc.anchor = GridBagConstraints.EAST;
         add(nameLbl, gbc);
 
-        // Inicjalizacja pól formularza
         nameTxt = new JTextField(15);
         gbc.gridx = 1;
         gbc.anchor = GridBagConstraints.WEST;
