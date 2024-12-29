@@ -5,6 +5,8 @@ import Booking.Booking;
 
 public class UserList {
 
+    ResourceManager rm; // nie wiem czy to tutaj powinno byc ???
+
     private static UserList instance;
 
     private ArrayList<User> users;
@@ -22,8 +24,12 @@ public class UserList {
 
     public ArrayList<User> getUsers() { return users; }
 
+    public void setUsers(ArrayList<User> users) { this.users = users; }
+
     public void createrUser(String name, String lastName, String email, String username, String password) {
-        users.add(new User(name, lastName, email, username, password));
+        rm.deseriaizeUsers();
+        getUsers().add(new User(name, lastName, email, username, password));
+        rm.seriaizeUsers();
     }
 
     public void deleteUser(String username) {
