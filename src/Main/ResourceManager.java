@@ -1,14 +1,15 @@
 package Main;
 
 import java.io.*;
+import java.util.ArrayList;
+
+
 
 public class ResourceManager {
     UserList userList = new UserList();
 
-    public void seriaizeUsers(){
+    public void readFile(){
         String inputFilePath = "users_data.txt";
-        String outputFilePath = "users_data.ser";
-
         try(BufferedReader br = new BufferedReader(new FileReader(inputFilePath))){
             String line;
             while((line = br.readLine()) != null){
@@ -27,6 +28,10 @@ public class ResourceManager {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void seriaizeUsers(){
+        String outputFilePath = "users_data.ser";
 
         try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(outputFilePath))){
             oos.writeObject(userList.getUsers());
@@ -38,7 +43,26 @@ public class ResourceManager {
         }
     }
 
-    //Bardziej skomplikowany odczyt obietkow poprzez rozna ilosc skladowych klas ABooking, CBooking i ETBooking
+    public void deseriaizeUsers(){
+        String filePath = "users_data.ser";
+
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))){
+            ArrayList<User> users = (ArrayList<User>) ois.readObject();
+
+            userList.setUsers(users);
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void writeFile(){
+
+    }
     public void serializeBookings() {
         String inputFilePath = "bookings.txt";
         String outputFilePath = "bookings.ser";
@@ -46,6 +70,6 @@ public class ResourceManager {
 
     public static void main(String[] args) {
         ResourceManager rm = new ResourceManager();
-        rm.seriaizeUsers();
+        rm.deseriaizeUsers();
     }
 }
