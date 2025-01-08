@@ -1,17 +1,18 @@
 package Booking;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 public class CarRentalBooking extends Booking {
 
     private String carType;
     private String carModel;
-    private int rentLength;
 
-    public CarRentalBooking(String id, String name, String location, double price, String startDate, String endDate,
-                            String carType, String carModel, int rentLength) {
+    public CarRentalBooking(String id, String name, String location, double price, LocalDate startDate, LocalDate endDate,
+                            String carType, String carModel) {
         super(id, name, location, price, startDate, endDate);
         this.carType = carType;
         this.carModel = carModel;
-        this.rentLength = rentLength; //usunalbym rentLenght jak mamy startDate i endDate
     }
 
     public String getCarType() {
@@ -22,18 +23,15 @@ public class CarRentalBooking extends Booking {
         return carModel;
     }
 
-    public int getRentLength() {
-        return rentLength;
-    }
-
-    /*
-    public boolean reserveService(){
-      tu będzie rezerwowanie samochodów
+    public long getRentLength() {
+        return ChronoUnit.DAYS.between(getStartDate(), getEndDate());
     }
 
 
-    public boolean cancelBooking(){
-        tu anulowanie rezerwacji
+    @Override
+    public String toString() {
+        return "Model: " + carModel + '\n'+
+                "Car type: " + carType + '\n'+
+                super.toString();
     }
-    */
 }

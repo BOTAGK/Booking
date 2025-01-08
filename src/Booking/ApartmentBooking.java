@@ -1,10 +1,12 @@
 package Booking;
 
+import java.time.LocalDate;
+
 public class ApartmentBooking extends Booking {
     private int roomCount;
     private int rating;
-
-    public ApartmentBooking(String id, String name, String location, double price, String startDate, String endDate, int roomCount, int rating) {
+    
+    public ApartmentBooking(String id, String name, String location, double price, LocalDate startDate, LocalDate endDate, int roomCount, int rating) {
         super(id, name, location, price,startDate,endDate );
         this.roomCount = roomCount;
         this.rating = rating;
@@ -21,5 +23,12 @@ public class ApartmentBooking extends Booking {
     }
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()+
+                "Rating: " + rating + '\n'+
+                "Room Count: " + roomCount+'\n';
     }
 }
