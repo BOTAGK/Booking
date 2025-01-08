@@ -2,7 +2,9 @@ package Booking;
 
 import Main.User;
 
-public abstract class Booking {
+import java.io.Serializable;
+
+public abstract class Booking implements Serializable {
     private String id;
     private String name;
     private String location;
@@ -59,6 +61,16 @@ public abstract class Booking {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public String toString() {
+        return "Id: " + id + "\n" +
+                "Name: " + name + "\n" +
+                "Location: " + location + "\n" +
+                "Price: " + price + "\n" +
+                "StartDate: " + startDate + "\n" +
+                "EndDate: " + endDate + "\n";
+    }
+
 
 
 }

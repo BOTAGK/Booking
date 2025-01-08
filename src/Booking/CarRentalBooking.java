@@ -11,7 +11,7 @@ public class CarRentalBooking extends Booking {
         super(id, name, location, price, startDate, endDate);
         this.carType = carType;
         this.carModel = carModel;
-        this.rentLength = rentLength;
+        this.rentLength = rentLength; //usunalbym rentLenght jak mamy startDate i endDate
     }
 
     public String getCarType() {
