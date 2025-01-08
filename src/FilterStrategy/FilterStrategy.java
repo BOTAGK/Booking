@@ -4,6 +4,6 @@ import Booking.Booking;
 
 import java.util.List;
 
-public interface BookingFilterStrategy {
+public interface FilterStrategy {
     List<Booking> filter(List<Booking> bookings);
 }

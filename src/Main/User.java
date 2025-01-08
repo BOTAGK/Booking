@@ -14,7 +14,7 @@ public class User implements Serializable {
     private String email;
     private String password;
 
-    ArrayList<Booking> bookings;
+    private ArrayList<Booking> bookings;
 
     public User( String name, String lastname, String email, String username, String password) {
         this.username = username;

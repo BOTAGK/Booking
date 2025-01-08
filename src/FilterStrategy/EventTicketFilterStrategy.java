@@ -6,7 +6,7 @@ import Booking.Booking;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class EventTicketFilterStrategy implements BookingFilterStrategy {
+public class EventTicketFilterStrategy implements FilterStrategy {
     private List<String> eventTypes;
 
     public EventTicketFilterStrategy(List<String> eventTypes) {

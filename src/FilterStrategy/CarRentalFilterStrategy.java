@@ -6,7 +6,7 @@ import Booking.CarRentalBooking;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CarRentalFilterStrategy implements BookingFilterStrategy {
+public class CarRentalFilterStrategy implements FilterStrategy {
     private List<String> carTypes;
 
     public CarRentalFilterStrategy(List<String> carTypes) {

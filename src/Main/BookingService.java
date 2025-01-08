@@ -1,6 +1,8 @@
 package Main;
 
 import Booking.Booking;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import SearchStrategy.*;
 
@@ -25,7 +27,7 @@ public class BookingService {
         return instance;
     }
 
-    public Booking createBooking(User user, Booking booking, String startDate, String endDate) {
+    public Booking createBooking(User user, Booking booking, LocalDate startDate, LocalDate endDate) {
         booking.setUser(user);
         booking.setStartDate(startDate);
         booking.setEndDate(endDate);
@@ -35,7 +37,7 @@ public class BookingService {
     public void cancelBooking(String bookingId) {
         boolean found = false;
         for (int i = 0; !found && i < bookings.size(); i++) {
-            if (bookings.get(i).getId().equals(bookingId)) {
+            if (bookings.get(i).getId().equals(bookingId)) {//todo usunac id z booking i dac indentyfikacje do bookingservice
                 bookings.remove(i);
                 found = true;
             }

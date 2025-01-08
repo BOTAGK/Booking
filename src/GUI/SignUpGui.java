@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 
 public class SignUpGui extends JFrame {
     public SignUpGui() {
-        setTitle("Login");
+        setTitle("Sign Up");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 800);
         setLocationRelativeTo(null);

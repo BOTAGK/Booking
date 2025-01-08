@@ -5,10 +5,9 @@ import Booking.Booking;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class LocationFilterStrategy implements BookingFilterStrategy{
+public class LocationFilterStrategy implements FilterStrategy{
 
     private List<String> locations;
-//    nw czy to lista czy nie
 
     public LocationFilterStrategy(List<String> locations) {
         this.locations = locations;

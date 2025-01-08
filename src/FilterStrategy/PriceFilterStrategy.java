@@ -5,7 +5,7 @@ import Booking.Booking;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class PriceFilterStrategy implements BookingFilterStrategy {
+public class PriceFilterStrategy implements FilterStrategy {
     private double minPrice;
     private double maxPrice = Double.MAX_VALUE;
 
@@ -16,9 +16,7 @@ public class PriceFilterStrategy implements BookingFilterStrategy {
         }
 
         this.minPrice = minPrice;
-        if (maxPrice != 0) {
-            this.maxPrice = maxPrice;
-        }
+        this.maxPrice = maxPrice;
     }
 //    tutaj by mozna chyba wlasny blad, że max<min (ale nw czy to po tabakowowemu)
 
