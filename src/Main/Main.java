@@ -33,12 +33,12 @@ public class Main {
         //test filter
 
         List<Booking> sampleBookings = List.of(
-                new ApartmentBooking("1", "Luxury Apartment", "New York", 150.0, LocalDate.of(2025,01, 10), LocalDate.of(2025,01,15), 3, 4),
-                new ApartmentBooking("2", "Budget Apartment", "London", 50.0, LocalDate.of(2025,02,01), LocalDate.of(2025,02,05), 1, 2),
-                new CarRentalBooking("3", "Car Rental A", "New York", 100.0, LocalDate.of(2025,01,12), LocalDate.of(2025,01,20), "SUV", "Toyota"),
-                new CarRentalBooking("4", "Car Rental B", "New York", 200.0, LocalDate.of(2025,03,01), LocalDate.of(2025,03,10), "Sedan", "BMW"),
-                new EventTicketBooking("5", "Concert", "New York", 75.0, LocalDate.of(2025,02,10), LocalDate.of(2025,02,10), "Music", "Coldplay", 500),
-                new EventTicketBooking("6", "Football Match", "London", 150.0, LocalDate.of(2025,04,01), LocalDate.of(2025,04,01), "Sports", "Chelsea FC", 200)
+                new ApartmentBooking("1", "Luxury Apartment", "New York", 150.0, LocalDate.of(2025,1, 10), LocalDate.of(2025,1,15), 3, 4),
+                new ApartmentBooking("2", "Budget Apartment", "London", 50.0, LocalDate.of(2025,2,1), LocalDate.of(2025,2,5), 1, 2),
+                new CarRentalBooking("3", "Car Rental A", "New York", 100.0, LocalDate.of(2025,1,12), LocalDate.of(2025,1,20), "SUV", "Toyota"),
+                new CarRentalBooking("4", "Car Rental B", "New York", 200.0, LocalDate.of(2025,3,1), LocalDate.of(2025,3,10), "Sedan", "BMW"),
+                new EventTicketBooking("5", "Concert", "New York", 75.0, LocalDate.of(2025,2,10), LocalDate.of(2025,2,10), "Music", "Coldplay", 500),
+                new EventTicketBooking("6", "Football Match", "London", 150.0, LocalDate.of(2025,4,1), LocalDate.of(2025,4,1), "Sports", "Chelsea FC", 200)
         );
         bookingService.getBookings().addAll(sampleBookings);
 
