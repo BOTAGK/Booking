@@ -2,6 +2,9 @@ package Main;
 
 import Booking.Booking;
 import java.util.ArrayList;
+import java.util.List;
+
+import FilterStrategy.*;
 import SearchStrategy.*;
 
 public class BookingService {
@@ -10,12 +13,14 @@ public class BookingService {
     private ArrayList<Booking> bookings;
     private ArrayList<User> observers;
     private SearchStrategy strategy;
+    private List<BookingFilterStrategy> filterStrategies;
 
 
     public BookingService() {
         this.bookings = new ArrayList<Booking>();
         this.observers = new ArrayList<User>();
         this.strategy = new TypeSearchStrategy();
+        this.filterStrategies = new ArrayList<>();
     }
 
     public static BookingService getInstance() {
@@ -63,6 +68,19 @@ public class BookingService {
         for (int i = 0; i < bookings.size(); i++) {
             System.out.println(bookings.get(i));
         }
+    }
+
+//    filter strategy
+    public void setFilterStrategies(List<BookingFilterStrategy> filterStrategies) {
+        this.filterStrategies = filterStrategies;
+    }
+
+    public List<Booking> filterBookings(){
+        List<Booking> filteredBookings = new ArrayList<>(bookings);
+        for (BookingFilterStrategy filterStrategy : filterStrategies) {
+            filteredBookings = filterStrategy.filter(filteredBookings);
+        }
+        return filteredBookings;
     }
 }
 
