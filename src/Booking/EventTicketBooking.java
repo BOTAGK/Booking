@@ -30,10 +30,13 @@ public class EventTicketBooking extends Booking {
     public void setAvailableTickets(int availableTickets) {
         this.availableTickets = availableTickets;
     }
-    /*public boolean reserveTickets(){
-        //tu bedzie rezerwowanie (nw czy ma byc boolean)
+
+
+    @Override
+    public String toString() {
+        return "Artist/Team: " + artistOrTeam + '\n' +
+                "Event Type: " + eventType + '\n' +
+                "Available tickets: " + availableTickets + '\n'+
+                super.toString();
     }
-    public boolean cancelBooking(){
-        //tutaj cancelowanie
-    }*/
 }

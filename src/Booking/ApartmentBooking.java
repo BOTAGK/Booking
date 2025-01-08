@@ -24,4 +24,11 @@ public class ApartmentBooking extends Booking {
     public void setRating(int rating) {
         this.rating = rating;
     }
+
+    @Override
+    public String toString() {
+        return super.toString()+
+                "Rating: " + rating + '\n'+
+                "Room Count: " + roomCount+'\n';
+    }
 }
