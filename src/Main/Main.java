@@ -27,7 +27,7 @@ public class Main {
 //        testUser.addBooking(testBooking2);
 //        testUser.cancelBooking();//rev powinno brac id albo index albo cokolwiek
 //
-        BookingService bookingService = new BookingService();
+        BookingService bookingService = BookingService.getInstance();
         bookingService.showBookings();
 
         //test filter
