@@ -3,6 +3,12 @@ package GUI;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+
+import GUI.Exceptions.BlankFieldException;
+import GUI.Exceptions.CredentialsTakenException;
+import GUI.Exceptions.InputValidationFailureException;
+import GUI.Exceptions.InvalidSyntaxException;
+
 import java.awt.*;
 import java.util.List;
 
@@ -94,6 +100,7 @@ public class SignUpPanel extends JPanel {
         add(signUpButton, gbc);
 
         statusLbl = new JLabel(" ");
+        statusLbl.setForeground(Color.RED);
         gbc.gridx = 0;
         gbc.gridy = 4;
         gbc.gridwidth = 4;
@@ -123,28 +130,24 @@ public class SignUpPanel extends JPanel {
         String username = usernameTxt.getText().trim();
         String password = new String(txtPassword.getPassword()).trim();
 
-        if (name.isEmpty() || lastName.isEmpty() || email.isEmpty() || username.isEmpty() || password.isEmpty()) {
-            statusLbl.setText("Please fill all the fields");
-            statusLbl.setForeground(Color.RED);
-            return false;
-        }
+        try {
+            if (name.isEmpty() || lastName.isEmpty() || email.isEmpty() || username.isEmpty() || password.isEmpty()) {
+                throw new BlankFieldException("Fields cannot be blank");
+            }
 
-        if(takenEmails.contains(email)) {
-            statusLbl.setText("Email is taken!");
-            statusLbl.setForeground(Color.RED);
-            return false;
-        }
+            if (takenEmails.contains(email)) {
+                throw new CredentialsTakenException("Email is already taken");
+            }
 
-        if (takenUsernames.contains(username)) {
-            statusLbl.setText("Username is taken!");
-            statusLbl.setForeground(Color.RED);
-            return false;
-        }
+            if (takenUsernames.contains(username)) {
+                throw new CredentialsTakenException("Username is already taken");
+            }
 
-
-        if (!email.contains("@") || !email.contains(".")) {
-            statusLbl.setText("Please enter a valid email address!");
-            statusLbl.setForeground(Color.RED);
+            if (!email.contains("@") || !email.contains(".")) {
+                throw new InvalidSyntaxException("Email is invalid");
+            }
+        } catch (InputValidationFailureException exception) {
+            statusLbl.setText(exception.getMessage());
             return false;
         }
 
