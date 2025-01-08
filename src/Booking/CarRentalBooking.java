@@ -27,14 +27,11 @@ public class CarRentalBooking extends Booking {
         return ChronoUnit.DAYS.between(getStartDate(), getEndDate());
     }
 
-    /*
-    public boolean reserveService(){
-      tu będzie rezerwowanie samochodów
-    }
 
-
-    public boolean cancelBooking(){
-        tu anulowanie rezerwacji
+    @Override
+    public String toString() {
+        return "Model: " + carModel + '\n'+
+                "Car type: " + carType + '\n'+
+                super.toString();
     }
-    */
 }

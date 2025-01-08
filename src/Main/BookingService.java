@@ -15,10 +15,10 @@ public class BookingService {
     private ArrayList<Booking> bookings;
     private ArrayList<User> observers;
     private SearchStrategy strategy;
-    private List<BookingFilterStrategy> filterStrategies;
+    private List<FilterStrategy> filterStrategies;
 
 
-    public BookingService() {
+    private BookingService() {
         this.bookings = new ArrayList<Booking>();
         this.observers = new ArrayList<User>();
         this.strategy = new TypeSearchStrategy();
@@ -57,6 +57,8 @@ public class BookingService {
         return bookings;
     }
 
+    public void setBookings(ArrayList<Booking> bookings) { this.bookings = bookings; }
+
     public ArrayList<User> getObservers() {
         return observers;
     }
@@ -73,13 +75,13 @@ public class BookingService {
     }
 
 //    filter strategy
-    public void setFilterStrategies(List<BookingFilterStrategy> filterStrategies) {
+    public void setFilterStrategies(List<FilterStrategy> filterStrategies) {
         this.filterStrategies = filterStrategies;
     }
 
     public List<Booking> filterBookings(){
         List<Booking> filteredBookings = new ArrayList<>(bookings);
-        for (BookingFilterStrategy filterStrategy : filterStrategies) {
+        for (FilterStrategy filterStrategy : filterStrategies) {
             filteredBookings = filterStrategy.filter(filteredBookings);
         }
         return filteredBookings;

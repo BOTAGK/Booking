@@ -1,0 +1,60 @@
+C1,Car 1,Paris,109,2025-02-07,2025-02-03,Sedan,Tesla Model S
+C2,Car 2,Cape Town,230,2025-02-23,2025-02-06,Convertible,Chevrolet Impala
+C3,Car 3,Sydney,241,2025-02-22,2025-02-03,Convertible,Chevrolet Impala
+C4,Car 4,Paris,236,2025-02-07,2025-02-06,SUV,Ford Mustang
+C5,Car 5,Cape Town,66,2025-02-05,2025-02-06,Convertible,Chevrolet Impala
+C6,Car 6,Paris,93,2025-03-03,2025-02-14,Convertible,Toyota Camry
+C7,Car 7,Barcelona,234,2025-02-12,2025-02-11,Convertible,Tesla Model S
+C8,Car 8,Sydney,226,2025-02-24,2025-02-05,Hatchback,BMW X5
+C9,Car 9,Tokyo,194,2025-02-21,2025-02-13,SUV,Ford Mustang
+C10,Car 10,Tokyo,74,2025-02-04,2025-02-11,Hatchback,Tesla Model S
+C11,Car 11,New York,296,2025-02-17,2025-02-06,SUV,Audi A4
+C12,Car 12,Barcelona,203,2025-02-07,2025-02-03,Hatchback,Chevrolet Impala
+C13,Car 13,Sydney,62,2025-02-21,2025-02-06,Convertible,Audi A4
+C14,Car 14,Sydney,262,2025-02-07,2025-02-15,Sedan,Ford Mustang
+C15,Car 15,Sydney,110,2025-02-12,2025-02-15,Sedan,BMW X5
+C16,Car 16,Sydney,180,2025-02-13,2025-02-12,Sedan,BMW X5
+C17,Car 17,Cape Town,244,2025-02-14,2025-02-04,Hatchback,Toyota Camry
+C18,Car 18,Paris,65,2025-02-09,2025-02-12,Hatchback,Tesla Model S
+C19,Car 19,Barcelona,224,2025-03-03,2025-02-11,Hatchback,Toyota Camry
+C20,Car 20,Cape Town,284,2025-02-06,2025-02-10,SUV,BMW X5
+C21,Car 21,Barcelona,288,2025-03-02,2025-02-11,Sedan,Ford Mustang
+C22,Car 22,Sydney,74,2025-02-24,2025-02-09,Sedan,Audi A4
+C23,Car 23,Cape Town,161,2025-02-05,2025-02-04,SUV,Chevrolet Impala
+C24,Car 24,Paris,103,2025-03-03,2025-02-04,Hatchback,Ford Mustang
+C25,Car 25,New York,91,2025-02-24,2025-02-11,Hatchback,BMW X5
+C26,Car 26,Paris,70,2025-02-11,2025-02-09,SUV,Audi A4
+C27,Car 27,Paris,213,2025-02-02,2025-02-07,SUV,Ford Mustang
+C28,Car 28,Cape Town,64,2025-02-26,2025-02-03,Sedan,Tesla Model S
+C29,Car 29,Sydney,289,2025-02-07,2025-02-02,SUV,Tesla Model S
+C30,Car 30,Barcelona,219,2025-03-02,2025-02-09,SUV,BMW X5
+C31,Car 31,Sydney,104,2025-02-08,2025-02-15,SUV,Audi A4
+C32,Car 32,Sydney,189,2025-02-12,2025-02-11,SUV,Tesla Model S
+C33,Car 33,Paris,262,2025-02-26,2025-02-13,Sedan,Toyota Camry
+C34,Car 34,Barcelona,239,2025-02-19,2025-02-08,Sedan,Ford Mustang
+C35,Car 35,Barcelona,267,2025-02-25,2025-02-14,Hatchback,Ford Mustang
+C36,Car 36,Cape Town,168,2025-02-04,2025-02-06,Convertible,Toyota Camry
+C37,Car 37,Barcelona,244,2025-02-13,2025-02-02,Sedan,Ford Mustang
+C38,Car 38,Barcelona,118,2025-02-05,2025-02-07,Sedan,Toyota Camry
+C39,Car 39,Paris,113,2025-02-24,2025-02-11,Hatchback,Chevrolet Impala
+C40,Car 40,Tokyo,148,2025-02-28,2025-02-05,Sedan,Audi A4
+C41,Car 41,New York,80,2025-02-06,2025-02-14,Convertible,Toyota Camry
+C42,Car 42,Paris,96,2025-02-04,2025-02-09,Sedan,Ford Mustang
+C43,Car 43,New York,92,2025-03-02,2025-02-08,Convertible,Tesla Model S
+C44,Car 44,Paris,270,2025-02-16,2025-02-12,Convertible,Audi A4
+C45,Car 45,Tokyo,105,2025-02-11,2025-02-11,Sedan,Audi A4
+C46,Car 46,Cape Town,69,2025-02-24,2025-02-15,Hatchback,Chevrolet Impala
+C47,Car 47,Cape Town,134,2025-02-18,2025-02-05,SUV,Tesla Model S
+C48,Car 48,Barcelona,151,2025-02-21,2025-02-15,Hatchback,Ford Mustang
+C49,Car 49,Sydney,216,2025-02-25,2025-02-13,Hatchback,Tesla Model S
+C50,Car 50,Sydney,153,2025-02-25,2025-02-10,Sedan,Ford Mustang
+C51,Car 51,Sydney,248,2025-02-13,2025-02-09,SUV,Chevrolet Impala
+C52,Car 52,Paris,220,2025-02-11,2025-02-15,SUV,Audi A4
+C53,Car 53,Cape Town,83,2025-02-28,2025-02-06,Hatchback,BMW X5
+C54,Car 54,New York,184,2025-02-18,2025-02-14,Convertible,Chevrolet Impala
+C55,Car 55,Sydney,138,2025-02-05,2025-02-07,Hatchback,Chevrolet Impala
+C56,Car 56,Cape Town,146,2025-02-12,2025-02-11,SUV,Ford Mustang
+C57,Car 57,Sydney,53,2025-02-12,2025-02-06,SUV,Chevrolet Impala
+C58,Car 58,Tokyo,150,2025-02-14,2025-02-07,Sedan,Audi A4
+C59,Car 59,New York,102,2025-02-14,2025-02-03,Hatchback,Toyota Camry
+C60,Car 60,Cape Town,151,2025-02-04,2025-02-09,SUV,Audi A4
