@@ -3,29 +3,30 @@ package Booking;
 import Main.User;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 public abstract class Booking implements Serializable {
     private String id;
     private String name;
     private String location;
     private double price;
-    private Boolean status;
+    private Boolean available;
 
-    private String startDate;
-    private String endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private User user = null;
 
-    public Booking(String id, String name, String location, double price, String startDate, String endDate) {
+    public Booking(String id, String name, String location, double price, LocalDate startDate, LocalDate endDate) {
         this.id = id;
         this.name = name;
         this.location = location;
         this.price = price;
         this.startDate = startDate;
         this.endDate = endDate;
-        status = true;
+        this.available = true;
     }
 
-    public String getId() {
+    public String getId() {//todo usunac id
         return id;
     }
     public String getName() {
@@ -37,22 +38,22 @@ public abstract class Booking implements Serializable {
     public double getPrice() {
         return price;
     }
-    public Boolean getStatus() {
-        return status;
+    public Boolean getAvailable() {
+        return available;
     }
-    public void setStatus(Boolean status) {
-        this.status = status;
+    public void setAvailable(Boolean available) {
+        this.available = available;
     }
-    public String getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
-    public void setStartDate(String startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
-    public String getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
-    public void setEndDate(String endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
     public User getUser() {
@@ -67,8 +68,8 @@ public abstract class Booking implements Serializable {
                 "Name: " + name + "\n" +
                 "Location: " + location + "\n" +
                 "Price: " + price + "\n" +
-                "StartDate: " + startDate + "\n" +
-                "EndDate: " + endDate + "\n";
+                "StartDate: " + startDate.toString() + "\n" +
+                "EndDate: " + endDate.toString() + "\n";
     }
 
 

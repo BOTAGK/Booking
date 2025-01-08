@@ -7,7 +7,7 @@ public class EventTicketBooking extends Booking {
     String artistOrTeam;
     int availableTickets;
     LocalDate date; //usunalbym date jesli mamy StartDate i EndDate
-    public EventTicketBooking(String id, String name, String location, double price, String startDate, String endDate, String eventType, String artistOrTeam, int availableTickets, LocalDate date) {
+    public EventTicketBooking(String id, String name, String location, double price, LocalDate startDate, LocalDate endDate, String eventType, String artistOrTeam, int availableTickets, LocalDate date) {
         super(id, name, location, price, startDate, endDate);
         this.eventType = eventType;
         this.artistOrTeam = artistOrTeam;
