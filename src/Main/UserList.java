@@ -11,7 +11,7 @@ public class UserList {
 
     private ArrayList<User> users;
 
-    public UserList() {
+    private UserList() {
         this.users = new ArrayList<User>();
     }
 
