@@ -3,16 +3,14 @@ package Booking;
 import java.time.LocalDate;
 
 public class EventTicketBooking extends Booking {
-    String eventType;
-    String artistOrTeam;
-    int availableTickets;
-    LocalDate date; //usunalbym date jesli mamy StartDate i EndDate
-    public EventTicketBooking(String id, String name, String location, double price, LocalDate startDate, LocalDate endDate, String eventType, String artistOrTeam, int availableTickets, LocalDate date) {
+    private String eventType;
+    private String artistOrTeam;
+    private int availableTickets;
+    public EventTicketBooking(String id, String name, String location, double price, LocalDate startDate, LocalDate endDate, String eventType, String artistOrTeam, int availableTickets) {
         super(id, name, location, price, startDate, endDate);
         this.eventType = eventType;
         this.artistOrTeam = artistOrTeam;
         this.availableTickets = availableTickets;
-        this.date = date;
     }
     public String getEventType() {
         return eventType;
@@ -31,12 +29,6 @@ public class EventTicketBooking extends Booking {
     }
     public void setAvailableTickets(int availableTickets) {
         this.availableTickets = availableTickets;
-    }
-    public LocalDate getDate() {
-        return date;
-    }
-    public void setDate(LocalDate date) {
-        this.date = date;
     }
     /*public boolean reserveTickets(){
         //tu bedzie rezerwowanie (nw czy ma byc boolean)
