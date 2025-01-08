@@ -15,7 +15,7 @@ public class BookingService {
     private ArrayList<Booking> bookings;
     private ArrayList<User> observers;
     private SearchStrategy strategy;
-    private List<BookingFilterStrategy> filterStrategies;
+    private List<FilterStrategy> filterStrategies;
 
 
     public BookingService() {
@@ -73,13 +73,13 @@ public class BookingService {
     }
 
 //    filter strategy
-    public void setFilterStrategies(List<BookingFilterStrategy> filterStrategies) {
+    public void setFilterStrategies(List<FilterStrategy> filterStrategies) {
         this.filterStrategies = filterStrategies;
     }
 
     public List<Booking> filterBookings(){
         List<Booking> filteredBookings = new ArrayList<>(bookings);
-        for (BookingFilterStrategy filterStrategy : filterStrategies) {
+        for (FilterStrategy filterStrategy : filterStrategies) {
             filteredBookings = filterStrategy.filter(filteredBookings);
         }
         return filteredBookings;
