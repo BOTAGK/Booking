@@ -38,12 +38,6 @@ public abstract class Booking implements Serializable {
     public double getPrice() {
         return price;
     }
-    public Boolean getAvailable() {
-        return available;
-    }
-    public void setAvailable(Boolean available) {
-        this.available = available;
-    }
     public LocalDate getStartDate() {
         return startDate;
     }
@@ -61,6 +55,12 @@ public abstract class Booking implements Serializable {
     }
     public void setUser(User user) {
         this.user = user;
+    }
+    public Boolean getAvailable() {
+        return available;
+    }
+    public void setAvailable(Boolean available) {
+        this.available = available;
     }
 
     public String toString() {

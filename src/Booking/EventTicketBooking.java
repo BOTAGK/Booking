@@ -6,6 +6,7 @@ public class EventTicketBooking extends Booking {
     private String eventType;
     private String artistOrTeam;
     private int availableTickets;
+
     public EventTicketBooking(String id, String name, String location, double price, LocalDate startDate, LocalDate endDate, String eventType, String artistOrTeam, int availableTickets) {
         super(id, name, location, price, startDate, endDate);
         this.eventType = eventType;
@@ -24,11 +25,14 @@ public class EventTicketBooking extends Booking {
     public void setArtistOrTeam(String artistOrTeam) {
         this.artistOrTeam = artistOrTeam;
     }
-    public int getAvailableTickets() {
-        return availableTickets;
+
+    public Boolean getAvailable() {
+        if(availableTickets > 0) return true;
+        else return false;
     }
-    public void setAvailableTickets(int availableTickets) {
-        this.availableTickets = availableTickets;
+    public void setAvailable(Boolean available) {
+        if(available) availableTickets++;
+        else availableTickets--;
     }
 
 
