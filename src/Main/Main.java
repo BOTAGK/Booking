@@ -49,7 +49,6 @@ public class Main {
                     int typeNumber = scanner.nextInt();
                     List<String> carTypes = new ArrayList<>();
                     while(typeNumber != 0){
-                        typeNumber = scanner.nextInt();
                         switch (typeNumber){
                             case 0:
                                 break;
@@ -69,10 +68,11 @@ public class Main {
                                 System.out.println("Please enter a valid number");
                                 break;
                             }
+                            typeNumber = scanner.nextInt();
                     }
-                    //if(carTypes.isEmpty()){
-                      //  carTypes = null;
-                    //}
+                    if(carTypes.isEmpty()){
+                        carTypes = null;
+                    }
                     filters.add(new CarRentalFilterStrategy(carTypes));
                     break;
                 case 2:
@@ -91,31 +91,32 @@ public class Main {
                     filters.add(new ApartmentFilterStrategy(minNumberOfRooms,minRating));
                     break;
                 case 3:
-                    System.out.println("Select event types:\n"+ "1. Football match\n" + "2. Concert\n" + "3. Stand up\n" + "When you're done enter '0' ");
+                    System.out.println("Select event types:\n"+ "1. Sports\n" + "2. Concert\n" + "3. Comedy\n" + "When you're done enter '0' ");
                     List<String> eventTypes = new ArrayList<>();
                     typeNumber = scanner.nextInt();
                     while(typeNumber != 0){
-                        typeNumber = scanner.nextInt();
+
                         switch (typeNumber){
                             case 0:
                                 break;
                             case 1:
-                                eventTypes.add("Football match");
+                                eventTypes.add("Sports");
                                 break;
                             case 2:
                                 eventTypes.add("Concert");
                                 break;
                             case 3:
-                                eventTypes.add("Stand up");
+                                eventTypes.add("Comedy");
                                 break;
                             default:
                                 System.out.println("Please enter a valid number");
                                 break;
                         }
+                        typeNumber = scanner.nextInt();
                     }
-                   // if(eventTypes.isEmpty()){
-                   //     eventTypes = null;
-                    //}
+                    if(eventTypes.isEmpty()){
+                      eventTypes = null;
+                    }
                     filters.add(new EventTicketFilterStrategy(eventTypes));
                     break;
                 default:
@@ -123,6 +124,7 @@ public class Main {
                     break;
             }
         }while(choice<1 || choice>3);
+
         System.out.println("Enter price range:\n" + "min. price: ");
         double minPrice = scanner.nextDouble();
         System.out.println("max. price: ");
@@ -132,7 +134,7 @@ public class Main {
         int typeNumber = scanner.nextInt();
         List<String> locations = new ArrayList<>();
         while(typeNumber != 0){
-            typeNumber = scanner.nextInt();
+
             switch (typeNumber){
                 case 0:
                     break;
@@ -155,8 +157,11 @@ public class Main {
                     System.out.println("Please enter a valid number");
                     break;
             }
+            typeNumber = scanner.nextInt();
         }
-        filters.add(new LocationFilterStrategy(locations));
+        if(!locations.isEmpty()){
+            filters.add(new LocationFilterStrategy(locations));
+        }
         bookingService.setFilterStrategies(filters);
         bookingService.showBookings(bookingService.filterBookings());
         bookingService.reserveBooking(currentUser);

@@ -84,9 +84,12 @@ public class BookingService {
             for(int i = 0; i < bookings.size(); i++){
                 if(bookings.get(i).getId().equals(id)){
                     indeks = i;
+                    break;
                 }
             }
-            System.out.println("Please enter valid ID");
+            if(indeks == -1){
+                System.out.println("Please enter valid ID");
+            }
         }
         bookings.get(indeks).setUser(user);
         bookings.get(indeks).setAvailable(false);
