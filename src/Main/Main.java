@@ -164,7 +164,13 @@ public class Main {
         }
         bookingService.setFilterStrategies(filters);
         bookingService.showBookings(bookingService.filterBookings());
-        bookingService.reserveBooking(currentUser);
+        if(!bookingService.filterBookings().isEmpty()){
+            bookingService.reserveBooking(currentUser);
+        }
+        else{
+            System.out.println("Bookings with this filters not found");
+        }
+
         currentUser.showBookings();
 
 
