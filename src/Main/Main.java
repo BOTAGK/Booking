@@ -6,18 +6,12 @@ import Booking.*;
 import FilterStrategy.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-
-        // System.out.println("Hello world!");
-        // System.out.println("Hello Wojtek sie melduje");
-        // System.out.println("Hello world!");
-        // System.out.println("Hello od Adama");
-        // System.out.println("Hello od Bogacz");
-        // System.out.println("Hello imxantek");
-        // System.out.println("Hello kgazda");
 
 //        Booking testBooking1 = new ApartmentBooking("B1", "wakacje", "Radom", 9999.99, LocalDate.of(2025, 3, 5), LocalDate.of(2025, 3, 9), 1, 2);
 //        Booking testBooking2= new ApartmentBooking("B2", "odpoczynek", "Kolobrzeg", 2137.69, LocalDate.of(2025, 7, 12), LocalDate.of(2025, 9, 5), 2, 4);
@@ -28,10 +22,7 @@ public class Main {
 //        testUser.cancelBooking();//rev powinno brac id albo index albo cokolwiek
 //
         BookingService bookingService = BookingService.getInstance();
-        bookingService.showBookings();
-
-        //test filter
-
+        UserList userList = UserList.getInstance();
         List<Booking> sampleBookings = List.of(
                 new ApartmentBooking("1", "Luxury Apartment", "New York", 150.0, LocalDate.of(2025,1, 10), LocalDate.of(2025,1,15), 3, 4),
                 new ApartmentBooking("2", "Budget Apartment", "London", 50.0, LocalDate.of(2025,2,1), LocalDate.of(2025,2,5), 1, 2),
@@ -40,6 +31,142 @@ public class Main {
                 new EventTicketBooking("5", "Concert", "New York", 75.0, LocalDate.of(2025,2,10), LocalDate.of(2025,2,10), "Music", "Coldplay", 500),
                 new EventTicketBooking("6", "Football Match", "London", 150.0, LocalDate.of(2025,4,1), LocalDate.of(2025,4,1), "Sports", "Chelsea FC", 200)
         );
+        ArrayList<User> users = new ArrayList<>();
+        users.add(new User("Adam", "Nowak", "adam@gmail.com", "adam12", "123"));
+        userList.setUsers(users);
+        bookingService.setBookings(sampleBookings);
+        User currentUser = userList.login();
+        bookingService.showBookings(bookingService.getBookings());
+        System.out.println("Pick Category:\n" + "1. Car rental\n" + "2. Apartment booking\n" + "3. Event booking" );
+        Scanner scanner = new Scanner(System.in);
+        List<FilterStrategy> filters = new ArrayList<>();
+        int choice;
+        do {
+            choice = scanner.nextInt();
+            switch (choice){
+                case 1:
+                    System.out.println("Select car types:\n"+ "1. SUV\n" + "2. Combi\n" + "3. Sedane\n" + "4. VAN\n" + "When you're done enter '0' ");
+                    int typeNumber = scanner.nextInt();
+                    List<String> carTypes = new ArrayList<>();
+                    while(typeNumber != 0){
+                        typeNumber = scanner.nextInt();
+                        switch (typeNumber){
+                            case 0:
+                                break;
+                            case 1:
+                                carTypes.add("SUV");
+                                break;
+                            case 2:
+                                carTypes.add("Combi");
+                                break;
+                            case 3:
+                                carTypes.add("Sedane");
+                                break;
+                            case 4:
+                                carTypes.add("VAN");
+                                break;
+                            default:
+                                System.out.println("Please enter a valid number");
+                                break;
+                            }
+                    }
+                    //if(carTypes.isEmpty()){
+                      //  carTypes = null;
+                    //}
+                    filters.add(new CarRentalFilterStrategy(carTypes));
+                    break;
+                case 2:
+                    System.out.println("Please enter:\n"+ "min. number of rooms: ");
+                    int minNumberOfRooms = scanner.nextInt();
+                    while(minNumberOfRooms < 0) {
+                        System.out.println("Please enter a valid number");
+                        minNumberOfRooms = scanner.nextInt();
+                    }
+                    System.out.println("Please enter:\n"+ "min. rating: ");
+                    int minRating = scanner.nextInt();
+                    while(minRating < 0 || minRating > 5) {
+                        System.out.println("Please enter a valid number");
+                        minRating = scanner.nextInt();
+                    }
+                    filters.add(new ApartmentFilterStrategy(minNumberOfRooms,minRating));
+                    break;
+                case 3:
+                    System.out.println("Select event types:\n"+ "1. Football match\n" + "2. Concert\n" + "3. Stand up\n" + "When you're done enter '0' ");
+                    List<String> eventTypes = new ArrayList<>();
+                    typeNumber = scanner.nextInt();
+                    while(typeNumber != 0){
+                        typeNumber = scanner.nextInt();
+                        switch (typeNumber){
+                            case 0:
+                                break;
+                            case 1:
+                                eventTypes.add("Football match");
+                                break;
+                            case 2:
+                                eventTypes.add("Concert");
+                                break;
+                            case 3:
+                                eventTypes.add("Stand up");
+                                break;
+                            default:
+                                System.out.println("Please enter a valid number");
+                                break;
+                        }
+                    }
+                   // if(eventTypes.isEmpty()){
+                   //     eventTypes = null;
+                    //}
+                    filters.add(new EventTicketFilterStrategy(eventTypes));
+                    break;
+                default:
+                    System.out.println("Wrong number, enter your choice again");
+                    break;
+            }
+        }while(choice<1 || choice>3);
+        System.out.println("Enter price range:\n" + "min. price: ");
+        double minPrice = scanner.nextDouble();
+        System.out.println("max. price: ");
+        double maxPrice = scanner.nextDouble();
+        filters.add(new PriceFilterStrategy(minPrice,maxPrice));
+        System.out.println("Select locations:\n" + "1. New York\n" + "2. London\n" + "3. Warsaw\n"+ "4. Sydney\n" + "5. Liverpool\n" + "When you're done enter '0' ");
+        int typeNumber = scanner.nextInt();
+        List<String> locations = new ArrayList<>();
+        while(typeNumber != 0){
+            typeNumber = scanner.nextInt();
+            switch (typeNumber){
+                case 0:
+                    break;
+                case 1:
+                    locations.add("New York");
+                    break;
+                case 2:
+                    locations.add("London");
+                    break;
+                case 3:
+                    locations.add("Warsaw");
+                    break;
+                case 4:
+                    locations.add("Sydney");
+                    break;
+                case 5:
+                    locations.add("Liverpool");
+                    break;
+                default:
+                    System.out.println("Please enter a valid number");
+                    break;
+            }
+        }
+        filters.add(new LocationFilterStrategy(locations));
+        bookingService.setFilterStrategies(filters);
+        bookingService.showBookings(bookingService.filterBookings());
+        bookingService.reserveBooking(currentUser);
+        currentUser.showBookings();
+
+
+
+        //test filter
+/*
+
         bookingService.getBookings().addAll(sampleBookings);
 
         List<FilterStrategy> filters = new ArrayList<>();
@@ -53,5 +180,7 @@ public class Main {
         for (Booking booking : filteredBookings) {
             System.out.println(booking);
         }
+
+ */
     }
 }

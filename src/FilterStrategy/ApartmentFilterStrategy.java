@@ -10,6 +10,8 @@ public class ApartmentFilterStrategy implements FilterStrategy {
     private int minRoomCount;
     private int minRating;
 
+    public ApartmentFilterStrategy() {}
+
     public ApartmentFilterStrategy(int minRoomCount, int minRating) {
         this.minRoomCount = minRoomCount;
         this.minRating = minRating;
