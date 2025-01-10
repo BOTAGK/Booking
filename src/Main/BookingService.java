@@ -4,7 +4,9 @@ import Booking.Booking;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import FilterStrategy.*;
 import SearchStrategy.*;
@@ -12,24 +14,15 @@ import SearchStrategy.*;
 public class BookingService {
 
     private static BookingService instance;
-    private ArrayList<Booking> bookings;
+    private HashMap<String,Booking> bookings;
     private SearchStrategy strategy;
     private List<FilterStrategy> filterStrategies;
 
 
     private BookingService() {
-        this.bookings = new ArrayList<Booking>();
+        this.bookings = new HashMap<String,Booking>();
         this.strategy = new TypeSearchStrategy();
         this.filterStrategies = new ArrayList<>();
-    }
-
-    private Booking findBooking(String id) {
-        for (Booking booking : this.bookings) {
-            if (booking.getId().equals(id)) {
-                return booking;
-            }
-        }
-        return null;
     }
 
     public static BookingService getInstance() {
@@ -39,21 +32,24 @@ public class BookingService {
         return instance;
     }
 
+    private String createId() {
+        String temp;
+        do {
+            temp = String.valueOf((int)(Math.random()*2000000000));
+        }while (bookings.containsKey(temp));
+        return temp;
+    }
+
     public void createBooking(Booking booking) { //Dodaje nowy booking do listy
-        bookings.add(booking);
+        bookings.put(createId(), booking);
     }
 
     public void deleteBooking(String bookingId) { // Usuwa booking z listy
-        for (int i = 0;i < bookings.size(); i++) {
-            if (bookings.get(i).getId().equals(bookingId)) {//todo usunac id z booking i dac indentyfikacje do bookingservice
-                bookings.remove(i);
-                return;
-            }
-        }
+        bookings.remove(bookingId);
     }
 
     public void bookBooking(User user, String bookingId) { //Użytkownik rezerwuje booking z tym id
-        Booking booking = this.findBooking(bookingId);
+        Booking booking = this.bookings.get(bookingId);
         if (booking == null) {
             return;
         }
@@ -68,7 +64,8 @@ public class BookingService {
         if(!user.hasBooking(bookingId)) {
             return;
         }
-        Booking booking = this.findBooking(bookingId);
+
+        Booking booking = this.bookings.get(bookingId);
         if(booking == null) {
             return;
         }
@@ -77,15 +74,15 @@ public class BookingService {
         user.removeId(bookingId);
     }
 
-    public void showUserBookings(User user) { // Wyświetla wszystkie bookingi danego użytkownika
-        for (Booking booking : bookings) {
-            if(user.hasBooking(booking.getId())) {
-                System.out.println(booking);
-            }
-        }
+    public ArrayList<Booking> getBookings() { //zwraca ArrayListe wszystkich bookingów
+        return new ArrayList<>(this.bookings.values());
     }
 
-    public ArrayList<Booking> getBookings() {
+    public ArrayList<Booking> getUserBookings(User user) { // zwraca ArrayListe bookingów konkretnego użytkownika
+        ArrayList<Booking> bookings = new ArrayList<>();
+        for(String id : user.getBookingIds()) {
+            bookings.add(this.bookings.get(id));
+        }
         return bookings;
     }
 

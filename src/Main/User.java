@@ -48,6 +48,9 @@ public class User implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
+    public ArrayList<String> getBookingIds() {
+        return bookingIds;
+    }
 
     public void addId(String id) {
         bookingIds.add(id);
