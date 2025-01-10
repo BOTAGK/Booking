@@ -6,7 +6,6 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public abstract class Booking implements Serializable {
-    private String id;
     private String name;
     private String location;
     private double price;
@@ -16,8 +15,7 @@ public abstract class Booking implements Serializable {
     private LocalDate endDate;
     private User user = null;
 
-    public Booking(String id, String name, String location, double price, LocalDate startDate, LocalDate endDate) {
-        this.id = id;
+    public Booking(String name, String location, double price, LocalDate startDate, LocalDate endDate) {
         this.name = name;
         this.location = location;
         this.price = price;
@@ -26,9 +24,6 @@ public abstract class Booking implements Serializable {
         this.available = true;
     }
 
-    public String getId() {//todo usunac id
-        return id;
-    }
     public String getName() {
         return name;
     }
@@ -64,8 +59,7 @@ public abstract class Booking implements Serializable {
     }
 
     public String toString() {
-        return "Id: " + id + "\n" +
-                "Name: " + name + "\n" +
+        return  "Name: " + name + "\n" +
                 "Location: " + location + "\n" +
                 "Price: " + price + "\n" +
                 "StartDate: " + startDate.toString() + "\n" +
