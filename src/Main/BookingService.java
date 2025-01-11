@@ -8,21 +8,18 @@ import java.util.List;
 import java.util.Scanner;
 
 import FilterStrategy.*;
-import SearchStrategy.*;
 
 public class BookingService {
 
     private static BookingService instance;
     private List<Booking> bookings;
     private ArrayList<User> observers;
-    private SearchStrategy strategy;
     private List<FilterStrategy> filterStrategies;
 
 
     private BookingService() {
         this.bookings = new ArrayList<Booking>();
         this.observers = new ArrayList<User>();
-        this.strategy = new TypeSearchStrategy();
         this.filterStrategies = new ArrayList<>();
     }
 
@@ -64,9 +61,6 @@ public class BookingService {
         return observers;
     }
 
-    public void setStrategy(SearchStrategy strategy) {
-        this.strategy = strategy;
-    }
 
     public void showBookings (List<Booking> bookings) {
         for (Booking booking : bookings) {
