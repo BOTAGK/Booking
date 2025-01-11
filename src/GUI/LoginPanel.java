@@ -64,5 +64,15 @@ public class LoginPanel extends JPanel {
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         add(loginButton, gbc);
+
+        loginButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                //todo tutaj trzeba dorobic walidacje maila i hasla
+                //todo a jesli niepoprawne to zeby wypisywalo ze bledny mail badz haslo
+                parentFrame.dispose();
+                new MainMenuGui();
+            }
+        });
     }
 }

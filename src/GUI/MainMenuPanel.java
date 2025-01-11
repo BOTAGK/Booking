@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -42,22 +44,98 @@ public class MainMenuPanel extends JPanel {
         JPanel leftPanel = new JPanel();
         leftPanel.setLayout(new BorderLayout());
 
-       // JButton filterButton = new JButton("Filters");
-
         JPanel filtersPanel = new JPanel();
         filtersPanel.setLayout(new BoxLayout(filtersPanel, BoxLayout.Y_AXIS));
 
         JLabel priceLabel = new JLabel("        Price       ");
-        priceLabel.setSize(100, 20);
-        JTextField minPriceField = new JTextField("min price");
-        JTextField maxPriceField = new JTextField("max price");
         filtersPanel.add(priceLabel);
+
+        JTextField minPriceField = new JTextField("Min price");
+        JLabel minPriceLabel = new JLabel("Min price");
+        filtersPanel.add(minPriceLabel);
         filtersPanel.add(minPriceField);
+
+        JTextField maxPriceField = new JTextField("Max price");
+        JLabel maxPriceLabel = new JLabel("Max price");
+        filtersPanel.add(maxPriceLabel);
         filtersPanel.add(maxPriceField);
+
+        filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+
+        JLabel locationLabel = new JLabel("        Location      ");
+        filtersPanel.add(locationLabel);
+        JTextField locationField = new JTextField("Location");
+        filtersPanel.add(locationField);
+
+        filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+
+        JLabel minRatingLabel = new JLabel("        Minimal Rating      ");
+        filtersPanel.add(minRatingLabel);
+        JTextField minRatingField = new JTextField("Min rating");
+        filtersPanel.add(minRatingField);
+
+        filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+
+
+        minPriceField.addFocusListener(new FocusListener() {
+
+            @Override
+            public void focusGained(FocusEvent e) {
+                minPriceField.setText("");
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                String minPriceInput;
+                minPriceInput = minPriceField.getText();
+                System.out.println(minPriceInput);
+            }
+        });
+        maxPriceField.addFocusListener(new FocusListener() {
+
+            @Override
+            public void focusGained(FocusEvent e) {
+                maxPriceField.setText("");
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                String maxPriceInput;
+                maxPriceInput=maxPriceField.getText();
+                System.out.println(maxPriceInput);
+            }
+        });
+        locationField.addFocusListener(new FocusListener() {
+
+            @Override
+            public void focusGained(FocusEvent e) {
+                locationField.setText("");
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                String locationInput;
+                locationInput=locationField.getText();
+                System.out.println(locationInput);
+            }
+        });
+        minRatingField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                minRatingField.setText("");
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                String minRatingInput;
+                minRatingInput=minRatingField.getText();
+                System.out.println(minRatingInput);
+            }
+        });
 
 
         JMenuBar menuBar = new JMenuBar();
-        JMenu menu = new JMenu("    User");
+        JMenu menu = new JMenu("        User       ");
         JMenuItem item1=new JMenuItem("Show your reservations");
         JMenuItem item2=new JMenuItem("Log out");
 
