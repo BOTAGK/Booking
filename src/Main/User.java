@@ -1,11 +1,9 @@
 package Main;
 
-import Booking.Booking;
 import Booking.BookingId;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class User implements Serializable {
 
@@ -49,7 +47,7 @@ public class User implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-    public ArrayList<String> getBookingIds() {
+    public ArrayList<BookingId> getBookingIds() {
         return bookingIds;
     }
 
