@@ -1,8 +1,9 @@
 package Booking;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class EventTicketBooking extends Booking {
+public class EventTicketBooking extends Booking implements Serializable {
     private String eventType;
     private String artistOrTeam;
     private int availableTickets;

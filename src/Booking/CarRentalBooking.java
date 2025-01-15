@@ -1,9 +1,10 @@
 package Booking;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-public class CarRentalBooking extends Booking {
+public class CarRentalBooking extends Booking implements Serializable {
 
     private String carType;
     private String carModel;

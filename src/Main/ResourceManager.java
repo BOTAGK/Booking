@@ -12,8 +12,16 @@ import java.util.ArrayList;
 
 
 public class ResourceManager {
-    UserList userList =  UserList.getInstance();
-    BookingService bookingList = BookingService.getInstance();
+    private UserList userList =  UserList.getInstance();
+    private BookingService bookingList = BookingService.getInstance();
+    private static ResourceManager instance;
+
+    public static ResourceManager getInstance() {
+        if (instance == null) {
+            instance = new ResourceManager();
+        }
+        return instance;
+    }
 
     public void readFileUser(){
         String inputFilePath = "users_data.txt";
@@ -73,15 +81,14 @@ public class ResourceManager {
             String line;
             while((line = br.readLine()) != null){
                 String[] data = line.split(",");
-                if(data.length == 8){
-                    String id = data[0].trim();//todo delete
-                    String name = data[1].trim();
-                    String location = data[2].trim();
-                    int price = Integer.parseInt(data[3].trim());
-                    LocalDate startDate = LocalDate.parse(data[4].trim());
-                    LocalDate endDate = LocalDate.parse(data[5].trim());
-                    int roomCount =  Integer.parseInt(data[6].trim());
-                    double rating = Double.parseDouble(data[7].trim());
+                if(data.length == 7){
+                    String name = data[0].trim();
+                    String location = data[1].trim();
+                    double price = Double.parseDouble(data[2].trim());
+                    LocalDate startDate = LocalDate.parse(data[3].trim());
+                    LocalDate endDate = LocalDate.parse(data[4].trim());
+                    int roomCount =  Integer.parseInt(data[5].trim());
+                    double rating = Double.parseDouble(data[6].trim());
                     bookingList.createBooking(new ApartmentBooking(name, location, price, startDate, endDate, roomCount, rating));
                 }
             }
@@ -98,15 +105,14 @@ public class ResourceManager {
             String line;
             while((line = br.readLine()) != null){
                 String[] data = line.split(",");
-                if(data.length == 8){
-                    String id = data[0].trim();//todo delete
-                    String name = data[1].trim();
-                    String location = data[2].trim();
-                    int price = Integer.parseInt(data[3].trim());
-                    LocalDate startDate = LocalDate.parse(data[4].trim());
-                    LocalDate endDate = LocalDate.parse(data[5].trim());
-                    String carType = data[6].trim();
-                    String carModel = data[7].trim();
+                if(data.length == 7){
+                    String name = data[0].trim();
+                    String location = data[1].trim();
+                    double price = Double.parseDouble(data[2].trim());
+                    LocalDate startDate = LocalDate.parse(data[3].trim());
+                    LocalDate endDate = LocalDate.parse(data[4].trim());
+                    String carType = data[5].trim();
+                    String carModel = data[6].trim();
                     bookingList.createBooking(new CarRentalBooking(name, location, price, startDate, endDate, carType, carModel));
                 }
             }
@@ -123,16 +129,15 @@ public class ResourceManager {
             String line;
             while((line = br.readLine()) != null){
                 String[] data = line.split(",");
-                if(data.length == 9){
-                    String id = data[0].trim();//todo delete
-                    String name = data[1].trim();
-                    String location = data[2].trim();
-                    int price = Integer.parseInt(data[3].trim());
-                    LocalDate startDate = LocalDate.parse(data[4].trim());
-                    LocalDate endDate = LocalDate.parse(data[5].trim());
-                    String eventType = data[6].trim();
-                    String artistOrTeam = data[7].trim();
-                    int availableTickets = Integer.parseInt(data[8].trim());
+                if(data.length == 8){
+                    String name = data[0].trim();
+                    String location = data[1].trim();
+                    double price = Double.parseDouble(data[2].trim());
+                    LocalDate startDate = LocalDate.parse(data[3].trim());
+                    LocalDate endDate = LocalDate.parse(data[4].trim());
+                    String eventType = data[5].trim();
+                    String artistOrTeam = data[6].trim();
+                    int availableTickets = Integer.parseInt(data[7].trim());
                     bookingList.createBooking(new EventTicketBooking(name, location, price, startDate, endDate, eventType, artistOrTeam, availableTickets));
                 }
             }
@@ -148,14 +153,15 @@ public class ResourceManager {
 
         try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(outputFilePath))){
             oos.writeObject(bookingList.getBookings());
-            System.out.println("Dane użytkowników zostały zapisane do pliku " + outputFilePath);
+            System.out.println("Dane bookingow zostały zapisane do pliku " + outputFilePath);
         } catch (FileNotFoundException e) {
             System.out.println("Błąd plik" + outputFilePath + " nie został znaleziony." + e.getMessage());
         } catch (IOException e) {
-            System.out.println("Błąd podczas serializacji użytkowników." + e.getMessage());
+            System.out.println("Błą przy serializacji bookingow" + e.getMessage());
         }
     }
 
+    @SuppressWarnings("unchecked")
     public void deseriaizeBookings(){
         String filePath = "bookings_data.ser";
 

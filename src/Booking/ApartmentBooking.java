@@ -1,8 +1,9 @@
 package Booking;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class ApartmentBooking extends Booking {
+public class ApartmentBooking extends Booking implements Serializable {
     private int roomCount;
     private double rating;
 

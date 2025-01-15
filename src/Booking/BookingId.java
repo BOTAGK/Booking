@@ -1,6 +1,8 @@
 package Booking;
 
-public class BookingId {
+import java.io.Serializable;
+
+public class BookingId implements Serializable {
     private String type;
     private long index;
 
