@@ -9,6 +9,8 @@ import java.util.stream.Collectors;
 public class CarRentalFilterStrategy implements FilterStrategy {
     private List<String> carTypes;
 
+    public CarRentalFilterStrategy() {}
+
     public CarRentalFilterStrategy(List<String> carTypes) {
         this.carTypes = carTypes;
     }

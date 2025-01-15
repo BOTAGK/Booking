@@ -9,6 +9,8 @@ import java.util.stream.Collectors;
 public class EventTicketFilterStrategy implements FilterStrategy {
     private List<String> eventTypes;
 
+    public EventTicketFilterStrategy() {}
+
     public EventTicketFilterStrategy(List<String> eventTypes) {
         this.eventTypes = eventTypes;
     }
