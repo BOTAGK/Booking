@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FilterManager {
-    public static ArrayList<String> getFiltersForCategory(String category){
+    public static List<String> getFiltersForCategory(String category){
         switch (category){
             case "Car Rent":
                 return new ArrayList<>(List.of("Car Rental Filter", "Location Filter", "Price Filter"));

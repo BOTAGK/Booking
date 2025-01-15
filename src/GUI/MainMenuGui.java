@@ -17,4 +17,7 @@ public class MainMenuGui extends JFrame {
     public static void main(String[] args) {
         new MainMenuGui();
     }
+
 }
+
+
