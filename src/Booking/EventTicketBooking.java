@@ -6,9 +6,11 @@ public class EventTicketBooking extends Booking {
     private String eventType;
     private String artistOrTeam;
     private int availableTickets;
+    
+    public EventTicketBooking() {}
 
-    public EventTicketBooking(String id, String name, String location, double price, LocalDate startDate, LocalDate endDate, String eventType, String artistOrTeam, int availableTickets) {
-        super(id, name, location, price, startDate, endDate);
+    public EventTicketBooking(String name, String location, double price, LocalDate startDate, LocalDate endDate, String eventType, String artistOrTeam, int availableTickets) {
+        super(name, location, price, startDate, endDate);
         this.eventType = eventType;
         this.artistOrTeam = artistOrTeam;
         this.availableTickets = availableTickets;
@@ -26,7 +28,7 @@ public class EventTicketBooking extends Booking {
         this.artistOrTeam = artistOrTeam;
     }
 
-    public Boolean getAvailable() {
+    public boolean getAvailable() {
         if(availableTickets > 0) return true;
         else return false;
     }
@@ -35,6 +37,10 @@ public class EventTicketBooking extends Booking {
         else availableTickets--;
     }
 
+    @Override
+    public String getIdType() {
+        return "EVT";
+    }
 
     @Override
     public String toString() {

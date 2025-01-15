@@ -1,5 +1,6 @@
 package Main;
 
+
 import java.time.LocalDate;
 
 import Booking.*;
@@ -28,27 +29,27 @@ public class Main {
 //        testUser.cancelBooking();//rev powinno brac id albo index albo cokolwiek
 //
         BookingService bookingService = BookingService.getInstance();
-        bookingService.showBookings();
+        bookingService.printBookings();
 
         //test filter
 
         List<Booking> sampleBookings = List.of(
-                new ApartmentBooking("1", "Luxury Apartment", "New York", 150.0, LocalDate.of(2025,1, 10), LocalDate.of(2025,1,15), 3, 4),
-                new ApartmentBooking("2", "Budget Apartment", "London", 50.0, LocalDate.of(2025,2,1), LocalDate.of(2025,2,5), 1, 2),
-                new CarRentalBooking("3", "Car Rental A", "New York", 100.0, LocalDate.of(2025,1,12), LocalDate.of(2025,1,20), "SUV", "Toyota"),
-                new CarRentalBooking("4", "Car Rental B", "New York", 200.0, LocalDate.of(2025,3,1), LocalDate.of(2025,3,10), "Sedan", "BMW"),
-                new EventTicketBooking("5", "Concert", "New York", 75.0, LocalDate.of(2025,2,10), LocalDate.of(2025,2,10), "Music", "Coldplay", 500),
-                new EventTicketBooking("6", "Football Match", "London", 150.0, LocalDate.of(2025,4,1), LocalDate.of(2025,4,1), "Sports", "Chelsea FC", 200)
+                new ApartmentBooking("Luxury Apartment", "New York", 150.0, LocalDate.of(2025,1, 10), LocalDate.of(2025,1,15), 3, 4),
+                new ApartmentBooking("Budget Apartment", "London", 50.0, LocalDate.of(2025,2,1), LocalDate.of(2025,2,5), 1, 2),
+                new CarRentalBooking("Car Rental A", "New York", 100.0, LocalDate.of(2025,1,12), LocalDate.of(2025,1,20), "SUV", "Toyota"),
+                new CarRentalBooking("Car Rental B", "New York", 200.0, LocalDate.of(2025,3,1), LocalDate.of(2025,3,10), "Sedan", "BMW"),
+                new EventTicketBooking("Concert", "New York", 75.0, LocalDate.of(2025,2,10), LocalDate.of(2025,2,10), "Music", "Coldplay", 500),
+                new EventTicketBooking("Football Match", "London", 150.0, LocalDate.of(2025,4,1), LocalDate.of(2025,4,1), "Sports", "Chelsea FC", 200)
         );
-        bookingService.getBookings().addAll(sampleBookings);
+
+        bookingService.createBookings(sampleBookings);
 
         List<FilterStrategy> filters = new ArrayList<>();
         filters.add(new PriceFilterStrategy(50.0, 150.0));
         filters.add(new LocationFilterStrategy(List.of("New York")));
         filters.add(new CarRentalFilterStrategy(List.of("SUV")));
 
-        bookingService.setFilterStrategies(filters);
-        List<Booking> filteredBookings = bookingService.filterBookings();
+        List<Booking> filteredBookings = bookingService.filterBookings(filters);
 
         for (Booking booking : filteredBookings) {
             System.out.println(booking);

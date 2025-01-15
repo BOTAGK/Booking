@@ -18,7 +18,7 @@ public class ApartmentFilterStrategy implements FilterStrategy {
     @Override
     public List<Booking> filter(List<Booking> bookings) {
         return bookings.stream()
-                .filter(booking -> booking instanceof ApartmentBooking)
+                .filter(booking -> booking.getIdType().equals(new ApartmentBooking().getIdType()))
                 .filter(booking -> ((ApartmentBooking) booking).getRoomCount() >= minRoomCount)
                 .filter(booking -> ((ApartmentBooking) booking).getRating() >= minRating)
                 .collect(Collectors.toList());

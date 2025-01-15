@@ -1,6 +1,7 @@
 package Main;
 
 import Booking.Booking;
+import Booking.BookingId;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -14,16 +15,16 @@ public class User implements Serializable {
     private String email;
     private String password;
 
-    private ArrayList<String> bookingIds;
+    private ArrayList<BookingId> bookingIds;
 
-    public User( String name, String lastname, String email, String username, String password) {
+    public User(String name, String lastname, String email, String username, String password) {
         this.username = username;
         this.name = name;
         this.lastname = lastname;
         this.email = email;
         this.password = password;
 
-        bookingIds = new ArrayList<String>();
+        bookingIds = new ArrayList<BookingId>();
     }
 
     public String getUsername() {
@@ -49,13 +50,13 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public void addId(String id) {
+    public void addBooking(BookingId id) {
         bookingIds.add(id);
     }
-    public void removeId(String id) {
+    public void removeBooking(BookingId id) {
         bookingIds.remove(id);
     }
-    public Boolean hasBooking(String id) {
+    public Boolean hasBooking(BookingId id) {
         if(bookingIds.contains(id)) {
             return true;
         }

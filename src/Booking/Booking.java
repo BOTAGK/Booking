@@ -1,33 +1,31 @@
 package Booking;
 
-import Main.User;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import Main.User;
+
 public abstract class Booking implements Serializable {
-    private String id;
     private String name;
     private String location;
     private double price;
-    private Boolean available;
+    private boolean available;
+    // For identification in services
+    private BookingId id;
 
     private LocalDate startDate;
     private LocalDate endDate;
     private User user = null;
 
-    public Booking(String id, String name, String location, double price, LocalDate startDate, LocalDate endDate) {
-        this.id = id;
+    public Booking() {}
+
+    public Booking(String name, String location, double price, LocalDate startDate, LocalDate endDate) {
         this.name = name;
         this.location = location;
         this.price = price;
         this.startDate = startDate;
         this.endDate = endDate;
         this.available = true;
-    }
-
-    public String getId() {//todo usunac id
-        return id;
     }
     public String getName() {
         return name;
@@ -56,22 +54,33 @@ public abstract class Booking implements Serializable {
     public void setUser(User user) {
         this.user = user;
     }
-    public Boolean getAvailable() {
+    public boolean getAvailable() {
         return available;
     }
-    public void setAvailable(Boolean available) {
+    public void setAvailable(boolean available) {
         this.available = available;
     }
 
+    public void assignId(BookingId id) {
+        if(!getIdType().equals(id.getType())) {
+            throw new IllegalArgumentException("The given BookingId is invalid for this Booking");
+        }
+
+        this.id = id;
+    }
+
+    public BookingId getId() {
+        return this.id;
+    }
+
+    public abstract String getIdType();
+
     public String toString() {
-        return "Id: " + id + "\n" +
-                "Name: " + name + "\n" +
+        return  "Name: " + name + "\n" +
                 "Location: " + location + "\n" +
                 "Price: " + price + "\n" +
                 "StartDate: " + startDate.toString() + "\n" +
-                "EndDate: " + endDate.toString() + "\n";
+                "EndDate: " + endDate.toString() + "\n" +
+                "Id: " + id.toString() + "\n";
     }
-
-
-
 }
