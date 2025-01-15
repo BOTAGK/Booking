@@ -139,7 +139,7 @@ public class MainMenuPanel extends JPanel {
         JMenuItem item1=new JMenuItem("Show your reservations");
         JMenuItem item2=new JMenuItem("Log out");
 
-        item2.addActionListener(e-> {
+        item2.addActionListener(_-> {
            parentFrame.dispose();
            new LoginGui();
         });

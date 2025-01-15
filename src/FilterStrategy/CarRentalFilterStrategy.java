@@ -1,6 +1,5 @@
 package FilterStrategy;
 
-import Booking.ApartmentBooking;
 import Booking.Booking;
 import Booking.CarRentalBooking;
 

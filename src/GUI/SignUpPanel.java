@@ -1,8 +1,6 @@
 package GUI;
 
 import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 import GUI.Exceptions.BlankFieldException;
 import GUI.Exceptions.CredentialsTakenException;
@@ -111,7 +109,7 @@ public class SignUpPanel extends JPanel {
         List<String> takenUsernames = List.of("admin", "user1", "guest");
         List<String> takenEmails = List.of("kuba@gmail.com" , "pawel@gmail.com");
 
-        signUpButton.addActionListener(e -> {
+        signUpButton.addActionListener(_ -> {
 
             if (validateFields(takenUsernames, takenEmails)) {
                 JOptionPane.showMessageDialog(this, "You have successfully signed up!", "Success", JOptionPane.INFORMATION_MESSAGE);

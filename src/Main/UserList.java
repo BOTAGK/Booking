@@ -3,8 +3,6 @@ package Main;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import Booking.Booking;
-
 public class UserList {
 
     ResourceManager rm; // nie wiem czy to tutaj powinno byc ???
@@ -43,6 +41,7 @@ public class UserList {
             String username = sc.nextLine();
             System.out.println("Password: ");
             String password = sc.nextLine();
+            sc.close();
             for (User user : getUsers()) {
                 if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
                     System.out.println("Successfully logged in");
