@@ -7,10 +7,12 @@ public class CarRentalBooking extends Booking {
 
     private String carType;
     private String carModel;
+    
+    public CarRentalBooking() {}
 
-    public CarRentalBooking(String id, String name, String location, double price, LocalDate startDate, LocalDate endDate,
+    public CarRentalBooking(String name, String location, double price, LocalDate startDate, LocalDate endDate,
                             String carType, String carModel) {
-        super(id, name, location, price, startDate, endDate);
+        super(name, location, price, startDate, endDate);
         this.carType = carType;
         this.carModel = carModel;
     }
@@ -27,6 +29,10 @@ public class CarRentalBooking extends Booking {
         return ChronoUnit.DAYS.between(getStartDate(), getEndDate());
     }
 
+    @Override
+    public String getIdType() {
+        return "CRT";
+    }
 
     @Override
     public String toString() {

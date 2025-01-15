@@ -1,27 +1,20 @@
 package Main;
 
 import Booking.Booking;
+import Booking.BookingId;
+import FilterStrategy.*;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
-
-import FilterStrategy.*;
 
 public class BookingService {
 
     private static BookingService instance;
-    private List<Booking> bookings;
-    private ArrayList<User> observers;
-    private List<FilterStrategy> filterStrategies;
-
+    private ArrayList<Booking> bookings;
 
     private BookingService() {
-        this.bookings = new ArrayList<Booking>();
-        this.observers = new ArrayList<User>();
-        this.filterStrategies = new ArrayList<>();
+        this.bookings = new ArrayList<>();
     }
 
     public static BookingService getInstance() {
@@ -31,102 +24,122 @@ public class BookingService {
         return instance;
     }
 
-    private String createId() {
-        String temp;
-        do {
-            temp = String.valueOf((int)(Math.random()*2000000000));
-        }while (bookings.containsKey(temp));
-        return temp;
+    // Creates a new Booking in the service by assigning a unique identifier
+    public void createBooking(Booking booking) {
+        booking.assignId(createUniqueId(booking));
+        bookings.add(booking);
     }
 
-    public void createBooking(Booking booking) { //Dodaje nowy booking do listy
-        bookings.put(createId(), booking);
+    public void createBookings(List<Booking> bookings) {
+        for(Booking booking : bookings) {
+            createBooking(booking);
+        }
     }
 
-    public void deleteBooking(String bookingId) { // Usuwa booking z listy
-        bookings.remove(bookingId);
+    // Removes a Booking if the given id matches
+    public void deleteBooking(BookingId id) {
+        for (int i = 0; i < bookings.size(); i++) {
+            if (bookings.get(i).getId().equals(id)) {
+                bookings.remove(i);
+                return;
+            }
+        }
     }
 
-    public void bookBooking(User user, String bookingId) { //Użytkownik rezerwuje booking z tym id
-        Booking booking = this.bookings.get(bookingId);
+    // Books a Booking for the given User, making it unavailable
+    // Returns whether the operation was successful (if the Booking was available)
+    public boolean bookBooking(User user, BookingId id) {
+        Booking booking = getBooking(id);
         if (booking == null) {
-            return;
+            throw new IllegalArgumentException("There is no Booking with such BookingId: " + id.toString());
         }
 
-        if(booking.getAvailable()) {
-            booking.setAvailable(false);
-            user.addId(bookingId);
+        if(!booking.getAvailable()) {
+            return false;
         }
+
+        booking.setAvailable(false);
+        user.addBooking(id);
+
+        return true;
     }
 
-    public void unBookBooking(User user, String bookingId) { // Użytkownik odrezerwowuje booking z tym id
-        if(!user.hasBooking(bookingId)) {
+    private Booking getBooking(BookingId id) {
+        for (Booking booking : this.bookings) {
+            if (booking.getId().equals(id)) {
+                return booking;
+            }
+        }
+        return null;
+    }
+
+    // Unbooks a Booking for the given User, making it available
+    public void unbookBooking(User user, BookingId id) {
+        if(!user.hasBooking(id)) {
             return;
         }
-
-        Booking booking = this.bookings.get(bookingId);
+        Booking booking = getBooking(id);
         if(booking == null) {
             return;
         }
 
+        user.removeBooking(id);
         booking.setAvailable(true);
-        user.removeId(bookingId);
     }
 
-    public List<Booking> getBookingsForUser(User user) {
-        return user.getBookings();
+    public void printUserBookings(User user) {
+        for (Booking booking : this.bookings) {
+            if(user.hasBooking(booking.getId())) {
+                System.out.println(booking);
+            }
+        }
+    }
+
+    public void printBookings (){
+        for (int i = 0; i < this.bookings.size(); i++) {
+            System.out.println(this.bookings.get(i));
+        }
     }
 
     public List<Booking> getBookings() {
+        List<Booking> bookings = new ArrayList<>();
+        for(Booking booking : this.bookings) {
+            bookings.add(booking);
+        }
+
         return bookings;
     }
 
-    public void setBookings(List<Booking> bookings) { this.bookings = bookings; }
-
-    public ArrayList<User> getObservers() {
-        return observers;
-    }
-
-
-    public void showBookings (List<Booking> bookings) {
-        for (Booking booking : bookings) {
-            System.out.println(booking);
-        }
-    }
-
-    public void reserveBooking(User user){
-        System.out.println("Enter ID of booking you want to reserve");
-        Scanner scanner = new Scanner(System.in);
-        String id;
-        int indeks = -1;
-        while(indeks == -1){
-            id = scanner.nextLine();
-            for(int i = 0; i < bookings.size(); i++){
-                if(bookings.get(i).getId().equals(id)){
-                    indeks = i;
-                    break;
-                }
-            }
-            if(indeks == -1){
-                System.out.println("Please enter valid ID");
-            }
-        }
-        bookings.get(indeks).setUser(user);
-        bookings.get(indeks).setAvailable(false);
-        user.addBooking(bookings.get(indeks));
-    }
-
-//    filter strategy
-    public void setFilterStrategies(List<FilterStrategy> filterStrategies) {
-        this.filterStrategies = filterStrategies;
-    }
-
-    public List<Booking> filterBookings(){
-        List<Booking> filteredBookings = new ArrayList<>(bookings);
+    public List<Booking> filterBookings(List<FilterStrategy> filterStrategies) {
+        List<Booking> filteredBookings = getBookings();
         for (FilterStrategy filterStrategy : filterStrategies) {
             filteredBookings = filterStrategy.filter(filteredBookings);
         }
+
         return filteredBookings;
     }
-}
 
+    // Create a unique id for the given Booking
+    private BookingId createUniqueId(Booking booking)
+    {
+        boolean failbit;
+        long index;
+        // Find an unused index
+        for(index = 0; index >= 0; ++index)
+        {
+            failbit = false;
+
+            // Check whether any Booking of the same type had used the index
+            for(Booking listedBooking : this.bookings)
+            {
+                if((new BookingId(booking.getIdType(), index)).equals(listedBooking.getId()))
+                { failbit = true; }
+            }
+
+            if(!failbit)
+            { return new BookingId(booking.getIdType(), index); }
+        }
+
+        throw new IndexOutOfBoundsException("That's clearly too many bookings");
+    }
+}

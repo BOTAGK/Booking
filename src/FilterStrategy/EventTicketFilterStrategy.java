@@ -18,7 +18,7 @@ public class EventTicketFilterStrategy implements FilterStrategy {
     @Override
     public List<Booking> filter(List<Booking> bookings) {
         return bookings.stream()
-                .filter(booking -> booking instanceof EventTicketBooking)
+                .filter(booking -> booking.getIdType().equals(new EventTicketBooking().getIdType()))
                 .filter(booking -> eventTypes==null || eventTypes.contains(((EventTicketBooking) booking).getEventType()))
                 .collect(Collectors.toList());
     }
