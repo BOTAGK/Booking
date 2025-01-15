@@ -19,9 +19,9 @@ public class UserMenuPanel extends JPanel {
         mainPageButton.addActionListener(new MainPageButtonListener());
         leftPanel.add(mainPageButton, BorderLayout.NORTH);
 
-        JButton signOutButton = new JButton("Sign Out");
-        signOutButton.addActionListener(new SignOutButtonListener());
-        leftPanel.add(signOutButton, BorderLayout.SOUTH);
+        JButton logOutButton = new JButton("Log Out");
+        logOutButton.addActionListener(new LogOutButtonListener());
+        leftPanel.add(logOutButton, BorderLayout.SOUTH);
 
         //panel z informacjami o użytkowniku
         JPanel infoPanel = new JPanel();
@@ -62,7 +62,7 @@ public class UserMenuPanel extends JPanel {
         }
     }
 
-    private class SignOutButtonListener implements ActionListener {
+    private class LogOutButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             parentFrame.dispose();
