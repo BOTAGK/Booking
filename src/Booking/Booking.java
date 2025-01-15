@@ -1,7 +1,12 @@
 package Booking;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import Main.User;
 
@@ -74,6 +79,21 @@ public abstract class Booking implements Serializable {
     }
 
     public abstract String getIdType();
+
+    public static List<String[]> loadDataFromFile(String fileName) {
+        List<String[]> data = new ArrayList<>();
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                data.add(line.split(","));
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return data;
+    }
 
     public String toString() {
         return  "Name: " + name + "\n" +

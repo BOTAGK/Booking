@@ -1,5 +1,6 @@
 package GUI;
 
+import Booking.*;
 import FilterStrategy.FilterManager;
 
 import javax.swing.*;
@@ -158,9 +159,20 @@ public class MainMenuPanel extends JPanel {
         centerPanel.setLayout(new BorderLayout());
 
         listModel = new DefaultListModel<>();
-        loadOffersFromFile("ApartmentBookingData.txt", listModel);
-        loadOffersFromFile("CarRentalBookingData.txt", listModel);
-        loadOffersFromFile("EventTicketBookingData.txt", listModel);
+        List<ApartmentBooking> apartmentRentals = ApartmentBooking.getApartmentsFromFile("ApartmentBookingData.txt");
+        for (ApartmentBooking booking : apartmentRentals) {
+            listModel.addElement(booking.toString());
+        }
+
+        List<CarRentalBooking> carRentals = CarRentalBooking.getCarRentalsFromFile("CarRentalBookingData.txt");
+        for (CarRentalBooking carRental : carRentals) {
+            listModel.addElement(carRental.toString());
+        }
+
+        List<EventTicketBooking> eventTickets = EventTicketBooking.getEventTicketsFromFile("EventTicketBookingData.txt");
+        for (EventTicketBooking eventTicket : eventTickets) {
+            listModel.addElement(eventTicket.toString());
+        }
 
         JList<String> offersList = new JList<>(listModel);
         JScrollPane scrollPane = new JScrollPane(offersList);
@@ -175,46 +187,17 @@ public class MainMenuPanel extends JPanel {
 
     }
 
-    private void loadOffersFromFile(String fileName, DefaultListModel<String> listModel) {
-        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String formattedLine = formatOffer(line);
-                if (formattedLine != null) {
-                    listModel.addElement(formattedLine);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
-    private String formatOffer(String line) {
-        String[] parts = line.split(",");
-        if (parts.length == 0) {
-            return null;
-        }
-        String type = parts[0].substring(0, 1);
-        switch (type) {
-            case "A":
-                return String.format("Apartment: %s - %s - €%s/day (%s to %s)",
-                        parts[1], parts[2], parts[3], parts[4], parts[5]);
-            case "C":
-                return String.format("Car: %s - %s - %s - €%s/day (%s to %s)",
-                        parts[7], parts[2], parts[6], parts[3], parts[4], parts[5]);
-            case "E":
-                return String.format("Event: %s - %s - €%s - %s (%s)",
-                        parts[1], parts[2], parts[3], parts[6], parts[5]);
-            default:
-                return "Unknown offer type";
-        }
-    }
+
+
     private class CarRentButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             listModel.clear();
-            loadOffersFromFile("CarRentalBookingData.txt", listModel);
-
+            List <CarRentalBooking> carRentals = CarRentalBooking.getCarRentalsFromFile("CarRentalBookingData.txt");
+            for (CarRentalBooking carRental: carRentals) {
+                listModel.addElement(carRental.toString());
+            }
             ArrayList<String> filters = (ArrayList<String>) FilterManager.getFiltersForCategory("Car Rent");
         }
     }
@@ -223,7 +206,10 @@ public class MainMenuPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             listModel.clear();
-            loadOffersFromFile("ApartmentBookingData.txt", listModel);
+            List<ApartmentBooking> apartmentRentals = ApartmentBooking.getApartmentsFromFile("ApartmentBookingData.txt");
+            for (ApartmentBooking booking : apartmentRentals) {
+                listModel.addElement(booking.toString());
+            }
 
             ArrayList<String> filters = (ArrayList<String>) FilterManager.getFiltersForCategory("Apartment Rent");
         }
@@ -233,8 +219,10 @@ public class MainMenuPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             listModel.clear();
-            loadOffersFromFile("EventTicketBookingData.txt", listModel);
-
+            List<EventTicketBooking> eventTickets = EventTicketBooking.getEventTicketsFromFile("EventTicketBookingData.txt");
+            for (EventTicketBooking booking : eventTickets) {
+                listModel.addElement(booking.toString());
+            }
             ArrayList<String> filters = (ArrayList<String>) FilterManager.getFiltersForCategory("Event Ticket");
         }
     }

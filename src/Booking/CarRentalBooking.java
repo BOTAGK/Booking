@@ -2,6 +2,8 @@ package Booking;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CarRentalBooking extends Booking {
 
@@ -27,6 +29,18 @@ public class CarRentalBooking extends Booking {
 
     public long getRentLength() {
         return ChronoUnit.DAYS.between(getStartDate(), getEndDate());
+    }
+
+    public static List<CarRentalBooking> getCarRentalsFromFile(String fileName) {
+        List<CarRentalBooking> bookings = new ArrayList<>();
+        List<String[]> data = Booking.loadDataFromFile(fileName);
+        for (String[] part : data) {
+                bookings.add(new CarRentalBooking(
+                        part[1], part[2], Double.parseDouble(part[3]), LocalDate.parse(part[4]),
+                        LocalDate.parse(part[5]), part[6], part[7]
+                ));
+        }
+        return bookings;
     }
 
     @Override
