@@ -1,60 +1,60 @@
-Sunny Penthouse 1,Barcelona,110,2024-01-01,2024-01-07,2,5.5
-Cozy Haven 2,Tokyo,120,2024-01-01,2024-01-07,3,5.0
-Charming Retreat 3,New York,130,2024-01-01,2024-01-07,4,4.5
-Cozy Villa 4,Paris,140,2024-01-01,2024-01-07,5,5.5
-Charming Cottage 5,New York,150,2024-01-01,2024-01-07,1,5.0
-Rustic Loft 6,Sydney,160,2024-01-01,2024-01-07,2,4.5
-Charming Haven 7,Cape Town,170,2024-01-01,2024-01-07,3,5.5
-Modern Retreat 8,Barcelona,180,2024-01-01,2024-01-07,4,5.0
-Luxurious Penthouse 9,New York,190,2024-01-01,2024-01-07,5,4.5
-Sunny Penthouse 10,Tokyo,200,2024-01-01,2024-01-07,1,5.5
-Luxurious Cottage 11,Tokyo,210,2024-01-01,2024-01-07,2,5.0
-Luxurious Loft 12,Barcelona,220,2024-01-01,2024-01-07,3,4.5
-Sunny Penthouse 13,Cape Town,230,2024-01-01,2024-01-07,4,5.5
-Modern Retreat 14,Sydney,240,2024-01-01,2024-01-07,5,5.0
-Rustic Penthouse 15,Tokyo,250,2024-01-01,2024-01-07,1,4.5
-Luxurious Haven 16,Cape Town,260,2024-01-01,2024-01-07,2,5.5
-Charming Loft 17,Barcelona,270,2024-01-01,2024-01-07,3,5.0
-Charming Haven 18,Tokyo,280,2024-01-01,2024-01-07,4,4.5
-Cozy Haven 19,Paris,290,2024-01-01,2024-01-07,5,5.5
-Cozy Haven 20,Cape Town,300,2024-01-01,2024-01-07,1,5.0
-Charming Penthouse 21,Tokyo,310,2024-01-01,2024-01-07,2,4.5
-Modern Cottage 22,Tokyo,320,2024-01-01,2024-01-07,3,5.5
-Charming Haven 23,Cape Town,330,2024-01-01,2024-01-07,4,5.0
-Sunny Penthouse 24,Barcelona,340,2024-01-01,2024-01-07,5,4.5
-Luxurious Villa 25,Cape Town,350,2024-01-01,2024-01-07,1,5.5
-Luxurious Retreat 26,Sydney,360,2024-01-01,2024-01-07,2,5.0
-Rustic Penthouse 27,Tokyo,370,2024-01-01,2024-01-07,3,4.5
-Luxurious Villa 28,New York,380,2024-01-01,2024-01-07,4,5.5
-Cozy Penthouse 29,Tokyo,390,2024-01-01,2024-01-07,5,5.0
-Rustic Loft 30,New York,400,2024-01-01,2024-01-07,1,4.5
-Sunny Retreat 31,Paris,410,2024-01-01,2024-01-07,2,5.5
-Modern Loft 32,Sydney,420,2024-01-01,2024-01-07,3,5.0
-Charming Cottage 33,Tokyo,430,2024-01-01,2024-01-07,4,4.5
-Modern Loft 34,Cape Town,440,2024-01-01,2024-01-07,5,5.5
-Luxurious Haven 35,Paris,450,2024-01-01,2024-01-07,1,5.0
-Rustic Cottage 36,Tokyo,460,2024-01-01,2024-01-07,2,4.5
-Rustic Loft 37,New York,470,2024-01-01,2024-01-07,3,5.5
-Charming Loft 38,Cape Town,480,2024-01-01,2024-01-07,4,5.0
-Rustic Retreat 39,Tokyo,490,2024-01-01,2024-01-07,5,4.5
-Charming Haven 40,New York,500,2024-01-01,2024-01-07,1,5.5
-Cozy Villa 41,Sydney,510,2024-01-01,2024-01-07,2,5.0
-Charming Retreat 42,Tokyo,520,2024-01-01,2024-01-07,3,4.5
-Cozy Penthouse 43,Tokyo,530,2024-01-01,2024-01-07,4,5.5
-Cozy Penthouse 44,Sydney,540,2024-01-01,2024-01-07,5,5.0
-Sunny Villa 45,Barcelona,550,2024-01-01,2024-01-07,1,4.5
-Rustic Villa 46,Barcelona,560,2024-01-01,2024-01-07,2,5.5
-Cozy Cottage 47,Sydney,570,2024-01-01,2024-01-07,3,5.0
-Charming Penthouse 48,Sydney,580,2024-01-01,2024-01-07,4,4.5
-Charming Cottage 49,New York,590,2024-01-01,2024-01-07,5,5.5
-Cozy Haven 50,Tokyo,600,2024-01-01,2024-01-07,1,5.0
-Cozy Loft 51,Tokyo,610,2024-01-01,2024-01-07,2,4.5
-Sunny Haven 52,Paris,620,2024-01-01,2024-01-07,3,5.5
-Charming Haven 53,Cape Town,630,2024-01-01,2024-01-07,4,5.0
-Modern Haven 54,Sydney,640,2024-01-01,2024-01-07,5,4.5
-Modern Haven 55,Barcelona,650,2024-01-01,2024-01-07,1,5.5
-Charming Cottage 56,Cape Town,660,2024-01-01,2024-01-07,2,5.0
-Luxurious Villa 57,Paris,670,2024-01-01,2024-01-07,3,4.5
-Luxurious Penthouse 58,Paris,680,2024-01-01,2024-01-07,4,5.5
-Rustic Villa 59,New York,690,2024-01-01,2024-01-07,5,5.0
-Rustic Villa 60,Cape Town,700,2024-01-01,2024-01-07,1,4.5
+Sunny Penthouse 1,Barcelona,110,2024-01-01,2024-01-07,2,5.5,penthouse.jpg
+Cozy Haven 2,Tokyo,120,2024-01-01,2024-01-07,3,5.0,haven.jpg
+Charming Retreat 3,New York,130,2024-01-01,2024-01-07,4,4.5,retreat.jpg
+Cozy Villa 4,Paris,140,2024-01-01,2024-01-07,5,5.5,villa.jpg
+Charming Cottage 5,New York,150,2024-01-01,2024-01-07,1,5.0,cottage.jpg
+Rustic Loft 6,Sydney,160,2024-01-01,2024-01-07,2,4.5,loft.jpg
+Charming Haven 7,Cape Town,170,2024-01-01,2024-01-07,3,5.5,haven.jpg
+Modern Retreat 8,Barcelona,180,2024-01-01,2024-01-07,4,5.0,retreat.jpg
+Luxurious Penthouse 9,New York,190,2024-01-01,2024-01-07,5,4.5,penthouse.jpg
+Sunny Penthouse 10,Tokyo,200,2024-01-01,2024-01-07,1,5.5,penthouse.jpg
+Luxurious Cottage 11,Tokyo,210,2024-01-01,2024-01-07,2,5.0,cottage.jpg
+Luxurious Loft 12,Barcelona,220,2024-01-01,2024-01-07,3,4.5,loft.jpg
+Sunny Penthouse 13,Cape Town,230,2024-01-01,2024-01-07,4,5.5,penthouse.jpg
+Modern Retreat 14,Sydney,240,2024-01-01,2024-01-07,5,5.0,retreat.jpg
+Rustic Penthouse 15,Tokyo,250,2024-01-01,2024-01-07,1,4.5,penthouse.jpg
+Luxurious Haven 16,Cape Town,260,2024-01-01,2024-01-07,2,5.5,haven.jpg
+Charming Loft 17,Barcelona,270,2024-01-01,2024-01-07,3,5.0,loft.jpg
+Charming Haven 18,Tokyo,280,2024-01-01,2024-01-07,4,4.5,haven.jpg
+Cozy Haven 19,Paris,290,2024-01-01,2024-01-07,5,5.5,haven.jpg
+Cozy Haven 20,Cape Town,300,2024-01-01,2024-01-07,1,5.0,haven.jpg
+Charming Penthouse 21,Tokyo,310,2024-01-01,2024-01-07,2,4.5,penthouse.jpg
+Modern Cottage 22,Tokyo,320,2024-01-01,2024-01-07,3,5.5,cottage.jpg
+Charming Haven 23,Cape Town,330,2024-01-01,2024-01-07,4,5.0,haven.jpg
+Sunny Penthouse 24,Barcelona,340,2024-01-01,2024-01-07,5,4.5,penthouse.jpg
+Luxurious Villa 25,Cape Town,350,2024-01-01,2024-01-07,1,5.5,villa.jpg
+Luxurious Retreat 26,Sydney,360,2024-01-01,2024-01-07,2,5.0,retreat.jpg
+Rustic Penthouse 27,Tokyo,370,2024-01-01,2024-01-07,3,4.5,penthouse.jpg
+Luxurious Villa 28,New York,380,2024-01-01,2024-01-07,4,5.5,villa.jpg
+Cozy Penthouse 29,Tokyo,390,2024-01-01,2024-01-07,5,5.0,penthouse.jpg
+Rustic Loft 30,New York,400,2024-01-01,2024-01-07,1,4.5,loft.jpg
+Sunny Retreat 31,Paris,410,2024-01-01,2024-01-07,2,5.5,retreat.jpg
+Modern Loft 32,Sydney,420,2024-01-01,2024-01-07,3,5.0,loft.jpg
+Charming Cottage 33,Tokyo,430,2024-01-01,2024-01-07,4,4.5,cottage.jpg
+Modern Loft 34,Cape Town,440,2024-01-01,2024-01-07,5,5.5,loft.jpg
+Luxurious Haven 35,Paris,450,2024-01-01,2024-01-07,1,5.0,haven.jpg
+Rustic Cottage 36,Tokyo,460,2024-01-01,2024-01-07,2,4.5,cottage.jpg
+Rustic Loft 37,New York,470,2024-01-01,2024-01-07,3,5.5,loft.jpg
+Charming Loft 38,Cape Town,480,2024-01-01,2024-01-07,4,5.0,loft.jpg
+Rustic Retreat 39,Tokyo,490,2024-01-01,2024-01-07,5,4.5,retreat.jpg
+Charming Haven 40,New York,500,2024-01-01,2024-01-07,1,5.5,haven.jpg
+Cozy Villa 41,Sydney,510,2024-01-01,2024-01-07,2,5.0,villa.jpg
+Charming Retreat 42,Tokyo,520,2024-01-01,2024-01-07,3,4.5,retreat.jpg
+Cozy Penthouse 43,Tokyo,530,2024-01-01,2024-01-07,4,5.5,penthouse.jpg
+Cozy Penthouse 44,Sydney,540,2024-01-01,2024-01-07,5,5.0,penthouse.jpg
+Sunny Villa 45,Barcelona,550,2024-01-01,2024-01-07,1,4.5,villa.jpg
+Rustic Villa 46,Barcelona,560,2024-01-01,2024-01-07,2,5.5,villa.jpg
+Cozy Cottage 47,Sydney,570,2024-01-01,2024-01-07,3,5.0,cottage.jpg
+Charming Penthouse 48,Sydney,580,2024-01-01,2024-01-07,4,4.5,penthouse.jpg
+Charming Cottage 49,New York,590,2024-01-01,2024-01-07,5,5.5,cottage.jpg
+Cozy Haven 50,Tokyo,600,2024-01-01,2024-01-07,1,5.0,haven.jpg
+Cozy Loft 51,Tokyo,610,2024-01-01,2024-01-07,2,4.5,loft.jpg
+Sunny Haven 52,Paris,620,2024-01-01,2024-01-07,3,5.5,haven.jpg
+Charming Haven 53,Cape Town,630,2024-01-01,2024-01-07,4,5.0,haven.jpg
+Modern Haven 54,Sydney,640,2024-01-01,2024-01-07,5,4.5,haven.jpg
+Modern Haven 55,Barcelona,650,2024-01-01,2024-01-07,1,5.5,haven.jpg
+Charming Cottage 56,Cape Town,660,2024-01-01,2024-01-07,2,5.0,cottage.jpg
+Luxurious Villa 57,Paris,670,2024-01-01,2024-01-07,3,4.5,villa.jpg
+Luxurious Penthouse 58,Paris,680,2024-01-01,2024-01-07,4,5.5,penthouse.jpg
+Rustic Villa 59,New York,690,2024-01-01,2024-01-07,5,5.0,villa.jpg
+Rustic Villa 60,Cape Town,700,2024-01-01,2024-01-07,1,4.5,villa.jpg

@@ -1,60 +1,60 @@
-Event 1,Tokyo,199,2025-02-07,football match,Team: Manchester United,258
-Event 2,New York,292,2025-02-23,football match,Artist: The Lumineers,502
-Event 3,Cape Town,286,2025-02-22,football match,Artist: Beyoncé,162
-Event 4,New York,154,2025-02-07,concert,Artist: Coldplay,688
-Event 5,Cape Town,273,2025-02-05,concert,Artist: Ed Sheeran,516
-Event 6,New York,216,2025-03-03,concert,Artist: Ed Sheeran,676
-Event 7,Paris,69,2025-02-12,football match,Artist: Ed Sheeran,436
-Event 8,Paris,280,2025-02-24,football match,Artist: Coldplay,344
-Event 9,New York,169,2025-02-21,football match,Team: Manchester United,691
-Event 10,Tokyo,208,2025-02-04,football match,Team: Manchester United,130
-Event 11,Sydney,292,2025-02-17,football match,Team: Golden State Warriors,866
-Event 12,New York,287,2025-02-07,concert,Artist: Coldplay,734
-Event 13,Tokyo,295,2025-02-21,concert,Artist: Coldplay,500
-Event 14,New York,275,2025-02-07,concert,Team: Real Madrid,797
-Event 15,Cape Town,217,2025-02-12,concert,Artist: Beyoncé,581
-Event 16,Barcelona,253,2025-02-13,football match,Artist: Beyoncé,837
-Event 17,Tokyo,67,2025-02-14,concert,Artist: Ed Sheeran,615
-Event 18,Sydney,201,2025-02-09,concert,Team: Manchester United,979
-Event 19,Tokyo,232,2025-03-03,concert,Artist: The Lumineers,179
-Event 20,Sydney,55,2025-02-06,football match,Team: Manchester United,362
-Event 21,Sydney,68,2025-03-02,concert,Team: Real Madrid,466
-Event 22,Cape Town,122,2025-02-24,football match,Team: Real Madrid,388
-Event 23,Paris,197,2025-02-05,concert,Team: Golden State Warriors,388
-Event 24,Paris,213,2025-03-03,concert,Team: Manchester United,637
-Event 25,New York,131,2025-02-24,concert,Artist: Beyoncé,390
-Event 26,Cape Town,198,2025-02-11,football match,Team: Golden State Warriors,570
-Event 27,Paris,269,2025-02-02,football match,Artist: The Lumineers,707
-Event 28,New York,216,2025-02-26,football match,Team: Real Madrid,126
-Event 29,Sydney,246,2025-02-07,football match,Artist: Coldplay,170
-Event 30,Cape Town,141,2025-03-02,football match,Artist: Ed Sheeran,736
-Event 31,New York,167,2025-02-08,concert,Team: Golden State Warriors,781
-Event 32,Barcelona,143,2025-02-12,concert,Artist: The Lumineers,897
-Event 33,Sydney,66,2025-02-26,football match,Artist: The Lumineers,263
-Event 34,Sydney,182,2025-02-19,concert,Artist: Coldplay,546
-Event 35,Cape Town,202,2025-02-25,concert,Artist: The Lumineers,785
-Event 36,New York,243,2025-02-04,concert,Artist: Ed Sheeran,116
-Event 37,Paris,166,2025-02-13,concert,Team: Golden State Warriors,467
-Event 38,Sydney,193,2025-02-05,football match,Team: Real Madrid,708
-Event 39,Sydney,149,2025-02-24,football match,Artist: Ed Sheeran,516
-Event 40,New York,101,2025-02-28,concert,Team: Real Madrid,928
-Event 41,Sydney,241,2025-02-06,football match,Team: Golden State Warriors,424
-Event 42,Paris,168,2025-02-04,football match,Artist: Ed Sheeran,696
-Event 43,New York,115,2025-03-02,football match,Artist: The Lumineers,355
-Event 44,Barcelona,181,2025-02-16,football match,Team: Manchester United,894
-Event 45,New York,136,2025-02-11,football match,Artist: Beyoncé,687
-Event 46,Paris,295,2025-02-24,football match,Artist: The Lumineers,470
-Event 47,New York,65,2025-02-18,concert,Artist: Ed Sheeran,554
-Event 48,New York,167,2025-02-21,concert,Team: Golden State Warriors,452
-Event 49,Cape Town,153,2025-02-25,football match,Team: Golden State Warriors,507
-Event 50,Tokyo,225,2025-02-25,football match,Artist: Beyoncé,254
-Event 51,Tokyo,121,2025-02-13,football match,Team: Manchester United,101
-Event 52,Paris,239,2025-02-11,football match,Team: Manchester United,498
-Event 53,Sydney,157,2025-02-28,concert,Team: Manchester United,676
-Event 54,Tokyo,236,2025-02-18,football match,Artist: Coldplay,918
-Event 55,Cape Town,153,2025-02-05,football match,Artist: Beyoncé,508
-Event 56,Paris,173,2025-02-12,concert,Artist: Coldplay,963
-Event 57,Cape Town,209,2025-02-12,football match,Team: Real Madrid,746
-Event 58,New York,238,2025-02-14,concert,Artist: Coldplay,107
-Event 59,Cape Town,161,2025-02-14,football match,Team: Golden State Warriors,958
-Event 60,Paris,119,2025-02-04,football match,Team: Barcelona,984
+Event 1,Tokyo,199,2025-02-07,football match,Team: Manchester United,258,pilkanozna.jpg
+Event 2,New York,292,2025-02-23,football match,Artist: The Lumineers,502,pilkanozna.jpg
+Event 3,Cape Town,286,2025-02-22,football match,Artist: Beyoncé,162,pilkanozna.jpg
+Event 4,New York,154,2025-02-07,concert,Artist: Coldplay,688,koncert.jpg
+Event 5,Cape Town,273,2025-02-05,concert,Artist: Ed Sheeran,516,koncert.jpg
+Event 6,New York,216,2025-03-03,concert,Artist: Ed Sheeran,676,koncert.jpg
+Event 7,Paris,69,2025-02-12,football match,Artist: Ed Sheeran,436,pilkanozna.jpg
+Event 8,Paris,280,2025-02-24,football match,Artist: Coldplay,344,pilkanozna.jpg
+Event 9,New York,169,2025-02-21,football match,Team: Manchester United,691,pilkanozna.jpg
+Event 10,Tokyo,208,2025-02-04,football match,Team: Manchester United,130,pilkanozna.jpg
+Event 11,Sydney,292,2025-02-17,football match,Team: Golden State Warriors,866,pilkanozna.jpg
+Event 12,New York,287,2025-02-07,concert,Artist: Coldplay,734,koncert.jpg
+Event 13,Tokyo,295,2025-02-21,concert,Artist: Coldplay,500,koncert.jpg
+Event 14,New York,275,2025-02-07,concert,Team: Real Madrid,797,koncert.jpg
+Event 15,Cape Town,217,2025-02-12,concert,Artist: Beyoncé,581,koncert.jpg
+Event 16,Barcelona,253,2025-02-13,football match,Artist: Beyoncé,837,pilkanozna.jpg
+Event 17,Tokyo,67,2025-02-14,concert,Artist: Ed Sheeran,615,koncert.jpg
+Event 18,Sydney,201,2025-02-09,concert,Team: Manchester United,979,koncert.jpg
+Event 19,Tokyo,232,2025-03-03,concert,Artist: The Lumineers,179,koncert.jpg
+Event 20,Sydney,55,2025-02-06,football match,Team: Manchester United,362,pilkanozna.jpg
+Event 21,Sydney,68,2025-03-02,concert,Team: Real Madrid,466,koncert.jpg
+Event 22,Cape Town,122,2025-02-24,football match,Team: Real Madrid,388,pilkanozna.jpg
+Event 23,Paris,197,2025-02-05,concert,Team: Golden State Warriors,388,koncert.jpg
+Event 24,Paris,213,2025-03-03,concert,Team: Manchester United,637,koncert.jpg
+Event 25,New York,131,2025-02-24,concert,Artist: Beyoncé,390,koncert.jpg
+Event 26,Cape Town,198,2025-02-11,football match,Team: Golden State Warriors,570,pilkanozna.jpg
+Event 27,Paris,269,2025-02-02,football match,Artist: The Lumineers,707,pilkanozna.jpg
+Event 28,New York,216,2025-02-26,football match,Team: Real Madrid,126,pilkanozna.jpg
+Event 29,Sydney,246,2025-02-07,football match,Artist: Coldplay,170,pilkanozna.jpg
+Event 30,Cape Town,141,2025-03-02,football match,Artist: Ed Sheeran,736,pilkanozna.jpg
+Event 31,New York,167,2025-02-08,concert,Team: Golden State Warriors,781,koncert.jpg
+Event 32,Barcelona,143,2025-02-12,concert,Artist: The Lumineers,897,koncert.jpg
+Event 33,Sydney,66,2025-02-26,football match,Artist: The Lumineers,263,pilkanozna.jpg
+Event 34,Sydney,182,2025-02-19,concert,Artist: Coldplay,546,koncert.jpg
+Event 35,Cape Town,202,2025-02-25,concert,Artist: The Lumineers,785,koncert.jpg
+Event 36,New York,243,2025-02-04,concert,Artist: Ed Sheeran,116,koncert.jpg
+Event 37,Paris,166,2025-02-13,concert,Team: Golden State Warriors,467,koncert.jpg
+Event 38,Sydney,193,2025-02-05,football match,Team: Real Madrid,708,pilkanozna.jpg
+Event 39,Sydney,149,2025-02-24,football match,Artist: Ed Sheeran,516,pilkanozna.jpg
+Event 40,New York,101,2025-02-28,concert,Team: Real Madrid,928,koncert.jpg
+Event 41,Sydney,241,2025-02-06,football match,Team: Golden State Warriors,424,pilkanozna.jpg
+Event 42,Paris,168,2025-02-04,football match,Artist: Ed Sheeran,696,pilkanozna.jpg
+Event 43,New York,115,2025-03-02,football match,Artist: The Lumineers,355,pilkanozna.jpg
+Event 44,Barcelona,181,2025-02-16,football match,Team: Manchester United,894,pilkanozna.jpg
+Event 45,New York,136,2025-02-11,football match,Artist: Beyoncé,687,pilkanozna.jpg
+Event 46,Paris,295,2025-02-24,football match,Artist: The Lumineers,470,pilkanozna.jpg
+Event 47,New York,65,2025-02-18,concert,Artist: Ed Sheeran,554,koncert.jpg
+Event 48,New York,167,2025-02-21,concert,Team: Golden State Warriors,452,koncert.jpg
+Event 49,Cape Town,153,2025-02-25,football match,Team: Golden State Warriors,507,pilkanozna.jpg
+Event 50,Tokyo,225,2025-02-25,football match,Artist: Beyoncé,254,pilkanozna.jpg
+Event 51,Tokyo,121,2025-02-13,football match,Team: Manchester United,101,pilkanozna.jpg
+Event 52,Paris,239,2025-02-11,football match,Team: Manchester United,498,pilkanozna.jpg
+Event 53,Sydney,157,2025-02-28,concert,Team: Manchester United,676,koncert.jpg
+Event 54,Tokyo,236,2025-02-18,football match,Artist: Coldplay,918,pilkanozna.jpg
+Event 55,Cape Town,153,2025-02-05,football match,Artist: Beyoncé,508,pilkanozna.jpg
+Event 56,Paris,173,2025-02-12,concert,Artist: Coldplay,963,koncert.jpg
+Event 57,Cape Town,209,2025-02-12,football match,Team: Real Madrid,746,pilkanozna.jpg
+Event 58,New York,238,2025-02-14,concert,Artist: Coldplay,107,koncert.jpg
+Event 59,Cape Town,161,2025-02-14,football match,Team: Golden State Warriors,958,pilkanozna.jpg
+Event 60,Paris,119,2025-02-04,football match,Team: Barcelona,984,pilkanozna.jpg
