@@ -79,7 +79,7 @@ public class EventTicketBooking extends Booking {
     @Override
     public String toString() {
         return artistOrTeam + ", " +
-                eventType + ", " +
-                availableTickets + ", " + getName() + ", "+ getLocation() + ", " + getPrice() + "$ , Date: " + getStartDate().toString();
+                eventType + ", " + getPrice() + " $, Available Tickets: " + availableTickets + ", " + getName() + ", "+
+                getLocation() + ", " + getPrice() + "$ , Date: " + getStartDate().toString();
     }
 }

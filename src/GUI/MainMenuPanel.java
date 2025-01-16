@@ -108,20 +108,7 @@ public class MainMenuPanel extends JPanel {
                 System.out.println(maxPriceInput);
             }
         });
-        locationButton.addFocusListener(new FocusListener() {
 
-            @Override
-            public void focusGained(FocusEvent e) {
-
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                String locationInput;
-                locationInput=locationButton.getText();
-                System.out.println(locationInput);
-            }
-        });
         minRatingField.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -203,6 +190,13 @@ public class MainMenuPanel extends JPanel {
 
         locations = locationsSet.toArray(new String[0]);
 
+    }
+
+    private void updateButtonText(JButton button, String text) {
+        if (text.length() > 16) {
+            text = text.substring(0, 16) + "...";
+        }
+        button.setText(text);
     }
 
 
@@ -343,7 +337,8 @@ public class MainMenuPanel extends JPanel {
                 if (selectedLocations.isEmpty()) {
                     locationButton.setText("Select Locations");
                 } else {
-                    locationButton.setText(selectedLocations.toString());
+                    updateButtonText(locationButton, selectedLocations.toString());
+                    System.out.println(selectedLocations);
                 }
             }
         }
@@ -376,7 +371,7 @@ public class MainMenuPanel extends JPanel {
                 if (selectedEventTypes.length() == 0) {
                     eventTypeFilterButton.setText("Select Event Types");
                 } else {
-                    eventTypeFilterButton.setText(selectedEventTypes.toString());
+                    updateButtonText(eventTypeFilterButton, selectedEventTypes.toString());
                 }
                 System.out.println(selectedEventTypes);
             }
@@ -410,7 +405,7 @@ public class MainMenuPanel extends JPanel {
                 if (selectedCarTypes.length() == 0) {
                     carTypeFilterButton.setText("Select Car Types");
                 } else {
-                    carTypeFilterButton.setText(selectedCarTypes.toString());
+                    updateButtonText(carTypeFilterButton, selectedCarTypes.toString());
                 }
                 System.out.println(selectedCarTypes);
             }
