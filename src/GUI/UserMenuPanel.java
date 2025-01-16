@@ -9,6 +9,8 @@ import BookingService.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class UserMenuPanel extends JPanel {
     private JFrame parentFrame;
@@ -61,7 +63,7 @@ public class UserMenuPanel extends JPanel {
         for(BookingId myBooking : user.getBookingIds()){
             listModel.addElement(BookingService.getInstance().getBooking(myBooking));
         }
-        JList<String> bookingsInUserMenu = new JList<>(listModel);
+        JList<Booking> bookingsInUserMenu = new JList<>(listModel);
         Font font =new Font("Arial MS", Font.PLAIN, 24);
         bookingsInUserMenu.setFont(font);
         bookingsInUserMenu.setCellRenderer(new DefaultListCellRenderer() {
@@ -77,6 +79,28 @@ public class UserMenuPanel extends JPanel {
                 }
 
                 return this;
+            }
+        });
+        bookingsInUserMenu.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    int index = bookingsInUserMenu.locationToIndex(e.getPoint());
+                    Booking selectedBooking = bookingsInUserMenu.getModel().getElementAt(index);
+                    int result = JOptionPane.showConfirmDialog(null, "Do you want to cancel this booking?\n" + selectedBooking, "Confirm your cancelation", JOptionPane.YES_NO_OPTION);
+                    if (result == JOptionPane.YES_OPTION) {
+                        // Dodaj logikę rezerwacji
+                        BookingId bookingId = BookingService.getInstance().getBookingId(selectedBooking);
+                        if (bookingId != null) {
+                            BookingService.getInstance().unbookBooking(user, bookingId);
+                            System.out.println("Booking canceled: " + selectedBooking);
+                            parentFrame.dispose();
+                            new UserMenuGUI(user);
+                        } else {
+                            System.out.println("Booking ID is null for selected booking: " + selectedBooking);
+                        }
+                    }
+                }
             }
         });
         bookingsInUserMenu.setLayout(new BoxLayout(bookingsInUserMenu, BoxLayout.Y_AXIS));

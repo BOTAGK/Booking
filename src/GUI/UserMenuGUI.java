@@ -9,6 +9,7 @@ public class UserMenuGUI extends JFrame {
         setTitle("UserMenu");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(500, 500);
+        setLocationRelativeTo(null);
         add(new UserMenuPanel(this, user));
 
         setVisible(true);
