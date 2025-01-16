@@ -79,6 +79,7 @@ public class FiltersDialog extends JDialog {
     }
 
     private void addCarTypeFilters() {
+
         JLabel carTypesLabel = new JLabel("Car Type");
         carTypeFilterButton = new JButton("Choose car type");
         add(carTypesLabel);
@@ -160,11 +161,67 @@ public class FiltersDialog extends JDialog {
 
     private void openEventTypeCheckBox() {
         EventTypesCheckBoxes eventTypesCheckBoxes = new EventTypesCheckBoxes();
-        eventTypesCheckBoxes.updateButtonWithSelectedEventTypes(eventTypeFilterButton);
+        JPanel eventTypeCheckBox = eventTypesCheckBoxes.createEventTypesPanel();
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.add(eventTypeCheckBox);
+
+        JScrollPane scrollPane = new JScrollPane(panel);
+        scrollPane.setPreferredSize(new Dimension(200, 150));
+        int result = JOptionPane.showConfirmDialog(null, scrollPane, "Select Event Types", JOptionPane.OK_CANCEL_OPTION);
+        if (result == JOptionPane.OK_OPTION) {
+            selectedEventTypes.clear();
+            StringBuilder selectedEventTypesSB = new StringBuilder();
+            for (Component component : eventTypeCheckBox.getComponents()) {
+                if (component instanceof JCheckBox) {
+                    JCheckBox checkBox = (JCheckBox) component;
+                    if (checkBox.isSelected()) {
+                        if (selectedEventTypesSB.length() > 0) {
+                            selectedEventTypesSB.append(", ");
+                        }
+                        selectedEventTypesSB.append(checkBox.getText());
+                        selectedEventTypes.add(checkBox.getText());
+                    }
+                }
+            }
+            if (selectedEventTypesSB.length() == 0) {
+                eventTypeFilterButton.setText("Select event type");
+            } else {
+                eventTypeFilterButton.setText(selectedEventTypesSB.toString());
+            }
+        }
     }
 
     private void openCarTypeCheckBox() {
         CarTypesCheckBoxes carTypesCheckBoxes = new CarTypesCheckBoxes();
-        carTypesCheckBoxes.updateButtonWithSelectedCarTypes(carTypeFilterButton);
+        JPanel carTypeCheckBox = carTypesCheckBoxes.createCarTypesPanel();
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.add(carTypeCheckBox);
+
+        JScrollPane scrollPane = new JScrollPane(panel);
+        scrollPane.setPreferredSize(new Dimension(200, 150));
+        int result = JOptionPane.showConfirmDialog(null, scrollPane, "Select Car Types", JOptionPane.OK_CANCEL_OPTION);
+        if (result == JOptionPane.OK_OPTION) {
+            selectedCarTypes.clear();
+            StringBuilder selectedCarTypesSB = new StringBuilder();
+            for (Component component : carTypeCheckBox.getComponents()) {
+                if (component instanceof JCheckBox) {
+                    JCheckBox checkBox = (JCheckBox) component;
+                    if (checkBox.isSelected()) {
+                        if (selectedCarTypesSB.length() > 0) {
+                            selectedCarTypesSB.append(", ");
+                        }
+                        selectedCarTypesSB.append(checkBox.getText());
+                        selectedCarTypes.add(checkBox.getText());
+                    }
+                }
+            }
+            if (selectedCarTypesSB.length() == 0) {
+                carTypeFilterButton.setText("Select car type");
+            } else {
+                carTypeFilterButton.setText(selectedCarTypesSB.toString());
+            }
+        }
     }
 }
