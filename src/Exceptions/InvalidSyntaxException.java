@@ -1,4 +1,4 @@
-package GUI.Exceptions;
+package Exceptions;
 
 public class InvalidSyntaxException extends InputValidationFailureException
 {

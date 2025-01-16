@@ -2,16 +2,18 @@ package GUI;
 
 import javax.swing.*;
 
+import BookingService.User;
+
 public class UserMenuGUI extends JFrame {
-    public UserMenuGUI(){
+    public UserMenuGUI(User user){
         setTitle("UserMenu");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(500, 500);
-        add(new UserMenuPanel(this));
+        add(new UserMenuPanel(this, user));
         setVisible(true);
     }
 
     public static void main(String[] args) {
-        new UserMenuGUI();
+        new UserMenuGUI(null);
     }
 }

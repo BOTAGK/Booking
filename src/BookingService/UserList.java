@@ -3,6 +3,8 @@ package BookingService;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import Exceptions.InvalidLoginException;
+
 public class UserList {
 
     ResourceManager rm; // nie wiem czy to tutaj powinno byc ???
@@ -46,16 +48,17 @@ public class UserList {
         return null;
     }
 
-    //Próbuje się zalogować na dane konto, jeśli się nie uda wyrzuci błąd
-    public void loginAttempt(String username, String password) throws Exception {
+    // Attempts to find a user with given username and password
+    // Returns whether the operation was successful
+    public User loginAttempt(String username, String password) throws InvalidLoginException {
         User user = findUser(username);
         if(user == null) {
-            throw(new Exception("User not found"));
+            throw(new InvalidLoginException("User not found"));
         }
         if(!user.getPassword().equals(password)) {
-            throw(new Exception("Wrong password"));
+            throw(new InvalidLoginException("Wrong password"));
         }
-        Main.currentUser = user;
+        
+        return user;
     }
-
 }

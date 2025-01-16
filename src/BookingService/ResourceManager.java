@@ -9,6 +9,8 @@ import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+
+
 public class ResourceManager {
     private UserList userList =  UserList.getInstance();
     private BookingService bookingList = BookingService.getInstance();

@@ -1,15 +1,20 @@
 package GUI;
 
 import javax.swing.*;
+
+import BookingService.User;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class UserMenuPanel extends JPanel {
     private JFrame parentFrame;
+    private User user;
 
-    public UserMenuPanel(JFrame parentFrame) {
+    public UserMenuPanel(JFrame parentFrame, User user) {
         this.parentFrame = parentFrame;
+        this.user = user;
 
         //lewy panel
         JPanel leftPanel = new JPanel();
@@ -58,7 +63,7 @@ public class UserMenuPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             parentFrame.dispose();
-            new MainMenuGui();
+            new MainMenuGui(user);
         }
     }
 

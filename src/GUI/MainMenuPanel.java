@@ -2,6 +2,7 @@ package GUI;
 
 import javax.swing.*;
 
+import BookingService.User;
 import BookingService.FilterStrategy.FilterManager;
 
 import java.awt.*;
@@ -20,7 +21,7 @@ public class MainMenuPanel extends JPanel {
     private JList<String> offersList;
     private FilterManager filterManager = new FilterManager();
 
-    public MainMenuPanel(JFrame parentFrame) {
+    public MainMenuPanel(JFrame parentFrame, User user) {
         setLayout(new BorderLayout());
 
 //        kategorie(górny panel)

@@ -3,6 +3,7 @@ package Booking;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import BookingService.BookingId;
 import BookingService.User;
 
 public abstract class Booking implements Serializable {

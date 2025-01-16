@@ -2,10 +2,10 @@ package GUI;
 
 import javax.swing.*;
 
-import GUI.Exceptions.BlankFieldException;
-import GUI.Exceptions.CredentialsTakenException;
-import GUI.Exceptions.InputValidationFailureException;
-import GUI.Exceptions.InvalidSyntaxException;
+import Exceptions.BlankFieldException;
+import Exceptions.CredentialsTakenException;
+import Exceptions.InputValidationFailureException;
+import Exceptions.InvalidSyntaxException;
 
 import java.awt.*;
 import java.util.List;

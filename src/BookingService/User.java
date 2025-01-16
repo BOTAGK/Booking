@@ -1,7 +1,5 @@
 package BookingService;
 
-import Booking.BookingId;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -58,6 +56,9 @@ public class User implements Serializable {
         bookingIds.remove(id);
     }
     public Boolean hasBooking(BookingId id) {
-        return bookingIds.contains(id);
+        if(bookingIds.contains(id)) {
+            return true;
+        }
+        return false;
     }
 }
