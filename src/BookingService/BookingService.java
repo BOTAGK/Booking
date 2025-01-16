@@ -30,7 +30,7 @@ public class BookingService {
 
     // For bulk creation
     public void createBookings(List<Booking> bookings) {
-        for(Booking booking : bookings) {
+        for (Booking booking : bookings) {
             createBooking(booking);
         }
     }
@@ -53,7 +53,7 @@ public class BookingService {
             throw new IllegalArgumentException("There is no Booking with such BookingId: " + id.toString());
         }
 
-        if(!booking.getAvailable()) {
+        if (!booking.getAvailable()) {
             return false;
         }
 
@@ -74,11 +74,11 @@ public class BookingService {
 
     // Unbooks a Booking for the given User, making it available
     public void unbookBooking(User user, BookingId id) {
-        if(!user.hasBooking(id)) {
+        if (!user.hasBooking(id)) {
             return;
         }
         Booking booking = getBooking(id);
-        if(booking == null) {
+        if (booking == null) {
             return;
         }
 
@@ -88,13 +88,13 @@ public class BookingService {
 
     public void printUserBookings(User user) {
         for (Pair<Booking, BookingId> entry : this.entries) {
-            if(user.hasBooking(entry.second)) {
+            if (user.hasBooking(entry.second)) {
                 System.out.println(entry.first);
             }
         }
     }
 
-    public void printBookings (){
+    public void printBookings() {
         for (int i = 0; i < this.entries.size(); i++) {
             System.out.println(this.entries.get(i).first);
         }
@@ -116,36 +116,44 @@ public class BookingService {
     }
 
     // Create a unique id for the given Booking
-    private BookingId makeUniqueId(BookingId.Prefix prefix)
-    {
+    private BookingId makeUniqueId(BookingId.Prefix prefix) {
         boolean failbit;
         long index;
         // Find an unused index
-        for(index = 0; index >= 0; ++index)
-        {
+        for (index = 0; index >= 0; ++index) {
             failbit = false;
 
             // Check whether any Booking of the same type had used the index
-            for(Pair<Booking, BookingId> entry : this.entries)
-            {
-                if(entry.second.equals(new BookingId(prefix, index)))
-                { failbit = true; }
+            for (Pair<Booking, BookingId> entry : this.entries) {
+                if (entry.second.equals(new BookingId(prefix, index))) {
+                    failbit = true;
+                }
             }
 
-            if(!failbit)
-            { return new BookingId(prefix, index); }
+            if (!failbit) {
+                return new BookingId(prefix, index);
+            }
         }
 
         throw new IndexOutOfBoundsException("That's clearly too many bookings");
     }
-    
+
     public static List<Booking> getBookings(List<Pair<Booking, BookingId>> entries) {
         List<Booking> bookings = new ArrayList<>();
 
-        for(Pair<Booking, BookingId> entry : entries) {
+        for (Pair<Booking, BookingId> entry : entries) {
             bookings.add(entry.first);
         }
 
         return bookings;
+    }
+
+    public BookingId getBookingId(Booking booking) {
+        for (Pair<Booking, BookingId> entry : this.entries) {
+            if (entry.first.equals(booking)) {
+                return entry.second;
+            }
+        }
+        return null;
     }
 }

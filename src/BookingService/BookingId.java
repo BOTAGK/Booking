@@ -11,7 +11,7 @@ public class BookingId implements Serializable {
 
     private Prefix prefix;
     private long index;
-    
+
     // Creates an invalid id of a specific type
     public BookingId(Prefix prefix) {
         this(prefix, -1);
@@ -22,12 +22,25 @@ public class BookingId implements Serializable {
         this.index = index;
     }
 
-    public boolean matchesType(BookingId other)
-    { return this.prefix.equals(other.prefix); }
+    public boolean matchesType(BookingId other) {
+        return this.prefix.equals(other.prefix);
+    }
 
-    public boolean equals(BookingId other)
-    { return this.index == other.index && this.prefix == other.prefix; }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        BookingId other = (BookingId) obj;
+        return this.index == other.index && this.prefix == other.prefix;
+    }
 
-    public String toString()
-    { return this.prefix.toString() + this.index; }
+    @Override
+    public int hashCode() {
+        return prefix.hashCode() * 31 + Long.hashCode(index);
+    }
+
+    @Override
+    public String toString() {
+        return this.prefix.toString() + this.index;
+    }
 }
