@@ -196,19 +196,19 @@ public class MainMenuPanel extends JPanel {
         listModel = new DefaultListModel<>();
         List<ApartmentBooking> apartmentRentals = ResourceManager.getInstance().getApartmentBookings();
         for (ApartmentBooking booking : apartmentRentals) {
-
+            BookingService.getInstance().createBooking(booking);
             listModel.addElement(booking);
         }
 
         List<CarRentalBooking> carRentals = ResourceManager.getInstance().getCarRentalBookings();
         for (CarRentalBooking carRental : carRentals) {
-
+            BookingService.getInstance().createBooking(carRental);
             listModel.addElement(carRental);
         }
 
         List<EventTicketBooking> eventTickets = ResourceManager.getInstance().getEventTicketBookings();
         for (EventTicketBooking eventTicket : eventTickets) {
-
+            BookingService.getInstance().createBooking(eventTicket);
             listModel.addElement(eventTicket);
         }
 

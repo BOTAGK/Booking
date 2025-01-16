@@ -134,15 +134,15 @@ public class ResourceManager {
             String line;
             while((line = br.readLine()) != null){
                 String[] data = line.split(",");
-                if(data.length == 8){
+                if(data.length == 7){
                     String name = data[0].trim();
                     String location = data[1].trim();
                     double price = Double.parseDouble(data[2].trim());
                     LocalDate startDate = LocalDate.parse(data[3].trim());
-                    LocalDate endDate = LocalDate.parse(data[4].trim());
-                    String eventType = data[5].trim();
-                    String artistOrTeam = data[6].trim();
-                    int availableTickets = Integer.parseInt(data[7].trim());
+                    LocalDate endDate = LocalDate.parse(data[3].trim());
+                    String eventType = data[4].trim();
+                    String artistOrTeam = data[5].trim();
+                    int availableTickets = Integer.parseInt(data[6].trim());
                     bookingList.createBooking(new EventTicketBooking(name, location, price, startDate, endDate, eventType, artistOrTeam, availableTickets));
                 }
             }
@@ -204,14 +204,18 @@ public class ResourceManager {
     public List<String> getCarTypes() {
         List<String> carTypes = new ArrayList<>();
         for (CarRentalBooking carRentalBooking : carRentalBookings) {
+            if(!carTypes.contains(carRentalBooking.getCarType())){
             carTypes.add(carRentalBooking.getCarType());
+            }
         }
         return carTypes;
     }
     public List<String> getEventTypes() {
         List<String> eventTypes = new ArrayList<>();
         for (EventTicketBooking eventTicketBooking : eventTicketBookings) {
+            if(!eventTypes.contains(eventTicketBooking.getEventType())){
             eventTypes.add(eventTicketBooking.getEventType());
+            }
         }
         return eventTypes;
     }
