@@ -32,7 +32,7 @@ public class MainMenuPanel extends JPanel {
     Set<String> locationsSet = new HashSet<>();
     String[] locations;
 
-    JLabel minRatingLabel = new JLabel("        Minimal Rating      ");
+    JLabel minRatingLabel = new JLabel("        Rating      ");
     JTextField minRatingField = new JTextField("Min rating");
 
     JButton eventTypeFilterButton;
@@ -263,13 +263,10 @@ public class MainMenuPanel extends JPanel {
             JLabel roomLabel = new JLabel("Room Count");
             JTextField minRoomCountField = new JTextField("Min room count");
 
-            JLabel ratingLabel = new JLabel("Rating");
-            JTextField minRatingField = new JTextField("Min rating");
+
             filtersPanel.add(roomLabel);
             filtersPanel.add(minRoomCountField);
             filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
-            filtersPanel.add(ratingLabel);
-            filtersPanel.add(minRatingField);
             filtersPanel.revalidate();
             filtersPanel.repaint();
         }
