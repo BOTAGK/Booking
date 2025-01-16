@@ -49,8 +49,7 @@ public class ApartmentBooking extends Booking {
 
     @Override
     public String toString() {
-        return super.toString()+
-                "Rating: " + rating + '\n'+
-                "Room Count: " + roomCount+'\n';
+        return         getName()+ ", "+super.toString()+
+                ", Rating: " + rating + ", Room Count: " + roomCount;
     }
 }

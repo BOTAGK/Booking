@@ -96,11 +96,7 @@ public abstract class Booking implements Serializable {
     }
 
     public String toString() {
-        return  "Name: " + name + "\n" +
-                "Location: " + location + "\n" +
-                "Price: " + price + "\n" +
-                "StartDate: " + startDate.toString() + "\n" +
-                "EndDate: " + endDate.toString() + "\n" +
-                "Id: " + id.toString() + "\n";
+        return  location + ", " +
+                price + "$ , Start date: "+ startDate.toString() + ", End date: "+ endDate.toString();
     }
 }

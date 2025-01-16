@@ -1,8 +1,13 @@
 package Booking;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class EventTicketBooking extends Booking {
     private String eventType;
@@ -50,6 +55,21 @@ public class EventTicketBooking extends Booking {
         }
         return bookings;
     }
+    public static List<String> getEventTypesFromFile() {
+        Set<String> eventTypes = new HashSet<>();
+        try (BufferedReader br = new BufferedReader(new FileReader("EventTicketBookingData.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length > 5) {
+                    eventTypes.add(parts[5].trim());
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<>(eventTypes);
+    }
 
     @Override
     public String getIdType() {
@@ -58,9 +78,8 @@ public class EventTicketBooking extends Booking {
 
     @Override
     public String toString() {
-        return "Artist/Team: " + artistOrTeam + '\n' +
-                "Event Type: " + eventType + '\n' +
-                "Available tickets: " + availableTickets + '\n'+
-                super.toString();
+        return artistOrTeam + ", " +
+                eventType + ", " +
+                availableTickets + ", " + getName() + ", "+ getLocation() + ", " + getPrice() + "$ , Date: " + getStartDate().toString();
     }
 }

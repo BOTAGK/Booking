@@ -1,9 +1,14 @@
 package Booking;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class CarRentalBooking extends Booking {
 
@@ -42,6 +47,21 @@ public class CarRentalBooking extends Booking {
         }
         return bookings;
     }
+    public static List<String> getCarTypesFromFile() {
+        Set<String> eventTypes = new HashSet<>();
+        try (BufferedReader br = new BufferedReader(new FileReader("CarRentalBookingData.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length > 6) {
+                    eventTypes.add(parts[6].trim());
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<>(eventTypes);
+    }
 
     @Override
     public String getIdType() {
@@ -50,8 +70,7 @@ public class CarRentalBooking extends Booking {
 
     @Override
     public String toString() {
-        return "Model: " + carModel + '\n'+
-                "Car type: " + carType + '\n'+
+        return carModel + ", "+ carType + ", "+
                 super.toString();
     }
 }

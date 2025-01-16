@@ -6,7 +6,7 @@ public class MainMenuGui extends JFrame {
     public MainMenuGui() {
         setTitle("MainMenu");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(700, 600);
+        setSize(900, 800);
         setLocationRelativeTo(null);
 
         add(new MainMenuPanel(this));
