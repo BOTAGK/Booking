@@ -210,7 +210,6 @@ public class MainMenuPanel extends JPanel {
             BookingService.getInstance().createBooking(eventTicket);
             listModel.addElement(eventTicket);
         }
-
         JList<Booking> offersList = new JList<>(listModel);
         offersList.setCellRenderer(new DefaultListCellRenderer() {
             @Override
@@ -218,6 +217,10 @@ public class MainMenuPanel extends JPanel {
                 super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
                 if (value instanceof Booking) {
                     setText(value.toString());
+                    Image image=((Booking) value).getIcon().getImage();
+                    image=image.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+                    ImageIcon icon=new ImageIcon(image);
+                    setIcon(icon);
                 }
                 return this;
             }

@@ -18,22 +18,17 @@ public class CarRentalBooking extends Booking {
 
     private String carType;
     private String carModel;
-    private String path;
     private ImageIcon icon=null;
     public CarRentalBooking() {}
 
     public CarRentalBooking(String name, String location, double price, LocalDate startDate, LocalDate endDate,
                             String carType, String carModel, String path) {
-        super(name, location, price, startDate, endDate);
-        this.path=path;
+        super(name, location, price, startDate, endDate, path);
         icon=new ImageIcon(path);
         this.carType = carType;
         this.carModel = carModel;
     }
 
-    public ImageIcon getIcon() {
-        return icon;
-    }
 
     public String getCarType() {
         return carType;

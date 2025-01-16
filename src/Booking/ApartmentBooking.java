@@ -11,19 +11,13 @@ import javax.swing.*;
 public class ApartmentBooking extends Booking {
     private int roomCount;
     private double rating;
-    private String path;
     private ImageIcon icon=null;
     public ApartmentBooking() {}
 
     public ApartmentBooking(String name, String location, double price, LocalDate startDate, LocalDate endDate, int roomCount,double rating, String path) {
-        super(name, location, price, startDate, endDate);
+        super(name, location, price, startDate, endDate, path);
         this.roomCount = roomCount;
         this.rating = rating;
-        this.path = path;
-        this.icon = new ImageIcon(path);
-    }
-    public ImageIcon getIcon() {
-        return icon;
     }
 
     public int getRoomCount() {

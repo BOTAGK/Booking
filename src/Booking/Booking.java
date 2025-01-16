@@ -22,17 +22,23 @@ public abstract class Booking implements Serializable {
     private LocalDate startDate;
     private LocalDate endDate;
     private User user = null;
+    private String path;
     public Booking() {}
 
-    public Booking(String name, String location, double price, LocalDate startDate, LocalDate endDate) {
+    public Booking(String name, String location, double price, LocalDate startDate, LocalDate endDate, String path) {
         this.name = name;
         this.location = location;
         this.price = price;
         this.startDate = startDate;
         this.endDate = endDate;
         this.available = true;
+        this.path = path;
     }
 
+    public ImageIcon getIcon(){
+        ImageIcon icon = new ImageIcon(path);
+        return icon;
+    }
     public String getName() {
         return name;
     }

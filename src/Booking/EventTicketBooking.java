@@ -17,20 +17,15 @@ public class EventTicketBooking extends Booking {
     private String eventType;
     private String artistOrTeam;
     private int availableTickets;
-    private String path;
     private ImageIcon icon=null;
     public EventTicketBooking() {}
 
     public EventTicketBooking(String name, String location, double price, LocalDate startDate, LocalDate endDate, String eventType, String artistOrTeam, int availableTickets, String path) {
-        super(name, location, price, startDate, endDate);
-        this.path=path;
+        super(name, location, price, startDate, endDate, path);
         this.icon=new ImageIcon(path);
         this.eventType = eventType;
         this.artistOrTeam = artistOrTeam;
         this.availableTickets = availableTickets;
-    }
-    public ImageIcon getIcon() {
-        return icon;
     }
     public String getEventType() {
         return eventType;
