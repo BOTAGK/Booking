@@ -15,7 +15,7 @@ public class Main {
         ResourceManager.getInstance().readFileApartmentBooking();
         ResourceManager.getInstance().readFileCarRentalBooking();
         ResourceManager.getInstance().readFileEventTicketBooking();
-
-        new MainMenuGui(new User(null, null, null, null, null));
+        new LoginGui();
+    //    new MainMenuGui(new User(null, null, null, null, null));
     }
 }

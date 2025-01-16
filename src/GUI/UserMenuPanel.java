@@ -31,16 +31,15 @@ public class UserMenuPanel extends JPanel {
         logOutButton.addActionListener(new LogOutButtonListener());
         leftPanel.add(logOutButton, BorderLayout.SOUTH);
 
-        //panel z informacjami o użytkowniku
+        //panel z informacjami o użytkowniku i opcją edycji
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
 
         JPanel infoPanel = new JPanel();
         infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
-        JLabel labelName = new JLabel("Name: "+user.getName());
-        JLabel labelLastName = new JLabel("Last Name: "+user.getLastname());
-        JLabel labelEmail = new JLabel("Email: "+user.getEmail());
-        JButton editButtonInformation = new JButton("Edit information");
+        labelName = new JLabel("Name: "+ user.getName());
+        labelLastName = new JLabel("Last Name: "+ user.getLastname());
+        labelEmail = new JLabel("Email: "+ user.getEmail());
         infoPanel.add(labelName);
         infoPanel.add(labelLastName);
         infoPanel.add(labelEmail);
@@ -53,10 +52,10 @@ public class UserMenuPanel extends JPanel {
 
         panel.add(infoPanel, BorderLayout.CENTER);
         panel.add(editButtonPanel, BorderLayout.SOUTH);
+
         //panel z listą bookingów
         JPanel bookingsPanel = new JPanel();
         bookingsPanel.setLayout(new BoxLayout(bookingsPanel, BoxLayout.Y_AXIS));
-        JList<Booking> bookings = new JList<Booking>();
 
         //panel z zakładakami
         JTabbedPane tabbedPane = new JTabbedPane();
@@ -101,22 +100,25 @@ public class UserMenuPanel extends JPanel {
             JPanel editPanel = new JPanel();
             editPanel.setLayout(new GridLayout(4,2));
 
-            JLabel labelName = new JLabel("Name: ");
-            JLabel labelLastName = new JLabel("Lastname: ");
-            JLabel labelEmail = new JLabel("Emial: ");
+            JLabel dialogLabelName = new JLabel("Name: ");
+            JLabel dialogLabelLastName = new JLabel("Lastname: ");
+            JLabel dialogLabelEmail = new JLabel("Emial: ");
 
             textFieldName = new JTextField();
+            textFieldName.setText(user.getName());
             textFieldName.setSize(10,5);
             textFieldLastName = new JTextField();
+            textFieldLastName.setText(user.getLastname());
             textFieldLastName.setSize(10,5);
             textFieldEmail = new JTextField();
+            textFieldEmail.setText(user.getEmail());
             textFieldEmail.setSize(10, 5);
 
-            editPanel.add(labelName);
+            editPanel.add(dialogLabelName);
             editPanel.add(textFieldName);
-            editPanel.add(labelLastName);
+            editPanel.add(dialogLabelLastName);
             editPanel.add(textFieldLastName);
-            editPanel.add(labelEmail);
+            editPanel.add(dialogLabelEmail);
             editPanel.add(textFieldEmail);
 
             //tworzenie panelu przycisków
@@ -138,18 +140,13 @@ public class UserMenuPanel extends JPanel {
         private class SaveButtonListener implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(!textFieldName.getText().isEmpty()){
-                    user.setName(textFieldName.getText());
-                    labelName.setText("<html><b>Name: <b>" + user.getName() + "</html>");
-                }
-                if(!textFieldLastName.getText().isEmpty()){
-                    user.setLastname(textFieldLastName.getText());
-                    labelLastName.setText("<html><b>Last name: <b>" + user.getLastname() + "</html>");
-                }
-                if(!textFieldEmail.getText().isEmpty()){
-                    user.setEmail(textFieldEmail.getText());
-                    labelEmail.setText("<html><b>Emial: <b>" + user.getEmail() + "</html>");
-                }
+                user.setName(textFieldName.getText());
+                System.out.println(textFieldName.getText());
+                labelName.setText("Name: " + user.getName());
+                user.setLastname(textFieldLastName.getText());
+                labelLastName.setText("Last name: " + user.getLastname());
+                user.setEmail(textFieldEmail.getText());
+                labelEmail.setText("Emial: " + user.getEmail());
                 dialogEditInformation.dispose();
             }
         }
