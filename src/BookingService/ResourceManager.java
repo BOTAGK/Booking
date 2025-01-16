@@ -86,7 +86,7 @@ public class ResourceManager {
             String line;
             while((line = br.readLine()) != null){
                 String[] data = line.split(",");
-                if(data.length == 7){
+                if(data.length == 8){
                     String name = data[0].trim();
                     String location = data[1].trim();
                     double price = Double.parseDouble(data[2].trim());
@@ -94,7 +94,8 @@ public class ResourceManager {
                     LocalDate endDate = LocalDate.parse(data[4].trim());
                     int roomCount =  Integer.parseInt(data[5].trim());
                     double rating = Double.parseDouble(data[6].trim());
-                    bookingList.createBooking(new ApartmentBooking(name, location, price, startDate, endDate, roomCount, rating));
+                    String path = data[7].trim();
+                    bookingList.createBooking(new ApartmentBooking(name, location, price, startDate, endDate, roomCount, rating, path));
                 }
             }
         } catch (FileNotFoundException e) {
@@ -110,7 +111,7 @@ public class ResourceManager {
             String line;
             while((line = br.readLine()) != null){
                 String[] data = line.split(",");
-                if(data.length == 7){
+                if(data.length == 8){
                     String name = data[0].trim();
                     String location = data[1].trim();
                     double price = Double.parseDouble(data[2].trim());
@@ -118,7 +119,8 @@ public class ResourceManager {
                     LocalDate endDate = LocalDate.parse(data[4].trim());
                     String carType = data[5].trim();
                     String carModel = data[6].trim();
-                    bookingList.createBooking(new CarRentalBooking(name, location, price, startDate, endDate, carType, carModel));
+                    String path =data[7].trim();
+                    bookingList.createBooking(new CarRentalBooking(name, location, price, startDate, endDate, carType, carModel, path));
                 }
             }
         } catch (FileNotFoundException e) {
@@ -134,7 +136,7 @@ public class ResourceManager {
             String line;
             while((line = br.readLine()) != null){
                 String[] data = line.split(",");
-                if(data.length == 7){
+                if(data.length == 8){
                     String name = data[0].trim();
                     String location = data[1].trim();
                     double price = Double.parseDouble(data[2].trim());
@@ -143,7 +145,8 @@ public class ResourceManager {
                     String eventType = data[4].trim();
                     String artistOrTeam = data[5].trim();
                     int availableTickets = Integer.parseInt(data[6].trim());
-                    bookingList.createBooking(new EventTicketBooking(name, location, price, startDate, endDate, eventType, artistOrTeam, availableTickets));
+                    String path =data[7].trim();
+                    bookingList.createBooking(new EventTicketBooking(name, location, price, startDate, endDate, eventType, artistOrTeam, availableTickets, path));
                 }
             }
         } catch (FileNotFoundException e) {
