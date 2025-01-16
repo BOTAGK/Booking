@@ -11,6 +11,7 @@ import BookingService.FilterStrategy.EventTicketFilterStrategy;
 import BookingService.FilterStrategy.FilterStrategy;
 import BookingService.FilterStrategy.LocationFilterStrategy;
 import BookingService.FilterStrategy.PriceFilterStrategy;
+import BookingService.ResourceManager;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -193,21 +194,21 @@ public class MainMenuPanel extends JPanel {
         centerPanel.setLayout(new BorderLayout());
 
         listModel = new DefaultListModel<>();
-        List<ApartmentBooking> apartmentRentals = ApartmentBooking.getApartmentsFromFile("ApartmentBookingData.txt");
+        List<ApartmentBooking> apartmentRentals = ResourceManager.getInstance().getApartmentBookings();
         for (ApartmentBooking booking : apartmentRentals) {
-            BookingService.getInstance().createBooking(booking);
+
             listModel.addElement(booking);
         }
 
-        List<CarRentalBooking> carRentals = CarRentalBooking.getCarRentalsFromFile("CarRentalBookingData.txt");
+        List<CarRentalBooking> carRentals = ResourceManager.getInstance().getCarRentalBookings();
         for (CarRentalBooking carRental : carRentals) {
-            BookingService.getInstance().createBooking(carRental);
+
             listModel.addElement(carRental);
         }
 
-        List<EventTicketBooking> eventTickets = EventTicketBooking.getEventTicketsFromFile("EventTicketBookingData.txt");
+        List<EventTicketBooking> eventTickets = ResourceManager.getInstance().getEventTicketBookings();
         for (EventTicketBooking eventTicket : eventTickets) {
-            BookingService.getInstance().createBooking(eventTicket);
+
             listModel.addElement(eventTicket);
         }
 
@@ -253,17 +254,17 @@ public class MainMenuPanel extends JPanel {
         add(topPanel, BorderLayout.NORTH);
         setVisible(true);
 
-        List<ApartmentBooking> apartmentRentalsLocations = ApartmentBooking.getApartmentsFromFile("ApartmentBookingData.txt");
+        List<ApartmentBooking> apartmentRentalsLocations = ResourceManager.getInstance().getApartmentBookings();
         for (ApartmentBooking booking : apartmentRentalsLocations) {
             locationsSet.add(booking.getLocation());
         }
 
-        List<CarRentalBooking> carRentalsLocations = CarRentalBooking.getCarRentalsFromFile("CarRentalBookingData.txt");
+        List<CarRentalBooking> carRentalsLocations = ResourceManager.getInstance().getCarRentalBookings();
         for (CarRentalBooking carRental : carRentalsLocations) {
             locationsSet.add(carRental.getLocation());
         }
 
-        List<EventTicketBooking> eventTicketsLocations = EventTicketBooking.getEventTicketsFromFile("EventTicketBookingData.txt");
+        List<EventTicketBooking> eventTicketsLocations = ResourceManager.getInstance().getEventTicketBookings();
         for (EventTicketBooking eventTicket : eventTicketsLocations) {
             locationsSet.add(eventTicket.getLocation());
         }
@@ -314,7 +315,7 @@ public class MainMenuPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             listModel.clear();
-            List<CarRentalBooking> carRentals = CarRentalBooking.getCarRentalsFromFile("CarRentalBookingData.txt");
+            List<CarRentalBooking> carRentals = ResourceManager.getInstance().getCarRentalBookings();
             for (CarRentalBooking carRental : carRentals) {
                 BookingService.getInstance().createBooking(carRental);
                 listModel.addElement(carRental);
@@ -350,7 +351,7 @@ public class MainMenuPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             listModel.clear();
-            List<ApartmentBooking> apartmentRentals = ApartmentBooking.getApartmentsFromFile("ApartmentBookingData.txt");
+            List<ApartmentBooking> apartmentRentals = ResourceManager.getInstance().getApartmentBookings();
             for (ApartmentBooking booking : apartmentRentals) {
                 BookingService.getInstance().createBooking(booking);
                 listModel.addElement(booking);
@@ -393,7 +394,7 @@ public class MainMenuPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             listModel.clear();
-            List<EventTicketBooking> eventTickets = EventTicketBooking.getEventTicketsFromFile("EventTicketBookingData.txt");
+            List<EventTicketBooking> eventTickets = ResourceManager.getInstance().getEventTicketBookings();
             for (EventTicketBooking booking : eventTickets) {
                 BookingService.getInstance().createBooking(booking);
                 listModel.addElement(booking);
@@ -461,7 +462,7 @@ public class MainMenuPanel extends JPanel {
     private class EventFilterActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            List<String> eventTypes = EventTicketBooking.getEventTypesFromFile();
+            List<String> eventTypes = ResourceManager.getInstance().getEventTypes();
             JPanel panel = new JPanel();
             panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
             JCheckBox[] checkBoxes = new JCheckBox[eventTypes.size()];
@@ -497,7 +498,7 @@ public class MainMenuPanel extends JPanel {
     private class CarTypeFilterActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            List<String> carTypes = CarRentalBooking.getCarTypesFromFile();
+            List<String> carTypes = ResourceManager.getInstance().getCarTypes();
             JPanel panel = new JPanel();
             panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
             JCheckBox[] checkBoxes = new JCheckBox[carTypes.size()];

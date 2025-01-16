@@ -8,13 +8,17 @@ import Booking.EventTicketBooking;
 import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
+import java.util.List;
 
 
 public class ResourceManager {
     private UserList userList =  UserList.getInstance();
     private BookingService bookingList = BookingService.getInstance();
     private static ResourceManager instance;
+    private List<ApartmentBooking> apartmentBookings = new ArrayList<>();
+    private List<CarRentalBooking> carRentalBookings = new ArrayList<>();
+    private List<EventTicketBooking> eventTicketBookings = new ArrayList<>();
+
 
     public static ResourceManager getInstance() {
         if (instance == null) {
@@ -165,12 +169,10 @@ public class ResourceManager {
     @SuppressWarnings("unchecked")
     public void deseriaizeBookings(){
         String filePath = "bookings_data.ser";
+        ArrayList<Booking> deserializedBookigns;
 
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))){
-            ArrayList<Booking> bookings = (ArrayList<Booking>) ois.readObject();
-
-            bookingList.createBookings(bookings);
-
+            deserializedBookigns = (ArrayList<Booking>) ois.readObject();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
@@ -178,13 +180,48 @@ public class ResourceManager {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        for(Booking booking: deserializedBookigns) {
+            if(booking instanceof ApartmentBooking){
+                apartmentBookings.add((ApartmentBooking) booking);
+            } else if(booking instanceof CarRentalBooking){
+                carRentalBookings.add((CarRentalBooking) booking);
+            } else if(booking instanceof EventTicketBooking){
+                eventTicketBookings.add((EventTicketBooking) booking);
+            }
+}
     }
+    public List<ApartmentBooking> getApartmentBookings() {
+        return apartmentBookings;
+    }
+
+    public List<CarRentalBooking> getCarRentalBookings() {
+        return carRentalBookings;
+    }
+    public List<EventTicketBooking> getEventTicketBookings() {
+        return eventTicketBookings;
+    }
+    public List<String> getCarTypes() {
+        List<String> carTypes = new ArrayList<>();
+        for (CarRentalBooking carRentalBooking : carRentalBookings) {
+            carTypes.add(carRentalBooking.getCarType());
+        }
+        return carTypes;
+    }
+    public List<String> getEventTypes() {
+        List<String> eventTypes = new ArrayList<>();
+        for (EventTicketBooking eventTicketBooking : eventTicketBookings) {
+            eventTypes.add(eventTicketBooking.getEventType());
+        }
+        return eventTypes;
+    }
+
+
+
 
     public static void main(String[] args) {
         ResourceManager rm = new ResourceManager();
-        rm.readFileApartmentBooking();
-        rm.readFileCarRentalBooking();
-        rm.readFileEventTicketBooking();
         rm.seriaizeBookings();
+        rm.deseriaizeBookings();
     }
 }

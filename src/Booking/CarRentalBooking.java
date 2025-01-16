@@ -38,33 +38,33 @@ public class CarRentalBooking extends Booking {
         return ChronoUnit.DAYS.between(getStartDate(), getEndDate());
     }
 
-    public static List<CarRentalBooking> getCarRentalsFromFile(String fileName) {
-        List<CarRentalBooking> bookings = new ArrayList<>();
-        List<String[]> data = Booking.loadDataFromFile(fileName);
-        for (String[] parts : data) {
-                bookings.add(new CarRentalBooking(
-                    parts[0], parts[1], Double.parseDouble(parts[2]), LocalDate.parse(parts[3]),
-                    LocalDate.parse(parts[4]), parts[5], parts[6]
-                ));
-        }
-        return bookings;
-    }
+    //public static List<CarRentalBooking> getCarRentalsFromFile(String fileName) {
+      //  List<CarRentalBooking> bookings = new ArrayList<>();
+       // List<String[]> data = Booking.loadDataFromFile(fileName);
+       // for (String[] parts : data) {
+              //  bookings.add(new CarRentalBooking(
+                 //   parts[0], parts[1], Double.parseDouble(parts[2]), LocalDate.parse(parts[3]),
+                //    LocalDate.parse(parts[4]), parts[5], parts[6]
+              //  ));
+      //  }
+       // return bookings;
+  //  }
 
-    public static List<String> getCarTypesFromFile() {
-        Set<String> eventTypes = new HashSet<>();
-        try (BufferedReader br = new BufferedReader(new FileReader("CarRentalBookingData.txt"))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts.length > 5) {
-                    eventTypes.add(parts[5].trim());
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return new ArrayList<>(eventTypes);
-    }
+   // public static List<String> getCarTypesFromFile() {
+     //   Set<String> eventTypes = new HashSet<>();
+     //   try (BufferedReader br = new BufferedReader(new FileReader("CarRentalBookingData.txt"))) {
+       //     String line;
+      //      while ((line = br.readLine()) != null) {
+         //       String[] parts = line.split(",");
+        //        if (parts.length > 5) {
+         //           eventTypes.add(parts[5].trim());
+        //        }
+          //  }
+      //  } catch (IOException e) {
+      //      e.printStackTrace();
+//}
+     //   return new ArrayList<>(eventTypes);
+   // }
 
     @Override
     public BookingId.Prefix getIdPrefix() {

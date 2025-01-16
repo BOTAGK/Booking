@@ -32,17 +32,17 @@ public class ApartmentBooking extends Booking {
         this.rating = rating;
     }
 
-    public static List<ApartmentBooking> getApartmentsFromFile(String fileName) {
-        List<ApartmentBooking> bookings = new ArrayList<>();
-        List<String[]> data = Booking.loadDataFromFile(fileName);
-        for (String[] parts : data) {
-            bookings.add(new ApartmentBooking(
-                    parts[0], parts[1], Double.parseDouble(parts[2]), LocalDate.parse(parts[3]),
-                    LocalDate.parse(parts[4]), Integer.parseInt(parts[5]), Double.parseDouble(parts[6])
-            ));
-        }
-        return bookings;
-    }
+    //public static List<ApartmentBooking> getApartmentsFromFile(String fileName) {
+       // List<ApartmentBooking> bookings = new ArrayList<>();
+       // List<String[]> data = Booking.loadDataFromFile(fileName);
+        //for (String[] parts : data) {
+            //bookings.add(new ApartmentBooking(
+                   // parts[0], parts[1], Double.parseDouble(parts[2]), LocalDate.parse(parts[3]),
+                    //LocalDate.parse(parts[4]), Integer.parseInt(parts[5]), Double.parseDouble(parts[6])
+            //));
+       // }
+        //return bookings;
+   // }
     
     @Override
     public BookingId.Prefix getIdPrefix() {
