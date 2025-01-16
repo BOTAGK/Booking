@@ -1,8 +1,9 @@
 package GUI;
 
-import FilterStrategy.FilterManager;
-
 import javax.swing.*;
+
+import BookingService.FilterStrategy.FilterManager;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

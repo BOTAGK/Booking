@@ -3,15 +3,13 @@ package Booking;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-import Main.User;
+import BookingService.User;
 
 public abstract class Booking implements Serializable {
     private String name;
     private String location;
     private double price;
     private boolean available;
-    // For identification in services
-    private BookingId id;
 
     private LocalDate startDate;
     private LocalDate endDate;
@@ -61,26 +59,13 @@ public abstract class Booking implements Serializable {
         this.available = available;
     }
 
-    public void assignId(BookingId id) {
-        if(!getIdType().equals(id.getType())) {
-            throw new IllegalArgumentException("The given BookingId is invalid for this Booking");
-        }
-
-        this.id = id;
-    }
-
-    public BookingId getId() {
-        return this.id;
-    }
-
-    public abstract String getIdType();
+    public abstract BookingId.Prefix getIdPrefix();
 
     public String toString() {
         return  "Name: " + name + "\n" +
                 "Location: " + location + "\n" +
                 "Price: " + price + "\n" +
                 "StartDate: " + startDate.toString() + "\n" +
-                "EndDate: " + endDate.toString() + "\n" +
-                "Id: " + id.toString() + "\n";
+                "EndDate: " + endDate.toString() + "\n";
     }
 }

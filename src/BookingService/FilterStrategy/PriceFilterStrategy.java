@@ -1,6 +1,8 @@
-package FilterStrategy;
+package BookingService.FilterStrategy;
 
 import Booking.Booking;
+import BookingService.BookingId;
+import Util.Pair;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,10 +31,10 @@ public class PriceFilterStrategy implements FilterStrategy {
     }
 
     @Override
-    public List<Booking> filter(List<Booking> bookings) {
-        return bookings.stream()
-                .filter(booking -> booking.getPrice()>=minPrice)
-                .filter(booking -> booking.getPrice()<= maxPrice)
-                .collect(Collectors.toList());
+    public List<Pair<Booking, BookingId>> filter(List<Pair<Booking, BookingId>> entries) {
+        return entries.stream()
+            .filter(entry -> entry.first.getPrice()>=minPrice)
+            .filter(entry -> entry.first.getPrice()<=maxPrice)
+            .collect(Collectors.toList());
     }
 }

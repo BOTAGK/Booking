@@ -1,4 +1,4 @@
-package FilterStrategy;
+package BookingService.FilterStrategy;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package Main;
+package BookingService;
 
 import java.util.ArrayList;
 import java.util.Scanner;

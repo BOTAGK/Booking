@@ -1,4 +1,4 @@
-package Main;
+
 
 public class Main {
     public static User currentUser;
