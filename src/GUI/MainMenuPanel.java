@@ -37,11 +37,13 @@ public class MainMenuPanel extends JPanel {
 
     JButton eventTypeFilterButton;
     JButton carTypeFilterButton;
+    private JFrame parentFrame;
 
 
 
     public MainMenuPanel(JFrame parentFrame) {
         setLayout(new BorderLayout());
+        this.parentFrame=parentFrame;
 
 //        kategorie(górny panel)
         JPanel topPanel = new JPanel();
@@ -137,6 +139,8 @@ public class MainMenuPanel extends JPanel {
         menu.add(item1);
         menu.add(item2);
         menuBar.add(menu);
+
+        item1.addActionListener(new UserButtonActionListener());
 
 
         leftPanel.add(menuBar, BorderLayout.SOUTH);
@@ -406,6 +410,14 @@ public class MainMenuPanel extends JPanel {
                 }
                 System.out.println(selectedCarTypes);
             }
+        }
+    }
+
+    private class UserButtonActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            parentFrame.dispose();
+            new UserMenuGUI();
         }
     }
 }
