@@ -26,9 +26,9 @@ public class MainMenuPanel extends JPanel {
     private DefaultListModel<String> listModel;
     JPanel filtersPanel = new JPanel();
     JLabel priceLabel = new JLabel("        Price       ");
-    JTextField minPriceField = new JTextField("Min price");
+    JTextField minPriceField = new JTextField("0");
     JLabel minPriceLabel = new JLabel("Min price");
-    JTextField maxPriceField = new JTextField("Max price");
+    JTextField maxPriceField = new JTextField("1000");
     JLabel maxPriceLabel = new JLabel("Max price");
 
     JLabel locationLabel = new JLabel("        Location      ");
@@ -43,6 +43,8 @@ public class MainMenuPanel extends JPanel {
     JButton carTypeFilterButton;
 
     JButton applyFiltersButton = new JButton("Apply filters");
+
+    JList<String> offersList;
 
     // XD
     private List<String> selectedLocations = new ArrayList<>();
@@ -199,7 +201,7 @@ public class MainMenuPanel extends JPanel {
             listModel.addElement(eventTicket.toString());
         }
 
-        JList<String> offersList = new JList<>(listModel);
+        offersList = new JList<>(listModel);
         JScrollPane scrollPane = new JScrollPane(offersList);
         centerPanel.add(scrollPane, BorderLayout.CENTER);
 
@@ -234,7 +236,7 @@ public class MainMenuPanel extends JPanel {
         this.filters.add(new PriceFilterStrategy(
             Double.parseDouble(minPriceField.getText()),
             Double.parseDouble(maxPriceField.getText())));
-        // this.filters.add(new LocationFilterStrategy(selectedLocations));
+        this.filters.add(new LocationFilterStrategy(selectedLocations));
         // this.filters.add(new ApartmentFilterStrategy(minRoomCount, maxRoomCount));
         // this.filters.add(new CarRentalFilterStrategy(selectedLocations));
         // this.filters.add(new EventTicketFilterStrategy(selectedLocations));
