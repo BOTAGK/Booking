@@ -1,9 +1,10 @@
 package Booking;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 
-public class EventTicketBooking extends Booking implements Serializable {
+import BookingService.BookingId;
+
+public class EventTicketBooking extends Booking {
     private String eventType;
     private String artistOrTeam;
     private int availableTickets;
@@ -39,8 +40,8 @@ public class EventTicketBooking extends Booking implements Serializable {
     }
 
     @Override
-    public String getIdType() {
-        return "EVT";
+    public BookingId.Prefix getIdPrefix() {
+        return BookingId.Prefix.EVT;
     }
 
     @Override

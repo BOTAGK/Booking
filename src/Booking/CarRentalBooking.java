@@ -1,10 +1,11 @@
 package Booking;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-public class CarRentalBooking extends Booking implements Serializable {
+import BookingService.BookingId;
+
+public class CarRentalBooking extends Booking {
 
     private String carType;
     private String carModel;
@@ -31,8 +32,8 @@ public class CarRentalBooking extends Booking implements Serializable {
     }
 
     @Override
-    public String getIdType() {
-        return "CRT";
+    public BookingId.Prefix getIdPrefix() {
+        return BookingId.Prefix.CRT;
     }
 
     @Override

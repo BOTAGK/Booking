@@ -1,4 +1,4 @@
-package Main;
+package BookingService;
 
 import Booking.BookingId;
 

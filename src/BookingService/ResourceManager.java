@@ -1,4 +1,4 @@
-package Main;
+package BookingService;
 
 import Booking.ApartmentBooking;
 import Booking.Booking;
@@ -8,8 +8,6 @@ import Booking.EventTicketBooking;
 import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
-
 
 public class ResourceManager {
     private UserList userList =  UserList.getInstance();

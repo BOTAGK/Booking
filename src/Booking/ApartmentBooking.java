@@ -1,9 +1,10 @@
 package Booking;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 
-public class ApartmentBooking extends Booking implements Serializable {
+import BookingService.BookingId;
+
+public class ApartmentBooking extends Booking {
     private int roomCount;
     private double rating;
 
@@ -30,8 +31,8 @@ public class ApartmentBooking extends Booking implements Serializable {
     }
     
     @Override
-    public String getIdType() {
-        return "APT";
+    public BookingId.Prefix getIdPrefix() {
+        return BookingId.Prefix.APT;
     }
 
     @Override
