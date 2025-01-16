@@ -63,7 +63,7 @@ public class BookingService {
         return true;
     }
 
-    private Booking getBooking(BookingId id) {
+    public Booking getBooking(BookingId id) {
         for (Pair<Booking, BookingId> entry : this.entries) {
             if (entry.second.equals(id)) {
                 return entry.first;

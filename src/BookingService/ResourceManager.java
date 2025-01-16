@@ -8,13 +8,17 @@ import Booking.EventTicketBooking;
 import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
+import java.util.List;
 
 
 public class ResourceManager {
     private UserList userList =  UserList.getInstance();
     private BookingService bookingList = BookingService.getInstance();
     private static ResourceManager instance;
+    private List<ApartmentBooking> apartmentBookings = new ArrayList<>();
+    private List<CarRentalBooking> carRentalBookings = new ArrayList<>();
+    private List<EventTicketBooking> eventTicketBookings = new ArrayList<>();
+
 
     public static ResourceManager getInstance() {
         if (instance == null) {
@@ -90,8 +94,7 @@ public class ResourceManager {
                     LocalDate endDate = LocalDate.parse(data[4].trim());
                     int roomCount =  Integer.parseInt(data[5].trim());
                     double rating = Double.parseDouble(data[6].trim());
-                    String path = data[7].trim();
-                    bookingList.createBooking(new ApartmentBooking(name, location, price, startDate, endDate, roomCount, rating, path));
+                    bookingList.createBooking(new ApartmentBooking(name, location, price, startDate, endDate, roomCount, rating));
                 }
             }
         } catch (FileNotFoundException e) {
@@ -115,8 +118,7 @@ public class ResourceManager {
                     LocalDate endDate = LocalDate.parse(data[4].trim());
                     String carType = data[5].trim();
                     String carModel = data[6].trim();
-                    String path = data[7].trim();
-                    bookingList.createBooking(new CarRentalBooking(name, location, price, startDate, endDate, carType, carModel, path));
+                    bookingList.createBooking(new CarRentalBooking(name, location, price, startDate, endDate, carType, carModel));
                 }
             }
         } catch (FileNotFoundException e) {
@@ -132,17 +134,16 @@ public class ResourceManager {
             String line;
             while((line = br.readLine()) != null){
                 String[] data = line.split(",");
-                if(data.length == 8){
+                if(data.length == 7){
                     String name = data[0].trim();
                     String location = data[1].trim();
                     double price = Double.parseDouble(data[2].trim());
                     LocalDate startDate = LocalDate.parse(data[3].trim());
-                    LocalDate endDate = LocalDate.parse(data[4].trim());
-                    String eventType = data[5].trim();
-                    String artistOrTeam = data[6].trim();
-                    int availableTickets = Integer.parseInt(data[7].trim());
-                    String path = data[8].trim();
-                    bookingList.createBooking(new EventTicketBooking(name, location, price, startDate, endDate, eventType, artistOrTeam, availableTickets, path));
+                    LocalDate endDate = LocalDate.parse(data[3].trim());
+                    String eventType = data[4].trim();
+                    String artistOrTeam = data[5].trim();
+                    int availableTickets = Integer.parseInt(data[6].trim());
+                    bookingList.createBooking(new EventTicketBooking(name, location, price, startDate, endDate, eventType, artistOrTeam, availableTickets));
                 }
             }
         } catch (FileNotFoundException e) {
@@ -168,12 +169,10 @@ public class ResourceManager {
     @SuppressWarnings("unchecked")
     public void deseriaizeBookings(){
         String filePath = "bookings_data.ser";
+        ArrayList<Booking> deserializedBookigns;
 
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))){
-            ArrayList<Booking> bookings = (ArrayList<Booking>) ois.readObject();
-
-            bookingList.createBookings(bookings);
-
+            deserializedBookigns = (ArrayList<Booking>) ois.readObject();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
@@ -181,13 +180,52 @@ public class ResourceManager {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        for(Booking booking: deserializedBookigns) {
+            if(booking instanceof ApartmentBooking){
+                apartmentBookings.add((ApartmentBooking) booking);
+            } else if(booking instanceof CarRentalBooking){
+                carRentalBookings.add((CarRentalBooking) booking);
+            } else if(booking instanceof EventTicketBooking){
+                eventTicketBookings.add((EventTicketBooking) booking);
+            }
+}
     }
+    public List<ApartmentBooking> getApartmentBookings() {
+        return apartmentBookings;
+    }
+
+    public List<CarRentalBooking> getCarRentalBookings() {
+        return carRentalBookings;
+    }
+    public List<EventTicketBooking> getEventTicketBookings() {
+        return eventTicketBookings;
+    }
+    public List<String> getCarTypes() {
+        List<String> carTypes = new ArrayList<>();
+        for (CarRentalBooking carRentalBooking : carRentalBookings) {
+            if(!carTypes.contains(carRentalBooking.getCarType())){
+            carTypes.add(carRentalBooking.getCarType());
+            }
+        }
+        return carTypes;
+    }
+    public List<String> getEventTypes() {
+        List<String> eventTypes = new ArrayList<>();
+        for (EventTicketBooking eventTicketBooking : eventTicketBookings) {
+            if(!eventTypes.contains(eventTicketBooking.getEventType())){
+            eventTypes.add(eventTicketBooking.getEventType());
+            }
+        }
+        return eventTypes;
+    }
+
+
+
 
     public static void main(String[] args) {
         ResourceManager rm = new ResourceManager();
-        rm.readFileApartmentBooking();
-        rm.readFileCarRentalBooking();
-        rm.readFileEventTicketBooking();
         rm.seriaizeBookings();
+        rm.deseriaizeBookings();
     }
 }
