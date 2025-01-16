@@ -4,6 +4,7 @@ import javax.swing.*;
 
 import BookingService.User;
 import Booking.*;
+import BookingService.*;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -56,6 +57,16 @@ public class UserMenuPanel extends JPanel {
         //panel z listą bookingów
         JPanel bookingsPanel = new JPanel();
         bookingsPanel.setLayout(new BoxLayout(bookingsPanel, BoxLayout.Y_AXIS));
+        JLabel labelBookings = new JLabel("Bookings");
+        DefaultListModel listModel = new DefaultListModel<>();
+        for(BookingId myBooking : user.getBookingIds()){
+            listModel.addElement(myBooking.toString());
+        }
+        JList<String> bookingsInUserMenu = new JList<>(listModel);
+        bookingsPanel.add(new JScrollPane(bookingsInUserMenu));
+        labelBookings.setFont(new Font("Arial", Font.BOLD, 24));
+        bookingsPanel.add(labelBookings);
+
 
         //panel z zakładakami
         JTabbedPane tabbedPane = new JTabbedPane();
