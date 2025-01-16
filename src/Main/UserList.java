@@ -32,30 +32,30 @@ public class UserList {
         rm.seriaizeUsers();
     }
 
-    public User login(){
-        boolean result = false;
-        System.out.println("Please log in");
-        while(!result){
-            System.out.println("Username: ");
-            Scanner sc = new Scanner(System.in);
-            String username = sc.nextLine();
-            System.out.println("Password: ");
-            String password = sc.nextLine();
-            sc.close();
-            for (User user : getUsers()) {
-                if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
-                    System.out.println("Successfully logged in");
-                    result = true;
-                    return user;
-                }
+    public void deleteUser(String username) {
+        users.removeIf(user -> user.getUsername().equals(username));
+    }
+
+    //Zwraca szukanego użytkownika lub null jeśli takowy nie istnieje
+    public User findUser(String username) {
+        for (User user : users) {
+            if (user.getUsername().equals(username)) {
+                return user;
             }
-            System.out.println("Wrong username or password\n" + "Please try again");
         }
         return null;
     }
 
-    public void deleteUser(String username) {
-        users.removeIf(user -> user.getUsername().equals(username));
+    //Próbuje się zalogować na dane konto, jeśli się nie uda wyrzuci błąd
+    public void loginAttempt(String username, String password) throws Exception {
+        User user = findUser(username);
+        if(user == null) {
+            throw(new Exception("User not found"));
+        }
+        if(!user.getPassword().equals(password)) {
+            throw(new Exception("Wrong password"));
+        }
+        Main.currentUser = user;
     }
 
 }

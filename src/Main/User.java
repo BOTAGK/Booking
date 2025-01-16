@@ -58,9 +58,6 @@ public class User implements Serializable {
         bookingIds.remove(id);
     }
     public Boolean hasBooking(BookingId id) {
-        if(bookingIds.contains(id)) {
-            return true;
-        }
-        return false;
+        return bookingIds.contains(id);
     }
 }
