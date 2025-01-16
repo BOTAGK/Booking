@@ -62,8 +62,28 @@ public class UserMenuPanel extends JPanel {
             listModel.addElement(BookingService.getInstance().getBooking(myBooking));
         }
         JList<String> bookingsInUserMenu = new JList<>(listModel);
-        bookingsPanel.add(new JScrollPane(bookingsInUserMenu));
+        Font font =new Font("Arial MS", Font.PLAIN, 24);
+        bookingsInUserMenu.setFont(font);
+        bookingsInUserMenu.setCellRenderer(new DefaultListCellRenderer() {
+            @Override
+            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                if(value instanceof Booking){
+                    setText(value.toString());
+                    Image image=((Booking) value).getIcon().getImage();
+                    image=image.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+                    ImageIcon icon=new ImageIcon(image);
+                    setIcon(icon);
+                }
 
+                return this;
+            }
+        });
+        bookingsInUserMenu.setLayout(new BoxLayout(bookingsInUserMenu, BoxLayout.Y_AXIS));
+        JScrollPane scrollPane = new JScrollPane(bookingsInUserMenu);
+        bookingsPanel.setLayout(new BoxLayout(bookingsPanel, BoxLayout.Y_AXIS));
+        bookingsPanel.add(scrollPane, BorderLayout.EAST);
+        setVisible(true);
         //panel z zakładakami
         JTabbedPane tabbedPane = new JTabbedPane();
         tabbedPane.addTab("My bookings", bookingsPanel);
