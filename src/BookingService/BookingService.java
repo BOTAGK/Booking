@@ -46,6 +46,25 @@ public class BookingService implements Serializable, Observable {
             }
         }
     }
+    public ArrayList<BookingId> getUsersObservables(Observer observer) {
+        ArrayList<BookingId> observables = new ArrayList<>();
+        for(Pair<Observer,BookingId> pair : observers) {
+            if(pair.first.equals(observer)) {
+                observables.add(pair.second);
+            }
+        }
+        return observables;
+    }
+
+    public ArrayList<Booking> getBookedBookings(Observer observer) {
+        ArrayList<Booking> booked = new ArrayList<>();
+        for(Pair<Booking,BookingId> pair : entries ) {
+            if(!pair.first.getAvailable()) {
+                booked.add(pair.first);
+            }
+        }
+        return booked;
+    }
 
     // Creates a new Booking in the service by assigning a unique identifier
     public void createBooking(Booking booking) {
