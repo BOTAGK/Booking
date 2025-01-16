@@ -210,12 +210,15 @@ public class MainMenuPanel extends JPanel {
             BookingService.getInstance().createBooking(eventTicket);
             listModel.addElement(eventTicket);
         }
+        Font font =new Font("Arial MS", Font.PLAIN, 24);
         JList<Booking> offersList = new JList<>(listModel);
+        offersList.setFont(font);
         offersList.setCellRenderer(new DefaultListCellRenderer() {
             @Override
             public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
                 super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
                 if (value instanceof Booking) {
+
                     setText(value.toString());
                     Image image=((Booking) value).getIcon().getImage();
                     image=image.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
