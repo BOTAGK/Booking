@@ -43,9 +43,11 @@ public class BookingService implements Serializable, Observable {
         for (Pair<Observer,BookingId> pair : observers) {
             if(pair.second.equals(bookingId)) {
                 pair.first.update(bookingId);
+                break;
             }
         }
     }
+
     public ArrayList<BookingId> getUsersObservables(Observer observer) {
         ArrayList<BookingId> observables = new ArrayList<>();
         for(Pair<Observer,BookingId> pair : observers) {
