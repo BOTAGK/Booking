@@ -63,8 +63,8 @@ public class EventTicketBooking extends Booking {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
-                if (parts.length > 5) {
-                    eventTypes.add(parts[5].trim());
+                if (parts.length > 4) {
+                    eventTypes.add(parts[4].trim());
                 }
             }
         } catch (IOException e) {

@@ -56,8 +56,8 @@ public class CarRentalBooking extends Booking {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
-                if (parts.length > 6) {
-                    eventTypes.add(parts[6].trim());
+                if (parts.length > 5) {
+                    eventTypes.add(parts[5].trim());
                 }
             }
         } catch (IOException e) {
