@@ -1,6 +1,8 @@
 package Booking;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import BookingService.BookingId;
 
@@ -29,6 +31,18 @@ public class ApartmentBooking extends Booking {
     public void setRating(double rating) {
         this.rating = rating;
     }
+
+    public static List<ApartmentBooking> getApartmentsFromFile(String fileName) {
+        List<ApartmentBooking> bookings = new ArrayList<>();
+        List<String[]> data = Booking.loadDataFromFile(fileName);
+        for (String[] part : data) {
+            bookings.add(new ApartmentBooking(
+                    part[1], part[2], Double.parseDouble(part[3]), LocalDate.parse(part[4]),
+                    LocalDate.parse(part[5]), Integer.parseInt(part[6]), Double.parseDouble(part[7])
+            ));
+        }
+        return bookings;
+    }
     
     @Override
     public BookingId.Prefix getIdPrefix() {
@@ -37,8 +51,7 @@ public class ApartmentBooking extends Booking {
 
     @Override
     public String toString() {
-        return super.toString()+
-                "Rating: " + rating + '\n'+
-                "Room Count: " + roomCount+'\n';
+        return         getName()+ ", "+super.toString()+
+                ", Rating: " + rating + ", Room Count: " + roomCount;
     }
 }
