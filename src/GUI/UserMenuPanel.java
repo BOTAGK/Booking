@@ -37,9 +37,10 @@ public class UserMenuPanel extends JPanel {
 
         JPanel infoPanel = new JPanel();
         infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
-        labelName = new JLabel("<html><b>Name: <b>" + user.getName() + "</html>");
-        labelLastName = new JLabel("<html><b>Lastname: <b>" + user.getLastname() + "</html>");
-        labelEmail = new JLabel("<html><b>Email: <b>" + user.getEmail() + "</html>");
+        JLabel labelName = new JLabel("Name: "+user.getName());
+        JLabel labelLastName = new JLabel("Last Name: "+user.getLastname());
+        JLabel labelEmail = new JLabel("Email: "+user.getEmail());
+        JButton editButtonInformation = new JButton("Edit information");
         infoPanel.add(labelName);
         infoPanel.add(labelLastName);
         infoPanel.add(labelEmail);

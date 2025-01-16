@@ -2,6 +2,7 @@ package GUI;
 
 import Booking.*;
 import BookingService.BookingService;
+import BookingService.BookingService;
 import BookingService.User;
 import BookingService.FilterStrategy.ApartmentFilterStrategy;
 import BookingService.FilterStrategy.CarRentalFilterStrategy;
@@ -20,10 +21,14 @@ import java.awt.event.FocusListener;
 import java.util.*;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
+import java.util.List;
 
 public class MainMenuPanel extends JPanel {
 
-    private DefaultListModel<String> listModel;
+    private DefaultListModel<Booking> listModel;
     JPanel filtersPanel = new JPanel();
     JLabel priceLabel = new JLabel("        Price       ");
     JTextField minPriceField = new JTextField("0");
@@ -59,8 +64,10 @@ public class MainMenuPanel extends JPanel {
 
     public MainMenuPanel(JFrame parentFrame, User user) {
         setLayout(new BorderLayout());
+        this.parentFrame=parentFrame;
+        this.user = user;
 
-//        kategorie(górny panel)
+        // kategorie(górny panel)
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 
@@ -78,10 +85,9 @@ public class MainMenuPanel extends JPanel {
         topPanel.add(eventTicketsButton);
         add(topPanel, BorderLayout.NORTH);
 
-//        lewy panel, filtry i użytkownik
+        // lewy panel, filtry i użytkownik
         JPanel leftPanel = new JPanel();
         leftPanel.setLayout(new BorderLayout());
-
 
         filtersPanel.setLayout(new BoxLayout(filtersPanel, BoxLayout.Y_AXIS));
 
@@ -100,7 +106,6 @@ public class MainMenuPanel extends JPanel {
 
         locationButton.addActionListener(new LocationsActionListener());
         minPriceField.addFocusListener(new FocusListener() {
-
             @Override
             public void focusGained(FocusEvent e) {
                 minPriceField.setText("");
@@ -114,7 +119,6 @@ public class MainMenuPanel extends JPanel {
             }
         });
         maxPriceField.addFocusListener(new FocusListener() {
-
             @Override
             public void focusGained(FocusEvent e) {
                 maxPriceField.setText("");
@@ -123,7 +127,7 @@ public class MainMenuPanel extends JPanel {
             @Override
             public void focusLost(FocusEvent e) {
                 String maxPriceInput;
-                maxPriceInput=maxPriceField.getText();
+                maxPriceInput = maxPriceField.getText();
                 System.out.println(maxPriceInput);
             }
         });
@@ -150,7 +154,7 @@ public class MainMenuPanel extends JPanel {
             @Override
             public void focusLost(FocusEvent e) {
                 String minRatingInput;
-                minRatingInput=minRatingField.getText();
+                minRatingInput = minRatingField.getText();
                 System.out.println(minRatingInput);
             }
         });
@@ -159,57 +163,88 @@ public class MainMenuPanel extends JPanel {
 
         JMenuBar menuBar = new JMenuBar();
         JMenu menu = new JMenu("        User       ");
-        JMenuItem item1=new JMenuItem("My account");
-        JMenuItem item2=new JMenuItem("Log out");
+        JMenuItem item1 = new JMenuItem("My account");
+        JMenuItem item2 = new JMenuItem("Log out");
 
-        item1.addActionListener(_-> {
+        item2.addActionListener(_ -> {
             parentFrame.dispose();
-            new UserMenuGUI(user);
-        });
-
-        item2.addActionListener(_-> {
-           parentFrame.dispose();
-           new LoginGui();
+            new LoginGui();
         });
 
         menu.add(item1);
         menu.add(item2);
         menuBar.add(menu);
 
+        item1.addActionListener(new UserButtonActionListener());
 
         leftPanel.add(menuBar, BorderLayout.SOUTH);
         leftPanel.add(filtersPanel, BorderLayout.NORTH);
         add(leftPanel, BorderLayout.WEST);
 
-//      centrum
+        // centrum
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new BorderLayout());
 
         listModel = new DefaultListModel<>();
         List<ApartmentBooking> apartmentRentals = ApartmentBooking.getApartmentsFromFile("ApartmentBookingData.txt");
         for (ApartmentBooking booking : apartmentRentals) {
-            listModel.addElement(booking.toString());
+            BookingService.getInstance().createBooking(booking);
+            listModel.addElement(booking);
         }
 
         List<CarRentalBooking> carRentals = CarRentalBooking.getCarRentalsFromFile("CarRentalBookingData.txt");
         for (CarRentalBooking carRental : carRentals) {
-            listModel.addElement(carRental.toString());
+            BookingService.getInstance().createBooking(carRental);
+            listModel.addElement(carRental);
         }
 
         List<EventTicketBooking> eventTickets = EventTicketBooking.getEventTicketsFromFile("EventTicketBookingData.txt");
         for (EventTicketBooking eventTicket : eventTickets) {
-            listModel.addElement(eventTicket.toString());
+            BookingService.getInstance().createBooking(eventTicket);
+            listModel.addElement(eventTicket);
         }
 
-        offersList = new JList<>(listModel);
+        JList<Booking> offersList = new JList<>(listModel);
+        offersList.setCellRenderer(new DefaultListCellRenderer() {
+            @Override
+            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                if (value instanceof Booking) {
+                    setText(value.toString());
+                }
+                return this;
+            }
+        });
+
+        offersList.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    int index = offersList.locationToIndex(e.getPoint());
+                    Booking selectedBooking = offersList.getModel().getElementAt(index);
+                    int result = JOptionPane.showConfirmDialog(null, "Do you want to reserve this booking?\n" + selectedBooking, "Confirm your reservation", JOptionPane.YES_NO_OPTION);
+                    if (result == JOptionPane.YES_OPTION) {
+                        // Dodaj logikę rezerwacji
+                        BookingId bookingId = BookingService.getInstance().getBookingId(selectedBooking);
+                        if (bookingId != null) {
+                            BookingService.getInstance().bookBooking(user, bookingId);
+                            System.out.println("Booking reserved: " + selectedBooking);
+                            System.out.println("User's bookings: " + user.getBookingIds());
+                        } else {
+                            System.out.println("Booking ID is null for selected booking: " + selectedBooking);
+                        }
+                    }
+                }
+            }
+        });
+
         JScrollPane scrollPane = new JScrollPane(offersList);
         centerPanel.add(scrollPane, BorderLayout.CENTER);
 
-       add(centerPanel, BorderLayout.CENTER);
-       add(leftPanel, BorderLayout.WEST);
-       add(topPanel, BorderLayout.NORTH);
+        add(centerPanel, BorderLayout.CENTER);
+        add(leftPanel, BorderLayout.WEST);
+        add(topPanel, BorderLayout.NORTH);
         setVisible(true);
-
 
         List<ApartmentBooking> apartmentRentalsLocations = ApartmentBooking.getApartmentsFromFile("ApartmentBookingData.txt");
         for (ApartmentBooking booking : apartmentRentalsLocations) {
@@ -227,25 +262,13 @@ public class MainMenuPanel extends JPanel {
         }
 
         locations = locationsSet.toArray(new String[0]);
-
     }
 
-    private void applyFilters() {
-        this.filters.clear();
-
-        this.filters.add(new PriceFilterStrategy(
-            Double.parseDouble(minPriceField.getText()),
-            Double.parseDouble(maxPriceField.getText())));
-        this.filters.add(new LocationFilterStrategy(selectedLocations));
-        // this.filters.add(new ApartmentFilterStrategy(minRoomCount, maxRoomCount));
-        // this.filters.add(new CarRentalFilterStrategy(selectedLocations));
-        // this.filters.add(new EventTicketFilterStrategy(selectedLocations));
-        
-        List<Booking> bookings = BookingService.getInstance().filterBookings(this.filters);
-        this.listModel.clear();
-        for(Booking booking : bookings) {
-            this.listModel.addElement(booking.toString());
+    private void updateButtonText(JButton button, String text) {
+        if (text.length() > 16) {
+            text = text.substring(0, 16) + "...";
         }
+        button.setText(text);
     }
 
 
@@ -255,6 +278,11 @@ public class MainMenuPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             listModel.clear();
+            List<CarRentalBooking> carRentals = CarRentalBooking.getCarRentalsFromFile("CarRentalBookingData.txt");
+            for (CarRentalBooking carRental : carRentals) {
+                BookingService.getInstance().createBooking(carRental);
+                listModel.addElement(carRental);
+            }
             List <CarRentalBooking> carRentals = CarRentalBooking.getCarRentalsFromFile("CarRentalBookingData.txt");
             for (CarRentalBooking carRental: carRentals) {
                 listModel.addElement(carRental.toString());
@@ -274,7 +302,6 @@ public class MainMenuPanel extends JPanel {
             filtersPanel.add(locationButton);
             filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
 
-
             JLabel carTypesLabel = new JLabel("Car Type");
             carTypeFilterButton = new JButton("Choose car type");
 
@@ -293,7 +320,8 @@ public class MainMenuPanel extends JPanel {
             listModel.clear();
             List<ApartmentBooking> apartmentRentals = ApartmentBooking.getApartmentsFromFile("ApartmentBookingData.txt");
             for (ApartmentBooking booking : apartmentRentals) {
-                listModel.addElement(booking.toString());
+                BookingService.getInstance().createBooking(booking);
+                listModel.addElement(booking);
             }
             filtersPanel.removeAll();
 
@@ -333,7 +361,8 @@ public class MainMenuPanel extends JPanel {
             listModel.clear();
             List<EventTicketBooking> eventTickets = EventTicketBooking.getEventTicketsFromFile("EventTicketBookingData.txt");
             for (EventTicketBooking booking : eventTickets) {
-                listModel.addElement(booking.toString());
+                BookingService.getInstance().createBooking(booking);
+                listModel.addElement(booking);
             }
 
             filtersPanel.removeAll();
@@ -350,7 +379,6 @@ public class MainMenuPanel extends JPanel {
             filtersPanel.add(locationButton);
             filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
 
-
             JLabel eventTypesLabel = new JLabel("Event Type");
             eventTypeFilterButton = new JButton("Choose event type");
             eventTypeFilterButton.addActionListener(new EventFilterActionListener());
@@ -361,8 +389,6 @@ public class MainMenuPanel extends JPanel {
             filtersPanel.repaint();
         }
     }
-
-
 
     private class LocationsActionListener implements ActionListener {
         @Override
@@ -433,7 +459,7 @@ public class MainMenuPanel extends JPanel {
         }
     }
 
-    private class CarTypeFilterActionListener implements ActionListener{
+    private class CarTypeFilterActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             List<String> carTypes = CarRentalBooking.getCarTypesFromFile();
