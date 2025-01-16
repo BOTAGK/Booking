@@ -59,7 +59,7 @@ public class UserMenuPanel extends JPanel {
         bookingsPanel.setLayout(new BoxLayout(bookingsPanel, BoxLayout.Y_AXIS));
         DefaultListModel listModel = new DefaultListModel<>();
         for(BookingId myBooking : user.getBookingIds()){
-            listModel.addElement(myBooking.toString());
+            listModel.addElement(BookingService.getInstance().getBooking(myBooking));
         }
         JList<String> bookingsInUserMenu = new JList<>(listModel);
         bookingsPanel.add(new JScrollPane(bookingsInUserMenu));
