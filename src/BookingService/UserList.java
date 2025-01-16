@@ -51,7 +51,7 @@ public class UserList {
 
     // Attempts to find a user with given username and password
     // Returns whether the operation was successful
-    public void loginAttempt(String username, String password) throws InvalidLoginException {
+    public User loginAttempt(String username, String password) throws InvalidLoginException {
         User user = findUser(username);
         if(user == null) {
             throw(new InvalidLoginException("User not found"));
@@ -59,7 +59,7 @@ public class UserList {
         if(!user.getPassword().equals(password)) {
             throw(new InvalidLoginException("Wrong password"));
         }
-
         Main.currentUser = user;
+        return user;
     }
 }
