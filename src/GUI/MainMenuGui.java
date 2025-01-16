@@ -11,7 +11,7 @@ public class MainMenuGui extends JFrame {
         setSize(900, 800);
         setLocationRelativeTo(null);
 
-        add(new MainMenuPanel(this, user));
+//        add(new MainMenuPanel(this, user));
 
         setVisible(true);
 
