@@ -1,6 +1,7 @@
 package GUI;
 
 import Booking.*;
+import BookingService.BookingId;
 import BookingService.BookingService;
 import BookingService.BookingService;
 import BookingService.User;
@@ -59,9 +60,12 @@ public class MainMenuPanel extends JPanel {
     private List<String> selectedEventTypes = new ArrayList<>();
 
     private List<FilterStrategy> filters = new ArrayList<>();
-
-
-
+        private JFrame parentFrame;
+                private User user;
+    private int type_lol;
+            
+            
+            
     public MainMenuPanel(JFrame parentFrame, User user) {
         setLayout(new BorderLayout());
         this.parentFrame=parentFrame;
@@ -175,7 +179,10 @@ public class MainMenuPanel extends JPanel {
         menu.add(item2);
         menuBar.add(menu);
 
-        item1.addActionListener(new UserButtonActionListener());
+        item1.addActionListener(_ -> {
+            parentFrame.dispose();
+            new UserMenuGUI(user);
+        });
 
         leftPanel.add(menuBar, BorderLayout.SOUTH);
         leftPanel.add(filtersPanel, BorderLayout.NORTH);
@@ -271,6 +278,35 @@ public class MainMenuPanel extends JPanel {
         button.setText(text);
     }
 
+    private void applyFilters() {
+        this.filters.clear();
+
+        this.filters.add(new PriceFilterStrategy(
+            Double.parseDouble(minPriceField.getText()),
+            Double.parseDouble(maxPriceField.getText())));
+        this.filters.add(new LocationFilterStrategy(selectedLocations));
+
+        switch(type_lol) {
+            case 1:
+                this.filters.add(new ApartmentFilterStrategy(minRoomCount, maxRoomCount));
+                break;
+            case 2:
+                this.filters.add(new CarRentalFilterStrategy(selectedCarTypes));
+                break;
+            case 3:
+                this.filters.add(new EventTicketFilterStrategy(selectedEventTypes));
+                break;
+            default:
+                break;
+        }
+        
+        List<Booking> bookings = BookingService.getInstance().filterBookings(this.filters);
+        this.listModel.clear();
+        for(Booking booking : bookings) {
+            this.listModel.addElement(booking);
+        }
+    }
+
 
 
 
@@ -282,10 +318,6 @@ public class MainMenuPanel extends JPanel {
             for (CarRentalBooking carRental : carRentals) {
                 BookingService.getInstance().createBooking(carRental);
                 listModel.addElement(carRental);
-            }
-            List <CarRentalBooking> carRentals = CarRentalBooking.getCarRentalsFromFile("CarRentalBookingData.txt");
-            for (CarRentalBooking carRental: carRentals) {
-                listModel.addElement(carRental.toString());
             }
 
             filtersPanel.removeAll();
@@ -352,6 +384,8 @@ public class MainMenuPanel extends JPanel {
             filtersPanel.add(minRatingField);
             filtersPanel.revalidate();
             filtersPanel.repaint();
+            
+            type_lol = 1;
         }
     }
 
@@ -454,6 +488,7 @@ public class MainMenuPanel extends JPanel {
                     eventTypeFilterButton.setText(selectedEventsSB.toString());
                 }
                 
+                type_lol = 3;
                 selectedEventTypes = Arrays.asList(selectedEventsSB.toString().split(","));
             }
         }
@@ -489,6 +524,7 @@ public class MainMenuPanel extends JPanel {
                     carTypeFilterButton.setText(selectedCarTypesSB.toString());
                 }
 
+                type_lol = 2;
                 selectedCarTypes = Arrays.asList(selectedCarTypesSB.toString().split(","));
             }
         }
