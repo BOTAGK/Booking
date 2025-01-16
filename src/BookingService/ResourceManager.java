@@ -58,6 +58,7 @@ public class ResourceManager {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public void deseriaizeUsers(){
         String filePath = "users_data.ser";
 

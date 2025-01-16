@@ -1,11 +1,7 @@
-package Main;
-
 import BookingService.ResourceManager;
-import BookingService.User;
 import GUI.LoginGui;
 
 public class Main {
-    public static User currentUser;
     public static void main(String[] args) { 
         new Main().run();
     }

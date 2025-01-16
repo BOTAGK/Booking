@@ -1,7 +1,8 @@
 package GUI;
 
 import Booking.*;
-import FilterStrategy.FilterManager;
+import BookingService.User;
+import BookingService.FilterStrategy.FilterManager;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -19,7 +20,6 @@ import java.util.List;
 public class MainMenuPanel extends JPanel {
 
     private DefaultListModel<String> listModel;
-    private JList<String> offersList;
     JPanel filtersPanel = new JPanel();
     JLabel priceLabel = new JLabel("        Price       ");
     JTextField minPriceField = new JTextField("Min price");
@@ -37,13 +37,16 @@ public class MainMenuPanel extends JPanel {
 
     JButton eventTypeFilterButton;
     JButton carTypeFilterButton;
+
     private JFrame parentFrame;
+    private User user;
 
 
 
     public MainMenuPanel(JFrame parentFrame, User user) {
         setLayout(new BorderLayout());
         this.parentFrame=parentFrame;
+        this.user = user;
 
 //        kategorie(górny panel)
         JPanel topPanel = new JPanel();
@@ -128,7 +131,7 @@ public class MainMenuPanel extends JPanel {
 
         JMenuBar menuBar = new JMenuBar();
         JMenu menu = new JMenu("        User       ");
-        JMenuItem item1=new JMenuItem("Show your reservations");
+        JMenuItem item1=new JMenuItem("My account");
         JMenuItem item2=new JMenuItem("Log out");
 
         item2.addActionListener(_-> {
@@ -214,7 +217,7 @@ public class MainMenuPanel extends JPanel {
             for (CarRentalBooking carRental: carRentals) {
                 listModel.addElement(carRental.toString());
             }
-            ArrayList<String> filters = (ArrayList<String>) FilterManager.getFiltersForCategory("Car Rent");
+            // ArrayList<String> filters = (ArrayList<String>) FilterManager.getFiltersForCategory("Car Rent");
 
             filtersPanel.removeAll();
 
@@ -284,7 +287,7 @@ public class MainMenuPanel extends JPanel {
             for (EventTicketBooking booking : eventTickets) {
                 listModel.addElement(booking.toString());
             }
-            ArrayList<String> filters = (ArrayList<String>) FilterManager.getFiltersForCategory("Event Ticket");
+            // ArrayList<String> filters = (ArrayList<String>) FilterManager.getFiltersForCategory("Event Ticket");
 
             filtersPanel.removeAll();
 
@@ -417,7 +420,7 @@ public class MainMenuPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             parentFrame.dispose();
-            new UserMenuGUI();
+            new UserMenuGUI(user);
         }
     }
 }

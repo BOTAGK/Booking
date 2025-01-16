@@ -1,10 +1,8 @@
 package BookingService;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import Exceptions.InvalidLoginException;
-import Main.Main;
 
 public class UserList {
 
@@ -59,7 +57,7 @@ public class UserList {
         if(!user.getPassword().equals(password)) {
             throw(new InvalidLoginException("Wrong password"));
         }
-        Main.currentUser = user;
+        
         return user;
     }
 }

@@ -49,10 +49,10 @@ public class EventTicketBooking extends Booking {
     public static List<EventTicketBooking> getEventTicketsFromFile(String fileName) {
         List<EventTicketBooking> bookings = new ArrayList<>();
         List<String[]> data = Booking.loadDataFromFile(fileName);
-        for (String[] part : data) {
+        for (String[] parts : data) {
             bookings.add(new EventTicketBooking(
-                    part[1], part[2], Double.parseDouble(part[3]), LocalDate.parse(part[4]), null,
-                    part[5], part[6], Integer.parseInt(part[7])
+                    parts[0], parts[1], Double.parseDouble(parts[2]), LocalDate.parse(parts[3]), null,
+                    parts[4], parts[5], Integer.parseInt(parts[6])
             ));
         }
         return bookings;

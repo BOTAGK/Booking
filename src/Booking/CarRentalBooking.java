@@ -41,14 +41,15 @@ public class CarRentalBooking extends Booking {
     public static List<CarRentalBooking> getCarRentalsFromFile(String fileName) {
         List<CarRentalBooking> bookings = new ArrayList<>();
         List<String[]> data = Booking.loadDataFromFile(fileName);
-        for (String[] part : data) {
+        for (String[] parts : data) {
                 bookings.add(new CarRentalBooking(
-                        part[1], part[2], Double.parseDouble(part[3]), LocalDate.parse(part[4]),
-                        LocalDate.parse(part[5]), part[6], part[7]
+                    parts[0], parts[1], Double.parseDouble(parts[2]), LocalDate.parse(parts[3]),
+                    LocalDate.parse(parts[4]), parts[5], parts[6]
                 ));
         }
         return bookings;
     }
+
     public static List<String> getCarTypesFromFile() {
         Set<String> eventTypes = new HashSet<>();
         try (BufferedReader br = new BufferedReader(new FileReader("CarRentalBookingData.txt"))) {

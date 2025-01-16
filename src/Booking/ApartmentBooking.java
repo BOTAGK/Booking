@@ -35,10 +35,10 @@ public class ApartmentBooking extends Booking {
     public static List<ApartmentBooking> getApartmentsFromFile(String fileName) {
         List<ApartmentBooking> bookings = new ArrayList<>();
         List<String[]> data = Booking.loadDataFromFile(fileName);
-        for (String[] part : data) {
+        for (String[] parts : data) {
             bookings.add(new ApartmentBooking(
-                    part[1], part[2], Double.parseDouble(part[3]), LocalDate.parse(part[4]),
-                    LocalDate.parse(part[5]), Integer.parseInt(part[6]), Double.parseDouble(part[7])
+                    parts[0], parts[1], Double.parseDouble(parts[2]), LocalDate.parse(parts[3]),
+                    LocalDate.parse(parts[4]), Integer.parseInt(parts[5]), Double.parseDouble(parts[6])
             ));
         }
         return bookings;
