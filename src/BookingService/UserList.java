@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import Exceptions.InvalidLoginException;
+import Main.Main;
 
 public class UserList {
 
@@ -50,7 +51,7 @@ public class UserList {
 
     // Attempts to find a user with given username and password
     // Returns whether the operation was successful
-    public User loginAttempt(String username, String password) throws InvalidLoginException {
+    public void loginAttempt(String username, String password) throws InvalidLoginException {
         User user = findUser(username);
         if(user == null) {
             throw(new InvalidLoginException("User not found"));
@@ -58,7 +59,7 @@ public class UserList {
         if(!user.getPassword().equals(password)) {
             throw(new InvalidLoginException("Wrong password"));
         }
-        
-        return user;
+
+        Main.currentUser = user;
     }
 }
