@@ -2,6 +2,7 @@ package GUI;
 
 import javax.swing.*;
 
+import BookingService.UserList;
 import Exceptions.BlankFieldException;
 import Exceptions.CredentialsTakenException;
 import Exceptions.InputValidationFailureException;
@@ -106,14 +107,15 @@ public class SignUpPanel extends JPanel {
         add(statusLbl, gbc);
 
 
-        List<String> takenUsernames = List.of("admin", "user1", "guest");
-        List<String> takenEmails = List.of("kuba@gmail.com" , "pawel@gmail.com");
+        List<String> takenUsernames = UserList.getInstance().getTakenUsernames();
+        List<String> takenEmails = UserList.getInstance().getTakenEmails();
 
         signUpButton.addActionListener(_ -> {
 
             if (validateFields(takenUsernames, takenEmails)) {
                 JOptionPane.showMessageDialog(this, "You have successfully signed up!", "Success", JOptionPane.INFORMATION_MESSAGE);
                 parentFrame.dispose();
+                UserList.getInstance().createrUser(nameTxt.getText(), lastNameTxt.getText().trim(), emailTxt.getText().trim(), usernameTxt.getText().trim(), new String(txtPassword.getPassword()).trim());
                 new LoginGui();
             }
         });
