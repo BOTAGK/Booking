@@ -227,7 +227,10 @@ public class MainMenuPanel extends JPanel {
                             BookingService.getInstance().bookBooking(user, bookingId);
                             System.out.println("Booking reserved: " + selectedBooking);
                             System.out.println("User's bookings: " + user.getBookingIds());
-                            updateListOffers();
+                            DefaultListModel<Booking> listModel = (DefaultListModel<Booking>) offersList.getModel();
+                            listModel.remove(index);
+                            offersList.revalidate();
+                            offersList.repaint();
 
 
 
