@@ -66,9 +66,10 @@ public class FiltersDialog extends JDialog {
 
         this.listModel = listModel;
 
-        // action listenery dla ogólnych filtrów
+        // chcem żeby action listenery dla ogulnych filtruw
+        // J Bogacz
 
-        minPriceField.addActionListener(e -> {
+        minPriceField.addActionListener(_ -> {
             try {
                 minPrice = Integer.parseInt(minPriceField.getText());
             } catch (NumberFormatException ex) {
@@ -76,7 +77,7 @@ public class FiltersDialog extends JDialog {
             }
         });
 
-        maxPriceField.addActionListener(e -> {
+        maxPriceField.addActionListener(_ -> {
             try {
                 maxPrice = Integer.parseInt(maxPriceField.getText());
             } catch (NumberFormatException ex) {
@@ -84,7 +85,7 @@ public class FiltersDialog extends JDialog {
             }
         });
 
-        locationButton.addActionListener(e -> openLocationCheckBox());
+        locationButton.addActionListener(_ -> openLocationCheckBox());
 
         applyFiltersButton.addActionListener(_ -> { applyFilters(bookingCategory); });
 
@@ -135,7 +136,7 @@ public class FiltersDialog extends JDialog {
         add(carTypesLabel);
         add(carTypeFilterButton);
 
-        carTypeFilterButton.addActionListener(e -> openCarTypeCheckBox());
+        carTypeFilterButton.addActionListener(_ -> openCarTypeCheckBox());
     }
 
     private void addRoomAndRatingFilters() {
@@ -149,7 +150,7 @@ public class FiltersDialog extends JDialog {
         add(minRatingField);
         minRatingField.setMaximumSize(new Dimension(200, 20));
 
-        minRoomCountField.addActionListener(e -> {
+        minRoomCountField.addActionListener(_ -> {
             try {
                 minRoomCount = Integer.parseInt(minRoomCountField.getText());
             } catch (NumberFormatException ex) {
@@ -157,7 +158,7 @@ public class FiltersDialog extends JDialog {
             }
         });
 
-        minRatingField.addActionListener(e -> {
+        minRatingField.addActionListener(_ -> {
             try {
                 minRating = Integer.parseInt(minRatingField.getText());
             } catch (NumberFormatException ex) {
@@ -172,7 +173,7 @@ public class FiltersDialog extends JDialog {
         add(eventTypesLabel);
         add(eventTypeFilterButton);
 
-        eventTypeFilterButton.addActionListener(e -> openEventTypeCheckBox());
+        eventTypeFilterButton.addActionListener(_ -> openEventTypeCheckBox());
     }
 
 
