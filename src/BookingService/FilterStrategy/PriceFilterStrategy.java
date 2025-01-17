@@ -4,6 +4,7 @@ import Booking.Booking;
 import BookingService.BookingId;
 import Util.Pair;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,9 +33,12 @@ public class PriceFilterStrategy implements FilterStrategy {
 
     @Override
     public List<Pair<Booking, BookingId>> filter(List<Pair<Booking, BookingId>> entries) {
-        return entries.stream()
-            .filter(entry -> entry.first.getPrice()>=minPrice)
-            .filter(entry -> entry.first.getPrice()<=maxPrice)
-            .collect(Collectors.toList());
+        List<Pair<Booking, BookingId>> filteredBookings = new ArrayList<>();
+        for(Pair<Booking, BookingId> pair : entries) {
+            if (pair.first.getPrice() >= minPrice && pair.first.getPrice() <= maxPrice) {
+                filteredBookings.add(pair);
+            }
+        }
+        return filteredBookings;
     }
 }
