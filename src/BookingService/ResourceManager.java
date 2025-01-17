@@ -96,6 +96,7 @@ public class ResourceManager {
                     double rating = Double.parseDouble(data[6].trim());
                     String path = data[7].trim();
                     bookingList.createBooking(new ApartmentBooking(name, location, price, startDate, endDate, roomCount, rating, path));
+                    apartmentBookings.add(new ApartmentBooking(name, location, price, startDate, endDate, roomCount, rating, path));
                 }
             }
         } catch (FileNotFoundException e) {
@@ -121,6 +122,7 @@ public class ResourceManager {
                     String carModel = data[6].trim();
                     String path =data[7].trim();
                     bookingList.createBooking(new CarRentalBooking(name, location, price, startDate, endDate, carType, carModel, path));
+                    carRentalBookings.add(new CarRentalBooking(name, location, price, startDate, endDate, carType, carModel, path));
                 }
             }
         } catch (FileNotFoundException e) {
@@ -147,6 +149,7 @@ public class ResourceManager {
                     int availableTickets = Integer.parseInt(data[6].trim());
                     String path =data[7].trim();
                     bookingList.createBooking(new EventTicketBooking(name, location, price, startDate, endDate, eventType, artistOrTeam, availableTickets, path));
+                    eventTicketBookings.add(new EventTicketBooking(name, location, price, startDate, endDate, eventType, artistOrTeam, availableTickets, path));
                 }
             }
         } catch (FileNotFoundException e) {
