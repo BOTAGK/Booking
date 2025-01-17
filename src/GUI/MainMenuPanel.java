@@ -29,6 +29,9 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -210,7 +213,7 @@ public class MainMenuPanel extends JPanel {
 
                     setText(value.toString());
                     Image image=((Booking) value).getIcon().getImage();
-                    image=image.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+                    image=image.getScaledInstance(200, 200, Image.SCALE_FAST);
                     ImageIcon icon=new ImageIcon(image);
                     setIcon(icon);
                 }
@@ -314,6 +317,13 @@ public class MainMenuPanel extends JPanel {
 
     private void applyFilters() {
         filters.clear();
+        
+        filters.add(new PriceFilterStrategy(
+            Double.parseDouble(minPriceField.getText()),
+            Double.parseDouble(maxPriceField.getText())));
+        filters.add(new LocationFilterStrategy(selectedLocations));
+
+        // Close your eyes
         switch(type_lol) {
             case 1:
                 filters.add(new ApartmentFilterStrategy(minRoomCount, maxRoomCount));
@@ -327,12 +337,13 @@ public class MainMenuPanel extends JPanel {
             default:
                 break;
         }
-        filters.add(new PriceFilterStrategy(
-            Double.parseDouble(minPriceField.getText()),
-            Double.parseDouble(maxPriceField.getText())));
-        filters.add(new LocationFilterStrategy(selectedLocations));
         
         List<Booking> bookings = BookingService.getInstance().filterBookings(filters);
+
+        // Remove unavailable Bookings
+        bookings = bookings.stream().filter(booking -> booking.getAvailable()).collect(Collectors.toList());
+
+        // Update the listModel
         listModel.clear();
         for(Booking booking : bookings) {
             listModel.addElement(booking);
@@ -372,7 +383,7 @@ public class MainMenuPanel extends JPanel {
             locationButton.setPreferredSize(new Dimension(150,25));
             filtersPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 
-            JLabel carTypesLabel = new JLabel("Car Type");
+            JLabel carTypesLabel = new JLabel("Car type");
             carTypeFilterButton = new JButton("Choose car type");
             carTypeFilterButton.setPreferredSize(new Dimension(150,25));
 
@@ -419,16 +430,11 @@ public class MainMenuPanel extends JPanel {
             filtersPanel.add(minRatingField);
             filtersPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 
-            JLabel roomLabel = new JLabel("Room Count");
-            JTextField minRoomCountField = new JTextField("Min room count");
+            JLabel roomLabel = new JLabel("Min room count");
+            JTextField minRoomCountField = new JTextField("");
 
-            JLabel ratingLabel = new JLabel("Rating");
-            JTextField minRatingField = new JTextField("Min rating");
             filtersPanel.add(roomLabel);
             filtersPanel.add(minRoomCountField);
-            filtersPanel.add(Box.createRigidArea(new Dimension(0, 10)));
-            filtersPanel.add(ratingLabel);
-            filtersPanel.add(minRatingField);
             filtersPanel.revalidate();
             filtersPanel.repaint();
             
