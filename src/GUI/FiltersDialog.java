@@ -1,11 +1,28 @@
 package GUI;
 
 import javax.swing.*;
+
+import Booking.Booking;
+import BookingService.BookingService;
+import BookingService.FilterStrategy.ApartmentFilterStrategy;
+import BookingService.FilterStrategy.CarRentalFilterStrategy;
+import BookingService.FilterStrategy.EventTicketFilterStrategy;
+import BookingService.FilterStrategy.FilterStrategy;
+import BookingService.FilterStrategy.LocationFilterStrategy;
+import BookingService.FilterStrategy.PriceFilterStrategy;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FiltersDialog extends JDialog {
+    public enum BookingCategory {
+        All,
+        Apartments,
+        Cars,
+        Events
+    }
+
     private JLabel minPriceLabel = new JLabel("Min price");
     private JTextField minPriceField = new JTextField();
     private JLabel maxPriceLabel = new JLabel("Max price");
@@ -28,7 +45,9 @@ public class FiltersDialog extends JDialog {
     private List<String> selectedCarTypes = new ArrayList<>();
     private List<String> selectedEventTypes = new ArrayList<>();
 
-    public FiltersDialog(int bookingTypeID) {
+    private DefaultListModel<Booking> listModel;
+
+    public FiltersDialog(BookingCategory bookingCategory, DefaultListModel<Booking> listModel) {
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
         add(new JLabel("Filters"));
         add(applyFiltersButton);
@@ -45,9 +64,12 @@ public class FiltersDialog extends JDialog {
         add(locationButton);
         add(Box.createRigidArea(new Dimension(0, 30)));
 
-        // action listenery dla ogólnych filtrów
+        this.listModel = listModel;
 
-        minPriceField.addActionListener(e -> {
+        // chcem żeby action listenery dla ogulnych filtruw
+        // J Bogacz
+
+        minPriceField.addActionListener(_ -> {
             try {
                 minPrice = Integer.parseInt(minPriceField.getText());
             } catch (NumberFormatException ex) {
@@ -55,7 +77,7 @@ public class FiltersDialog extends JDialog {
             }
         });
 
-        maxPriceField.addActionListener(e -> {
+        maxPriceField.addActionListener(_ -> {
             try {
                 maxPrice = Integer.parseInt(maxPriceField.getText());
             } catch (NumberFormatException ex) {
@@ -63,19 +85,48 @@ public class FiltersDialog extends JDialog {
             }
         });
 
-        locationButton.addActionListener(e -> openLocationCheckBox());
+        locationButton.addActionListener(_ -> openLocationCheckBox());
+
+        applyFiltersButton.addActionListener(_ -> { applyFilters(bookingCategory); });
 
 
-        if (bookingTypeID == 1) {
+        if (bookingCategory == BookingCategory.Cars) {
             addCarTypeFilters();
-        } else if (bookingTypeID == 2) {
+        } else if (bookingCategory == BookingCategory.Apartments) {
             addRoomAndRatingFilters();
-        } else if (bookingTypeID == 3) {
+        } else if (bookingCategory == BookingCategory.Events) {
             addEventTypeFilters();
         }
 
         pack();
         setLocationRelativeTo(null);
+    }
+
+    private void applyFilters(BookingCategory bookingCategory) {
+        List<FilterStrategy> filters = new ArrayList<>();
+
+        filters.add(new PriceFilterStrategy(minPrice, maxPrice));
+        filters.add(new LocationFilterStrategy(selectedLocations));
+
+        switch(bookingCategory)
+        {
+            case BookingCategory.Cars:
+                filters.add(new CarRentalFilterStrategy(selectedCarTypes)); break;
+            case BookingCategory.Apartments:
+                filters.add(new ApartmentFilterStrategy(minRoomCount, minRating)); break;
+            case BookingCategory.Events:
+                filters.add(new EventTicketFilterStrategy(selectedEventTypes)); break;
+            default:
+                break;
+        }
+
+        List<Booking> filteredBookings = BookingService.getInstance().filterBookings(filters); 
+
+        // Update the listModel reference
+        listModel.clear();
+        for(Booking booking : filteredBookings) {
+            listModel.addElement(booking);
+        }
     }
 
     private void addCarTypeFilters() {
@@ -85,7 +136,7 @@ public class FiltersDialog extends JDialog {
         add(carTypesLabel);
         add(carTypeFilterButton);
 
-        carTypeFilterButton.addActionListener(e -> openCarTypeCheckBox());
+        carTypeFilterButton.addActionListener(_ -> openCarTypeCheckBox());
     }
 
     private void addRoomAndRatingFilters() {
@@ -99,7 +150,7 @@ public class FiltersDialog extends JDialog {
         add(minRatingField);
         minRatingField.setMaximumSize(new Dimension(200, 20));
 
-        minRoomCountField.addActionListener(e -> {
+        minRoomCountField.addActionListener(_ -> {
             try {
                 minRoomCount = Integer.parseInt(minRoomCountField.getText());
             } catch (NumberFormatException ex) {
@@ -107,7 +158,7 @@ public class FiltersDialog extends JDialog {
             }
         });
 
-        minRatingField.addActionListener(e -> {
+        minRatingField.addActionListener(_ -> {
             try {
                 minRating = Integer.parseInt(minRatingField.getText());
             } catch (NumberFormatException ex) {
@@ -122,7 +173,7 @@ public class FiltersDialog extends JDialog {
         add(eventTypesLabel);
         add(eventTypeFilterButton);
 
-        eventTypeFilterButton.addActionListener(e -> openEventTypeCheckBox());
+        eventTypeFilterButton.addActionListener(_ -> openEventTypeCheckBox());
     }
 
 
@@ -165,7 +216,7 @@ public class FiltersDialog extends JDialog {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.add(eventTypeCheckBox);
-
+    
         JScrollPane scrollPane = new JScrollPane(panel);
         scrollPane.setPreferredSize(new Dimension(200, 150));
         int result = JOptionPane.showConfirmDialog(null, scrollPane, "Select Event Types", JOptionPane.OK_CANCEL_OPTION);
@@ -198,7 +249,7 @@ public class FiltersDialog extends JDialog {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.add(carTypeCheckBox);
-
+    
         JScrollPane scrollPane = new JScrollPane(panel);
         scrollPane.setPreferredSize(new Dimension(200, 150));
         int result = JOptionPane.showConfirmDialog(null, scrollPane, "Select Car Types", JOptionPane.OK_CANCEL_OPTION);
