@@ -2,15 +2,20 @@ package BookingService;
 
 import Booking.Booking;
 import BookingService.FilterStrategy.*;
+import Observers.Observable;
+import Observers.Observer;
 import Util.Pair;
 
+import java.io.Serializable;
+import java.security.Provider;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookingService {
+public class BookingService implements Serializable, Observable {
 
     private static BookingService instance;
     private ArrayList<Pair<Booking, BookingId>> entries;
+    private ArrayList<Pair<Observer,BookingId>> observers;
 
     private BookingService() {
         this.entries = new ArrayList<>();
@@ -21,6 +26,46 @@ public class BookingService {
             instance = new BookingService();
         }
         return instance;
+    }
+
+    @Override
+    public void addObserver(Observer observer, BookingId bookingId) {
+        observers.add(new Pair(observer, bookingId));
+    }
+
+    @Override
+    public void removeObserver(Observer observer, BookingId bookingId) {
+        observers.remove(new Pair(observer, bookingId));
+    }
+
+    @Override
+    public void notifyObservers(BookingId bookingId) {
+        for (Pair<Observer,BookingId> pair : observers) {
+            if(pair.second.equals(bookingId)) {
+                pair.first.update(bookingId);
+                break;
+            }
+        }
+    }
+
+    public ArrayList<BookingId> getUsersObservables(Observer observer) {
+        ArrayList<BookingId> observables = new ArrayList<>();
+        for(Pair<Observer,BookingId> pair : observers) {
+            if(pair.first.equals(observer)) {
+                observables.add(pair.second);
+            }
+        }
+        return observables;
+    }
+
+    public ArrayList<Booking> getBookedBookings(User user) {
+        ArrayList<Booking> booked = new ArrayList<>();
+        for(Pair<Booking,BookingId> pair : entries ) {
+            if(!pair.first.getAvailable() && !user.hasBooking(pair.second)) {
+                booked.add(pair.first);
+            }
+        }
+        return booked;
     }
 
     // Creates a new Booking in the service by assigning a unique identifier
@@ -84,6 +129,7 @@ public class BookingService {
 
         user.removeBooking(id);
         booking.setAvailable(true);
+        notifyObservers(id);
     }
 
     public void printUserBookings(User user) {
