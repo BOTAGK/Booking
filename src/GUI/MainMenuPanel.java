@@ -587,6 +587,7 @@ public class MainMenuPanel extends JPanel {
         JFrame observables = new JFrame("Booked bookings");
         observables.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         observables.setSize(300, 400);
+        observables.setLocationRelativeTo(null);
 
         DefaultListModel<Booking> listModel = new DefaultListModel<>();
         for (Booking booking : bookings) {
@@ -604,7 +605,11 @@ public class MainMenuPanel extends JPanel {
                 if (!e.getValueIsAdjusting()) { // Zapobiega wielokrotnemu wywołaniu
                     Booking selectedItem = objectList.getSelectedValue();
                     if (selectedItem != null) {
-                        bookInstance.addObserver(user,bookInstance.getBookingId(selectedItem));
+                        int result = JOptionPane.showConfirmDialog(null, "Do you want to observe this booking?\n" + selectedItem, "Confirm your reservation", JOptionPane.YES_NO_OPTION);
+                        if (result == JOptionPane.YES_OPTION) {
+                            bookInstance.addObserver(user,bookInstance.getBookingId(selectedItem));
+                            listModel.removeElement(selectedItem);
+                        }
                     }
                 }
             }

@@ -74,9 +74,10 @@ public class BookingService implements Serializable, Observable {
     }
 
     public ArrayList<Booking> getBookedBookings(User user) {
+        ArrayList<BookingId> observed = getUsersObservables(user);
         ArrayList<Booking> booked = new ArrayList<>();
         for(Pair<Booking,BookingId> pair : entries ) {
-            if(!pair.first.getAvailable() && !user.hasBooking(pair.second)) {
+            if(!pair.first.getAvailable() && !user.hasBooking(pair.second) && !observed.contains(pair.second)) {
                 booked.add(pair.first);
             }
         }
