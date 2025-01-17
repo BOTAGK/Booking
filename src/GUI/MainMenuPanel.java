@@ -53,7 +53,7 @@ public class MainMenuPanel extends JPanel {
     JButton eventTypeFilterButton;
     JButton carTypeFilterButton;
 
-    JButton applyFiltersButton = new JButton("FILTUR");
+    JButton applyFiltersButton = new JButton("Apply filters");
 
     JList<String> offersList;
 
@@ -102,16 +102,17 @@ public class MainMenuPanel extends JPanel {
 
 
         filtersPanel.add(applyFiltersButton);
-        filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+        filtersPanel.add(Box.createRigidArea(new Dimension(0, 10)));
         filtersPanel.add(priceLabel);
         filtersPanel.add(minPriceLabel);
         filtersPanel.add(minPriceField);
         filtersPanel.add(maxPriceLabel);
         filtersPanel.add(maxPriceField);
-        filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+        filtersPanel.add(Box.createRigidArea(new Dimension(0, 10)));
         filtersPanel.add(locationLabel);
         filtersPanel.add(locationButton);
-        filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+        locationButton.setPreferredSize(new Dimension(150,25));
+        filtersPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 
         locationButton.addActionListener(new LocationsActionListener());
         minPriceField.addFocusListener(new FocusListener() {
@@ -284,59 +285,57 @@ public class MainMenuPanel extends JPanel {
     }
 
     private void updateButtonText(JButton button, String text) {
-        if (text.length() > 16) {
-            text = text.substring(0, 16) + "...";
+        if (text.length() > 18) {
+            text = text.substring(0, 15) + "...";
         }
         button.setText(text);
     }
     private void updateListOffers()
     {
         listModel = new DefaultListModel<>();
-        for(Booking booking : BookingService.getInstance().getGoodBookings())
-            listModel.addElement(booking);
-
-        /*List<ApartmentBooking> apartmentRentals = ResourceManager.getInstance().getApartmentBookings();
+        List<ApartmentBooking> apartmentRentals = ResourceManager.getInstance().getApartmentBookings();
         for (ApartmentBooking booking : apartmentRentals) {
+            BookingService.getInstance().createBooking(booking);
             listModel.addElement(booking);
         }
 
         List<CarRentalBooking> carRentals = ResourceManager.getInstance().getCarRentalBookings();
         for (CarRentalBooking carRental : carRentals) {
+            BookingService.getInstance().createBooking(carRental);
             listModel.addElement(carRental);
         }
 
         List<EventTicketBooking> eventTickets = ResourceManager.getInstance().getEventTicketBookings();
         for (EventTicketBooking eventTicket : eventTickets) {
+            BookingService.getInstance().createBooking(eventTicket);
             listModel.addElement(eventTicket);
-        }*/
+        }
     }
 
     private void applyFilters() {
-        this.filters.clear();
-
-        this.filters.add(new PriceFilterStrategy(
-            Double.parseDouble(minPriceField.getText()),
-            Double.parseDouble(maxPriceField.getText())));
-        this.filters.add(new LocationFilterStrategy(selectedLocations));
-
+        filters.clear();
         switch(type_lol) {
             case 1:
-                this.filters.add(new ApartmentFilterStrategy(minRoomCount, maxRoomCount));
+                filters.add(new ApartmentFilterStrategy(minRoomCount, maxRoomCount));
                 break;
             case 2:
-                this.filters.add(new CarRentalFilterStrategy(selectedCarTypes));
+                filters.add(new CarRentalFilterStrategy(selectedCarTypes));
                 break;
             case 3:
-                this.filters.add(new EventTicketFilterStrategy(selectedEventTypes));
+                filters.add(new EventTicketFilterStrategy(selectedEventTypes));
                 break;
             default:
                 break;
         }
-        
-        List<Booking> bookings = BookingService.getInstance().filterBookings(this.filters);
-        this.listModel.clear();
+        filters.add(new PriceFilterStrategy(
+            Double.parseDouble(minPriceField.getText()),
+            Double.parseDouble(maxPriceField.getText())));
+        filters.add(new LocationFilterStrategy(selectedLocations));
+
+        List<Booking> bookings = BookingService.getInstance().filterBookings(filters);
+        listModel.clear();
         for(Booking booking : bookings) {
-            this.listModel.addElement(booking);
+            listModel.addElement(booking);
         }
     }
 
@@ -347,40 +346,37 @@ public class MainMenuPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             listModel.clear();
-
-            /*List<CarRentalBooking> carRentals = ResourceManager.getInstance().getCarRentalBookings();
+            List<CarRentalBooking> carRentals = ResourceManager.getInstance().getCarRentalBookings();
             for (CarRentalBooking carRental : carRentals) {
+                BookingService.getInstance().createBooking(carRental);
                 listModel.addElement(carRental);
-            }*/
-            for(Booking booking : BookingService.getInstance().getGoodBookings()) {
-                if(booking instanceof CarRentalBooking) {
-                    listModel.addElement(booking);
-                }
             }
 
             filtersPanel.removeAll();
 
             filtersPanel.add(applyFiltersButton);
-            filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+            filtersPanel.add(Box.createRigidArea(new Dimension(0, 10)));
             filtersPanel.add(priceLabel);
             filtersPanel.add(minPriceLabel);
             filtersPanel.add(minPriceField);
             filtersPanel.add(maxPriceLabel);
             filtersPanel.add(maxPriceField);
-            filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+            filtersPanel.add(Box.createRigidArea(new Dimension(0, 10)));
             filtersPanel.add(locationLabel);
             filtersPanel.add(locationButton);
-            filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+            locationButton.setPreferredSize(new Dimension(150,25));
+            filtersPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 
             JLabel carTypesLabel = new JLabel("Car Type");
             carTypeFilterButton = new JButton("Choose car type");
+            carTypeFilterButton.setPreferredSize(new Dimension(150,25));
 
             filtersPanel.add(carTypesLabel);
             filtersPanel.add(carTypeFilterButton);
             filtersPanel.revalidate();
             filtersPanel.repaint();
-
-            carTypeFilterButton.addActionListener(new CarTypeFilterActionListener());
+            type_lol = 2;
+           carTypeFilterButton.addActionListener(new CarTypeFilterActionListener());
         }
     }
 
@@ -388,34 +384,30 @@ public class MainMenuPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             listModel.clear();
-
-            /*List<ApartmentBooking> apartmentRentals = ResourceManager.getInstance().getApartmentBookings();
+            List<ApartmentBooking> apartmentRentals = ResourceManager.getInstance().getApartmentBookings();
             for (ApartmentBooking booking : apartmentRentals) {
+                BookingService.getInstance().createBooking(booking);
                 listModel.addElement(booking);
-            }*/
-            for(Booking booking : BookingService.getInstance().getGoodBookings()) {
-                if(booking instanceof ApartmentBooking) {
-                    listModel.addElement(booking);
-                }
             }
 
 
             filtersPanel.removeAll();
 
             filtersPanel.add(applyFiltersButton);
-            filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+            filtersPanel.add(Box.createRigidArea(new Dimension(0, 10)));
             filtersPanel.add(priceLabel);
             filtersPanel.add(minPriceLabel);
             filtersPanel.add(minPriceField);
             filtersPanel.add(maxPriceLabel);
             filtersPanel.add(maxPriceField);
-            filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+            filtersPanel.add(Box.createRigidArea(new Dimension(0, 10)));
             filtersPanel.add(locationLabel);
+            locationButton.setPreferredSize(new Dimension(150,25));
             filtersPanel.add(locationButton);
-            filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+            filtersPanel.add(Box.createRigidArea(new Dimension(0, 10)));
             filtersPanel.add(minRatingLabel);
             filtersPanel.add(minRatingField);
-            filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+            filtersPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 
             JLabel roomLabel = new JLabel("Room Count");
             JTextField minRoomCountField = new JTextField("Min room count");
@@ -424,7 +416,7 @@ public class MainMenuPanel extends JPanel {
             JTextField minRatingField = new JTextField("Min rating");
             filtersPanel.add(roomLabel);
             filtersPanel.add(minRoomCountField);
-            filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+            filtersPanel.add(Box.createRigidArea(new Dimension(0, 10)));
             filtersPanel.add(ratingLabel);
             filtersPanel.add(minRatingField);
             filtersPanel.revalidate();
@@ -438,39 +430,38 @@ public class MainMenuPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             listModel.clear();
-
-            /*List<EventTicketBooking> eventTickets = ResourceManager.getInstance().getEventTicketBookings();
+            List<EventTicketBooking> eventTickets = ResourceManager.getInstance().getEventTicketBookings();
             for (EventTicketBooking booking : eventTickets) {
+                BookingService.getInstance().createBooking(booking);
                 listModel.addElement(booking);
-            }*/
-            for(Booking booking : BookingService.getInstance().getGoodBookings()) {
-                if(booking instanceof EventTicketBooking) {
-                    listModel.addElement(booking);
-                }
             }
 
             filtersPanel.removeAll();
 
             filtersPanel.add(applyFiltersButton);
-            filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+            filtersPanel.add(Box.createRigidArea(new Dimension(0, 10)));
             filtersPanel.add(priceLabel);
             filtersPanel.add(minPriceLabel);
             filtersPanel.add(minPriceField);
             filtersPanel.add(maxPriceLabel);
             filtersPanel.add(maxPriceField);
-            filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+            filtersPanel.add(Box.createRigidArea(new Dimension(0, 10)));
             filtersPanel.add(locationLabel);
+            locationButton.setPreferredSize(new Dimension(150,25));
             filtersPanel.add(locationButton);
-            filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+            filtersPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 
             JLabel eventTypesLabel = new JLabel("Event Type");
             eventTypeFilterButton = new JButton("Choose event type");
             eventTypeFilterButton.addActionListener(new EventFilterActionListener());
 
             filtersPanel.add(eventTypesLabel);
+            eventTypeFilterButton.setPreferredSize(new Dimension(150,25));
             filtersPanel.add(eventTypeFilterButton);
+
             filtersPanel.revalidate();
             filtersPanel.repaint();
+            type_lol = 3;
         }
     }
 
@@ -492,7 +483,7 @@ public class MainMenuPanel extends JPanel {
                 for (JCheckBox checkBox : checkBoxes) {
                     if (checkBox.isSelected()) {
                         if (!selectedLocationsSB.isEmpty()) {
-                            selectedLocationsSB.append(", ");
+                            selectedLocationsSB.append(",");
                         }
                         selectedLocationsSB.append(checkBox.getText());
                     }
@@ -501,7 +492,7 @@ public class MainMenuPanel extends JPanel {
                     locationButton.setText("Select Locations");
                     selectedLocations = null;
                 } else {
-                    locationButton.setText(selectedLocationsSB.toString());
+                    updateButtonText(locationButton, selectedLocationsSB.toString());
                     selectedLocations = Arrays.asList(selectedLocationsSB.toString().split(","));
                 }
             }
@@ -527,15 +518,15 @@ public class MainMenuPanel extends JPanel {
                 for (JCheckBox checkBox : checkBoxes) {
                     if (checkBox.isSelected()) {
                         if (selectedEventsSB.length() > 0) {
-                            selectedEventsSB.append(", ");
+                            selectedEventsSB.append(",");
                         }
                         selectedEventsSB.append(checkBox.getText());
                     }
                 }
-                if (selectedEventsSB.length() == 0) {
+                if (selectedEventsSB.isEmpty()) {
                     eventTypeFilterButton.setText("Select Event Types");
                 } else {
-                    eventTypeFilterButton.setText(selectedEventsSB.toString());
+                    updateButtonText(eventTypeFilterButton, selectedEventsSB.toString());
                 }
                 
                 type_lol = 3;
@@ -563,7 +554,7 @@ public class MainMenuPanel extends JPanel {
                 for (JCheckBox checkBox : checkBoxes) {
                     if (checkBox.isSelected()) {
                         if (selectedCarTypesSB.length() > 0) {
-                            selectedCarTypesSB.append(", ");
+                            selectedCarTypesSB.append(",");
                         }
                         selectedCarTypesSB.append(checkBox.getText());
                     }
@@ -571,7 +562,7 @@ public class MainMenuPanel extends JPanel {
                 if (selectedCarTypesSB.length() == 0) {
                     carTypeFilterButton.setText("Select Car Types");
                 } else {
-                    carTypeFilterButton.setText(selectedCarTypesSB.toString());
+                    updateButtonText(carTypeFilterButton, selectedCarTypesSB.toString());
                 }
 
                 type_lol = 2;
