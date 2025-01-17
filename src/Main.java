@@ -19,7 +19,6 @@ public class Main {
         ResourceManager.getInstance().deseriaizeUsers();
 
 
-
         new LoginGui();
 
 

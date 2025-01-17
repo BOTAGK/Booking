@@ -66,7 +66,7 @@ public class FiltersDialog extends JDialog {
 
         this.listModel = listModel;
 
-        // chcem żeby action listenery dla ogulnych filtruw
+        // chcem żeby action listenery dla ogulnych filtur
         // J Bogacz
 
         minPriceField.addActionListener(_ -> {

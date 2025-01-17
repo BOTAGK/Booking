@@ -12,7 +12,6 @@ import BookingService.FilterStrategy.FilterStrategy;
 import BookingService.FilterStrategy.LocationFilterStrategy;
 import BookingService.FilterStrategy.PriceFilterStrategy;
 import BookingService.ResourceManager;
-import BookingService.ResourceManager;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -50,7 +49,7 @@ public class MainMenuPanel extends JPanel {
     JButton eventTypeFilterButton;
     JButton carTypeFilterButton;
 
-    JButton applyFiltersButton = new JButton("Apply filters");
+    JButton applyFiltersButton = new JButton("FILTUR");
 
     JList<String> offersList;
 
@@ -196,13 +195,11 @@ public class MainMenuPanel extends JPanel {
 
         listModel = new DefaultListModel<>();
         List<ApartmentBooking> apartmentRentals = ResourceManager.getInstance().getApartmentBookings();
-        List<ApartmentBooking> apartmentRentals = ResourceManager.getInstance().getApartmentBookings();
         for (ApartmentBooking booking : apartmentRentals) {
             BookingService.getInstance().createBooking(booking);
             listModel.addElement(booking);
         }
 
-        List<CarRentalBooking> carRentals = ResourceManager.getInstance().getCarRentalBookings();
         List<CarRentalBooking> carRentals = ResourceManager.getInstance().getCarRentalBookings();
         for (CarRentalBooking carRental : carRentals) {
             BookingService.getInstance().createBooking(carRental);
@@ -210,15 +207,12 @@ public class MainMenuPanel extends JPanel {
         }
 
         List<EventTicketBooking> eventTickets = ResourceManager.getInstance().getEventTicketBookings();
-        List<EventTicketBooking> eventTickets = ResourceManager.getInstance().getEventTicketBookings();
         for (EventTicketBooking eventTicket : eventTickets) {
             BookingService.getInstance().createBooking(eventTicket);
             listModel.addElement(eventTicket);
         }
         Font font =new Font("Arial MS", Font.PLAIN, 24);
-        Font font =new Font("Arial MS", Font.PLAIN, 24);
         JList<Booking> offersList = new JList<>(listModel);
-        offersList.setFont(font);
         offersList.setFont(font);
         offersList.setCellRenderer(new DefaultListCellRenderer() {
             @Override
@@ -226,12 +220,7 @@ public class MainMenuPanel extends JPanel {
                 super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
                 if (value instanceof Booking) {
 
-
                     setText(value.toString());
-                    Image image=((Booking) value).getIcon().getImage();
-                    image=image.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
-                    ImageIcon icon=new ImageIcon(image);
-                    setIcon(icon);
                     Image image=((Booking) value).getIcon().getImage();
                     image=image.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
                     ImageIcon icon=new ImageIcon(image);
@@ -271,23 +260,6 @@ public class MainMenuPanel extends JPanel {
         add(topPanel, BorderLayout.NORTH);
         setVisible(true);
 
-        List<ApartmentBooking> apartmentRentalsLocations = ResourceManager.getInstance().getApartmentBookings();
-        for (ApartmentBooking booking : apartmentRentalsLocations) {
-            locationsSet.add(booking.getLocation());
-        }
-
-        List<CarRentalBooking> carRentalsLocations = ResourceManager.getInstance().getCarRentalBookings();
-        for (CarRentalBooking carRental : carRentalsLocations) {
-            locationsSet.add(carRental.getLocation());
-        }
-
-        List<EventTicketBooking> eventTicketsLocations = ResourceManager.getInstance().getEventTicketBookings();
-        for (EventTicketBooking eventTicket : eventTicketsLocations) {
-            locationsSet.add(eventTicket.getLocation());
-        }
-
-        locations = locationsSet.toArray(new String[0]);
-    }
         List<ApartmentBooking> apartmentRentalsLocations = ResourceManager.getInstance().getApartmentBookings();
         for (ApartmentBooking booking : apartmentRentalsLocations) {
             locationsSet.add(booking.getLocation());
@@ -350,7 +322,6 @@ public class MainMenuPanel extends JPanel {
         public void actionPerformed(ActionEvent e) {
             listModel.clear();
             List<CarRentalBooking> carRentals = ResourceManager.getInstance().getCarRentalBookings();
-            List<CarRentalBooking> carRentals = ResourceManager.getInstance().getCarRentalBookings();
             for (CarRentalBooking carRental : carRentals) {
                 BookingService.getInstance().createBooking(carRental);
                 listModel.addElement(carRental);
@@ -386,7 +357,6 @@ public class MainMenuPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             listModel.clear();
-            List<ApartmentBooking> apartmentRentals = ResourceManager.getInstance().getApartmentBookings();
             List<ApartmentBooking> apartmentRentals = ResourceManager.getInstance().getApartmentBookings();
             for (ApartmentBooking booking : apartmentRentals) {
                 BookingService.getInstance().createBooking(booking);
@@ -431,7 +401,6 @@ public class MainMenuPanel extends JPanel {
         public void actionPerformed(ActionEvent e) {
             listModel.clear();
             List<EventTicketBooking> eventTickets = ResourceManager.getInstance().getEventTicketBookings();
-            List<EventTicketBooking> eventTickets = ResourceManager.getInstance().getEventTicketBookings();
             for (EventTicketBooking booking : eventTickets) {
                 BookingService.getInstance().createBooking(booking);
                 listModel.addElement(booking);
@@ -464,15 +433,41 @@ public class MainMenuPanel extends JPanel {
 
     private class LocationsActionListener implements ActionListener {
         @Override
-        public void actionPerformed(ActionEvent e) {}
-
-
+        public void actionPerformed(ActionEvent e) {
+            JPanel panel = new JPanel();
+            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+            JCheckBox[] checkBoxes = new JCheckBox[locations.length];
+            for (int i = 0; i < locations.length; i++) {
+                checkBoxes[i] = new JCheckBox(locations[i]);
+                panel.add(checkBoxes[i]);
+            }
+            JScrollPane scrollPane = new JScrollPane(panel);
+            scrollPane.setPreferredSize(new Dimension(200, 150));
+            int result = JOptionPane.showConfirmDialog(null, scrollPane, "Select Locations", JOptionPane.OK_CANCEL_OPTION);
+            if (result == JOptionPane.OK_OPTION) {
+                StringBuilder selectedLocationsSB = new StringBuilder();
+                for (JCheckBox checkBox : checkBoxes) {
+                    if (checkBox.isSelected()) {
+                        if (!selectedLocationsSB.isEmpty()) {
+                            selectedLocationsSB.append(", ");
+                        }
+                        selectedLocationsSB.append(checkBox.getText());
+                    }
+                }
+                if (selectedLocationsSB.isEmpty()) {
+                    locationButton.setText("Select Locations");
+                    selectedLocations = null;
+                } else {
+                    locationButton.setText(selectedLocationsSB.toString());
+                    selectedLocations = Arrays.asList(selectedLocationsSB.toString().split(","));
+                }
+            }
+        }
     }
 
     private class EventFilterActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            List<String> eventTypes = ResourceManager.getInstance().getEventTypes();
             List<String> eventTypes = ResourceManager.getInstance().getEventTypes();
             JPanel panel = new JPanel();
             panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -509,7 +504,6 @@ public class MainMenuPanel extends JPanel {
     private class CarTypeFilterActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            List<String> carTypes = ResourceManager.getInstance().getCarTypes();
             List<String> carTypes = ResourceManager.getInstance().getCarTypes();
             JPanel panel = new JPanel();
             panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
