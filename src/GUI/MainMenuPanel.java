@@ -459,7 +459,7 @@ public class MainMenuPanel extends JPanel {
                 for (JCheckBox checkBox : checkBoxes) {
                     if (checkBox.isSelected()) {
                         if (!selectedLocationsSB.isEmpty()) {
-                            selectedLocationsSB.append(", ");
+                            selectedLocationsSB.append(",");
                         }
                         selectedLocationsSB.append(checkBox.getText());
                     }
