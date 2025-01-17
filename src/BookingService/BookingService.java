@@ -13,12 +13,11 @@ import java.util.List;
 
 public class BookingService implements Serializable, Observable {
 
-    private static BookingService instance;
+    private static BookingService instance = new BookingService();
     private ArrayList<Pair<Booking, BookingId>> entries;
     private ArrayList<Pair<Observer,BookingId>> observers;
 
     private BookingService() {
-        this.observers = new ArrayList<Pair<Observer,BookingId>>();
         this.entries = new ArrayList<>();
         this.observers = new ArrayList<>();
     }
@@ -27,6 +26,10 @@ public class BookingService implements Serializable, Observable {
         if (instance == null) {
             instance = new BookingService();
         }
+        return instance;
+    }
+
+    protected Object readResolve() {
         return instance;
     }
 

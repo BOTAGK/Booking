@@ -173,10 +173,11 @@ public class ResourceManager {
     public void deseriaizeBookings(){
         String filePath = "bookings_data.ser";
         ArrayList<Booking> deserializedBookigns;
-
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))){
-            Object object = ois.readObject();
-            bookingList = (BookingService)object;
+            bookingList = (BookingService) ois.readObject();
+            for(Booking booking : bookingList.getBookings()){
+                System.out.println(booking);
+            }
             //deserializedBookigns = (ArrayList<Booking>) ois.readObject();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
@@ -251,6 +252,6 @@ public class ResourceManager {
     public static void main(String[] args) {
         ResourceManager rm = new ResourceManager();
         rm.seriaizeBookings();
-        rm.deseriaizeBookings();
+        rm. deseriaizeBookings();
     }
 }

@@ -14,7 +14,6 @@ public class Main {
             ResourceManager.getInstance().seriaizeUsers();
             ResourceManager.getInstance().seriaizeBookings();
         }));
-
     }
 
     public void run() {
@@ -24,8 +23,6 @@ public class Main {
         ResourceManager.getInstance().readFileUser();
         //ResourceManager.getInstance().deseriaizeBookings();
         //ResourceManager.getInstance().deseriaizeUsers();
-
-
 
         new LoginGui();
     }
