@@ -40,8 +40,7 @@ public class MainMenuPanel extends JPanel {
 
     JLabel locationLabel = new JLabel("        Location      ");
     JButton locationButton = new JButton("Select Locations");
-    Set<String> locationsSet = new HashSet<>();
-    String[] locations;
+
 
     JLabel minRatingLabel = new JLabel("        Minimal Rating      ");
     JTextField minRatingField = new JTextField("Min rating");
@@ -53,20 +52,18 @@ public class MainMenuPanel extends JPanel {
 
     JList<String> offersList;
 
+    private int bookingTypeID;
+
     // XD
-    private List<String> selectedLocations = new ArrayList<>();
-    private int minRoomCount;
-    private int maxRoomCount;
-    private List<String> selectedCarTypes = new ArrayList<>();
-    private List<String> selectedEventTypes = new ArrayList<>();
+
 
     private List<FilterStrategy> filters = new ArrayList<>();
         private JFrame parentFrame;
                 private User user;
     private int type_lol;
-            
-            
-            
+
+
+
     public MainMenuPanel(JFrame parentFrame, User user) {
         setLayout(new BorderLayout());
         this.parentFrame=parentFrame;
@@ -94,20 +91,10 @@ public class MainMenuPanel extends JPanel {
         JPanel leftPanel = new JPanel();
         leftPanel.setLayout(new BorderLayout());
 
-        filtersPanel.setLayout(new BoxLayout(filtersPanel, BoxLayout.Y_AXIS));
 
 
-        filtersPanel.add(applyFiltersButton);
-        filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
-        filtersPanel.add(priceLabel);
-        filtersPanel.add(minPriceLabel);
-        filtersPanel.add(minPriceField);
-        filtersPanel.add(maxPriceLabel);
-        filtersPanel.add(maxPriceField);
-        filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
-        filtersPanel.add(locationLabel);
-        filtersPanel.add(locationButton);
-        filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+
+
 
         locationButton.addActionListener(new LocationsActionListener());
         minPriceField.addFocusListener(new FocusListener() {
@@ -306,7 +293,7 @@ public class MainMenuPanel extends JPanel {
             default:
                 break;
         }
-        
+
         List<Booking> bookings = BookingService.getInstance().filterBookings(this.filters);
         this.listModel.clear();
         for(Booking booking : bookings) {
@@ -320,6 +307,7 @@ public class MainMenuPanel extends JPanel {
     private class CarRentButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+            bookingTypeID=1;
             listModel.clear();
             List<CarRentalBooking> carRentals = ResourceManager.getInstance().getCarRentalBookings();
             for (CarRentalBooking carRental : carRentals) {
@@ -327,27 +315,7 @@ public class MainMenuPanel extends JPanel {
                 listModel.addElement(carRental);
             }
 
-            filtersPanel.removeAll();
-
-            filtersPanel.add(applyFiltersButton);
-            filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
-            filtersPanel.add(priceLabel);
-            filtersPanel.add(minPriceLabel);
-            filtersPanel.add(minPriceField);
-            filtersPanel.add(maxPriceLabel);
-            filtersPanel.add(maxPriceField);
-            filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
-            filtersPanel.add(locationLabel);
-            filtersPanel.add(locationButton);
-            filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
-
-            JLabel carTypesLabel = new JLabel("Car Type");
-            carTypeFilterButton = new JButton("Choose car type");
-
-            filtersPanel.add(carTypesLabel);
-            filtersPanel.add(carTypeFilterButton);
-            filtersPanel.revalidate();
-            filtersPanel.repaint();
+//            todo
 
             carTypeFilterButton.addActionListener(new CarTypeFilterActionListener());
         }
@@ -362,36 +330,8 @@ public class MainMenuPanel extends JPanel {
                 BookingService.getInstance().createBooking(booking);
                 listModel.addElement(booking);
             }
-            filtersPanel.removeAll();
 
-            filtersPanel.add(applyFiltersButton);
-            filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
-            filtersPanel.add(priceLabel);
-            filtersPanel.add(minPriceLabel);
-            filtersPanel.add(minPriceField);
-            filtersPanel.add(maxPriceLabel);
-            filtersPanel.add(maxPriceField);
-            filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
-            filtersPanel.add(locationLabel);
-            filtersPanel.add(locationButton);
-            filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
-            filtersPanel.add(minRatingLabel);
-            filtersPanel.add(minRatingField);
-            filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
 
-            JLabel roomLabel = new JLabel("Room Count");
-            JTextField minRoomCountField = new JTextField("Min room count");
-
-            JLabel ratingLabel = new JLabel("Rating");
-            JTextField minRatingField = new JTextField("Min rating");
-            filtersPanel.add(roomLabel);
-            filtersPanel.add(minRoomCountField);
-            filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
-            filtersPanel.add(ratingLabel);
-            filtersPanel.add(minRatingField);
-            filtersPanel.revalidate();
-            filtersPanel.repaint();
-            
             type_lol = 1;
         }
     }
@@ -406,63 +346,15 @@ public class MainMenuPanel extends JPanel {
                 listModel.addElement(booking);
             }
 
-            filtersPanel.removeAll();
 
-            filtersPanel.add(applyFiltersButton);
-            filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
-            filtersPanel.add(priceLabel);
-            filtersPanel.add(minPriceLabel);
-            filtersPanel.add(minPriceField);
-            filtersPanel.add(maxPriceLabel);
-            filtersPanel.add(maxPriceField);
-            filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
-            filtersPanel.add(locationLabel);
-            filtersPanel.add(locationButton);
-            filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
-
-            JLabel eventTypesLabel = new JLabel("Event Type");
-            eventTypeFilterButton = new JButton("Choose event type");
-            eventTypeFilterButton.addActionListener(new EventFilterActionListener());
-
-            filtersPanel.add(eventTypesLabel);
-            filtersPanel.add(eventTypeFilterButton);
-            filtersPanel.revalidate();
-            filtersPanel.repaint();
         }
     }
 
     private class LocationsActionListener implements ActionListener {
         @Override
-        public void actionPerformed(ActionEvent e) {
-            JPanel panel = new JPanel();
-            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-            JCheckBox[] checkBoxes = new JCheckBox[locations.length];
-            for (int i = 0; i < locations.length; i++) {
-                checkBoxes[i] = new JCheckBox(locations[i]);
-                panel.add(checkBoxes[i]);
-            }
-            JScrollPane scrollPane = new JScrollPane(panel);
-            scrollPane.setPreferredSize(new Dimension(200, 150));
-            int result = JOptionPane.showConfirmDialog(null, scrollPane, "Select Locations", JOptionPane.OK_CANCEL_OPTION);
-            if (result == JOptionPane.OK_OPTION) {
-                StringBuilder selectedLocationsSB = new StringBuilder();
-                for (JCheckBox checkBox : checkBoxes) {
-                    if (checkBox.isSelected()) {
-                        if (!selectedLocationsSB.isEmpty()) {
-                            selectedLocationsSB.append(", ");
-                        }
-                        selectedLocationsSB.append(checkBox.getText());
-                    }
-                }
-                if (selectedLocationsSB.isEmpty()) {
-                    locationButton.setText("Select Locations");
-                    selectedLocations = null;
-                } else {
-                    locationButton.setText(selectedLocationsSB.toString());
-                    selectedLocations = Arrays.asList(selectedLocationsSB.toString().split(","));
-                }
-            }
-        }
+        public void actionPerformed(ActionEvent e) {}
+
+
     }
 
     private class EventFilterActionListener implements ActionListener {
@@ -494,7 +386,7 @@ public class MainMenuPanel extends JPanel {
                 } else {
                     eventTypeFilterButton.setText(selectedEventsSB.toString());
                 }
-                
+
                 type_lol = 3;
                 selectedEventTypes = Arrays.asList(selectedEventsSB.toString().split(","));
             }
