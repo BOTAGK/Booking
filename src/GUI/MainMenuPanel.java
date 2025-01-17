@@ -348,7 +348,7 @@ public class MainMenuPanel extends JPanel {
             listModel.clear();
             List<CarRentalBooking> carRentals = ResourceManager.getInstance().getCarRentalBookings();
             for (CarRentalBooking carRental : carRentals) {
-                BookingService.getInstance().createBooking(carRental);
+                //BookingService.getInstance().createBooking(carRental);
                 listModel.addElement(carRental);
             }
 
@@ -386,7 +386,7 @@ public class MainMenuPanel extends JPanel {
             listModel.clear();
             List<ApartmentBooking> apartmentRentals = ResourceManager.getInstance().getApartmentBookings();
             for (ApartmentBooking booking : apartmentRentals) {
-                BookingService.getInstance().createBooking(booking);
+               // BookingService.getInstance().createBooking(booking);
                 listModel.addElement(booking);
             }
 
@@ -432,7 +432,7 @@ public class MainMenuPanel extends JPanel {
             listModel.clear();
             List<EventTicketBooking> eventTickets = ResourceManager.getInstance().getEventTicketBookings();
             for (EventTicketBooking booking : eventTickets) {
-                BookingService.getInstance().createBooking(booking);
+               // BookingService.getInstance().createBooking(booking);
                 listModel.addElement(booking);
             }
 

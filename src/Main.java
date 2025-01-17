@@ -21,8 +21,8 @@ public class Main {
         ResourceManager.getInstance().readFileCarRentalBooking();
         ResourceManager.getInstance().readFileEventTicketBooking();
         ResourceManager.getInstance().readFileUser();
-        //ResourceManager.getInstance().deseriaizeBookings();
-        //ResourceManager.getInstance().deseriaizeUsers();
+        ResourceManager.getInstance().deseriaizeBookings();
+        ResourceManager.getInstance().deseriaizeUsers();
 
         new LoginGui();
     }
