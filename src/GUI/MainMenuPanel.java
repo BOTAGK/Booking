@@ -292,23 +292,23 @@ public class MainMenuPanel extends JPanel {
     private void updateListOffers()
     {
         listModel = new DefaultListModel<>();
-        List<ApartmentBooking> apartmentRentals = ResourceManager.getInstance().getApartmentBookings();
+        for(Booking booking : BookingService.getInstance().getGoodBookings())
+            listModel.addElement(booking);
+
+        /*List<ApartmentBooking> apartmentRentals = ResourceManager.getInstance().getApartmentBookings();
         for (ApartmentBooking booking : apartmentRentals) {
-            BookingService.getInstance().createBooking(booking);
             listModel.addElement(booking);
         }
 
         List<CarRentalBooking> carRentals = ResourceManager.getInstance().getCarRentalBookings();
         for (CarRentalBooking carRental : carRentals) {
-            BookingService.getInstance().createBooking(carRental);
             listModel.addElement(carRental);
         }
 
         List<EventTicketBooking> eventTickets = ResourceManager.getInstance().getEventTicketBookings();
         for (EventTicketBooking eventTicket : eventTickets) {
-            BookingService.getInstance().createBooking(eventTicket);
             listModel.addElement(eventTicket);
-        }
+        }*/
     }
 
     private void applyFilters() {
@@ -347,10 +347,15 @@ public class MainMenuPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             listModel.clear();
-            List<CarRentalBooking> carRentals = ResourceManager.getInstance().getCarRentalBookings();
+
+            /*List<CarRentalBooking> carRentals = ResourceManager.getInstance().getCarRentalBookings();
             for (CarRentalBooking carRental : carRentals) {
-                BookingService.getInstance().createBooking(carRental);
                 listModel.addElement(carRental);
+            }*/
+            for(Booking booking : BookingService.getInstance().getGoodBookings()) {
+                if(booking instanceof CarRentalBooking) {
+                    listModel.addElement(booking);
+                }
             }
 
             filtersPanel.removeAll();
@@ -383,11 +388,18 @@ public class MainMenuPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             listModel.clear();
-            List<ApartmentBooking> apartmentRentals = ResourceManager.getInstance().getApartmentBookings();
+
+            /*List<ApartmentBooking> apartmentRentals = ResourceManager.getInstance().getApartmentBookings();
             for (ApartmentBooking booking : apartmentRentals) {
-                BookingService.getInstance().createBooking(booking);
                 listModel.addElement(booking);
+            }*/
+            for(Booking booking : BookingService.getInstance().getGoodBookings()) {
+                if(booking instanceof ApartmentBooking) {
+                    listModel.addElement(booking);
+                }
             }
+
+
             filtersPanel.removeAll();
 
             filtersPanel.add(applyFiltersButton);
@@ -426,10 +438,15 @@ public class MainMenuPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             listModel.clear();
-            List<EventTicketBooking> eventTickets = ResourceManager.getInstance().getEventTicketBookings();
+
+            /*List<EventTicketBooking> eventTickets = ResourceManager.getInstance().getEventTicketBookings();
             for (EventTicketBooking booking : eventTickets) {
-                BookingService.getInstance().createBooking(booking);
                 listModel.addElement(booking);
+            }*/
+            for(Booking booking : BookingService.getInstance().getGoodBookings()) {
+                if(booking instanceof EventTicketBooking) {
+                    listModel.addElement(booking);
+                }
             }
 
             filtersPanel.removeAll();
@@ -566,9 +583,6 @@ public class MainMenuPanel extends JPanel {
     public void observerwindow() {
         BookingService bookInstance = BookingService.getInstance();
         ArrayList<Booking> bookings = bookInstance.getBookedBookings(user);
-        for(Booking booking : bookings) {
-            System.out.println(booking);
-        }
 
         JFrame observables = new JFrame("Booked bookings");
         observables.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

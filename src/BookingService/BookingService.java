@@ -44,6 +44,7 @@ public class BookingService implements Serializable, Observable {
     public void notifyObservers(BookingId bookingId) {
         for (Pair<Observer,BookingId> pair : observers) {
             if(pair.second.equals(bookingId)) {
+
                 pair.first.update(bookingId);
                 break;
             }
@@ -61,14 +62,10 @@ public class BookingService implements Serializable, Observable {
     }
 
     public ArrayList<Booking> getBookedBookings(User user) {
-        System.out.println(user);
-
         ArrayList<Booking> booked = new ArrayList<>();
         for(Pair<Booking,BookingId> pair : entries ) {
             if(!pair.first.getAvailable() && !user.hasBooking(pair.second)) {
                 booked.add(pair.first);
-                System.out.println(user.hasBooking(pair.second));
-                System.out.println(pair.second);
             }
         }
         return booked;
@@ -138,22 +135,18 @@ public class BookingService implements Serializable, Observable {
         notifyObservers(id);
     }
 
-    public void printUserBookings(User user) {
-        for (Pair<Booking, BookingId> entry : this.entries) {
-            if (user.hasBooking(entry.second)) {
-                System.out.println(entry.first);
-            }
-        }
-    }
-
-    public void printBookings() {
-        for (int i = 0; i < this.entries.size(); i++) {
-            System.out.println(this.entries.get(i).first);
-        }
-    }
-
     public List<Booking> getBookings() {
         return getBookings(this.entries);
+    }
+
+    public ArrayList<Booking> getGoodBookings() {
+        ArrayList<Booking> goodBookings = new ArrayList<>();
+        for (Pair<Booking,BookingId> entry : this.entries) {
+            if(entry.first.getAvailable()) {
+                goodBookings.add(entry.first);
+            }
+        }
+        return goodBookings;
     }
 
     public List<Booking> filterBookings(List<FilterStrategy> filterStrategies) {

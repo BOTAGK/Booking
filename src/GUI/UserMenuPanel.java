@@ -75,6 +75,7 @@ public class UserMenuPanel extends JPanel {
         for(BookingId myBooking : user.getBookingIds()){
             listModel.addElement(BookingService.getInstance().getBooking(myBooking));
         }
+
         JList<Booking> bookingsInUserMenu = new JList<>(listModel);
         Font font =new Font("Arial MS", Font.PLAIN, 24);
         bookingsInUserMenu.setFont(font);
@@ -115,9 +116,10 @@ public class UserMenuPanel extends JPanel {
                 }
             }
         });
+
         DefaultListModel observedModel = new DefaultListModel<>();
         for(BookingId myBooking : BookingService.getInstance().getUsersObservables(user)){
-            listModel.addElement(BookingService.getInstance().getBooking(myBooking));
+            observedModel.addElement(BookingService.getInstance().getBooking(myBooking));
         }
         JList<Booking> observedList = new JList<>(observedModel);
         observedList.setFont(font);
@@ -136,6 +138,7 @@ public class UserMenuPanel extends JPanel {
                 return this;
             }
         });
+
         observedList.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

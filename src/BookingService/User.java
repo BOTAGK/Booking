@@ -27,6 +27,7 @@ public class User implements Serializable, Observer {
 
     @Override
     public void update(BookingId bookingId) {
+        BookingService.getInstance().removeObserver(this,bookingId);
         BookingService.getInstance().bookBooking(this, bookingId);
     }
 
