@@ -2,8 +2,7 @@ package GUI;
 
 import javax.swing.*;
 
-import BookingService.User;
-import Booking.*;
+import Booking.Booking;
 import BookingService.*;
 import Exceptions.BlankFieldException;
 import Exceptions.CredentialsTakenException;

@@ -195,14 +195,32 @@ public class ResourceManager {
 }
     }
     public List<ApartmentBooking> getApartmentBookings() {
-        return apartmentBookings;
+        List<ApartmentBooking> availableApartments = new ArrayList<>();
+        for(int i=0; i<apartmentBookings.size(); i++){
+            if(apartmentBookings.get(i).getAvailable()){
+                availableApartments.add(apartmentBookings.get(i));
+            }
+        }
+        return availableApartments;
     }
 
     public List<CarRentalBooking> getCarRentalBookings() {
-        return carRentalBookings;
+        List<CarRentalBooking> availableCars = new ArrayList<>();
+        for(int i=0; i<carRentalBookings.size(); i++){
+            if(carRentalBookings.get(i).getAvailable()){
+                availableCars.add(carRentalBookings.get(i));
+            }
+        }
+        return availableCars;
     }
     public List<EventTicketBooking> getEventTicketBookings() {
-        return eventTicketBookings;
+        List<EventTicketBooking> availableEvents = new ArrayList<>();
+        for(int i=0; i<eventTicketBookings.size(); i++){
+            if(eventTicketBookings.get(i).getAvailable()){
+                availableEvents.add(eventTicketBookings.get(i));
+            }
+        }
+        return availableEvents;
     }
     public List<String> getCarTypes() {
         List<String> carTypes = new ArrayList<>();

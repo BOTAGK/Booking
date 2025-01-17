@@ -18,6 +18,7 @@ public class BookingService implements Serializable, Observable {
     private ArrayList<Pair<Observer,BookingId>> observers;
 
     private BookingService() {
+        this.observers = new ArrayList<Pair<Observer,BookingId>>();
         this.entries = new ArrayList<>();
     }
 
