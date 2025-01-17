@@ -20,6 +20,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.print.Book;
+import java.lang.reflect.Array;
 import java.util.*;
 
 import javax.swing.*;
@@ -27,6 +29,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import java.util.List;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 public class MainMenuPanel extends JPanel {
 
@@ -276,6 +280,17 @@ public class MainMenuPanel extends JPanel {
         }
 
         locations = locationsSet.toArray(new String[0]);
+
+        JButton Observe = new JButton("Observe");
+        Observe.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                observerwindow();
+            }
+        });
+
+        topPanel.add(Observe);
     }
 
     private void updateButtonText(JButton button, String text) {
@@ -535,5 +550,42 @@ public class MainMenuPanel extends JPanel {
                 selectedCarTypes = Arrays.asList(selectedCarTypesSB.toString().split(","));
             }
         }
+    }
+
+    public void observerwindow() {
+        BookingService bookInstance = BookingService.getInstance();
+        ArrayList<Booking> bookings = bookInstance.getBookedBookings(user);
+
+        JFrame observables = new JFrame("Booked bookings");
+        observables.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        observables.setSize(300, 400);
+
+        DefaultListModel<Booking> listModel = new DefaultListModel<>();
+        for (Booking booking : bookings) {
+            listModel.addElement(booking);
+        }
+
+        JList<Booking> objectList = new JList<>(listModel);
+
+        objectList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        objectList.setVisibleRowCount(10); // Liczba widocznych wierszy
+
+        objectList.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) { // Zapobiega wielokrotnemu wywołaniu
+                    Booking selectedItem = objectList.getSelectedValue();
+                    if (selectedItem != null) {
+                        bookInstance.addObserver(user,bookInstance.getBookingId(selectedItem));
+                    }
+                }
+            }
+        });
+
+        JScrollPane scrollPane = new JScrollPane(objectList);
+
+        observables.add(scrollPane, BorderLayout.CENTER);
+
+        observables.setVisible(true);
     }
 }
