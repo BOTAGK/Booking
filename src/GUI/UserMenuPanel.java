@@ -2,8 +2,7 @@ package GUI;
 
 import javax.swing.*;
 
-import BookingService.User;
-import Booking.*;
+import Booking.Booking;
 import BookingService.*;
 import Exceptions.BlankFieldException;
 import Exceptions.CredentialsTakenException;
@@ -116,14 +115,63 @@ public class UserMenuPanel extends JPanel {
                 }
             }
         });
+        DefaultListModel observedModel = new DefaultListModel<>();
+        for(BookingId myBooking : BookingService.getInstance().getUsersObservables(user)){
+            listModel.addElement(BookingService.getInstance().getBooking(myBooking));
+        }
+        JList<Booking> observedList = new JList<>(observedModel);
+        observedList.setFont(font);
+        observedList.setCellRenderer(new DefaultListCellRenderer() {
+            @Override
+            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                if(value instanceof Booking){
+                    setText(value.toString());
+                    Image image=((Booking) value).getIcon().getImage();
+                    image=image.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+                    ImageIcon icon=new ImageIcon(image);
+                    setIcon(icon);
+                }
+
+                return this;
+            }
+        });
+        observedList.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    int index = observedList.locationToIndex(e.getPoint());
+                    Booking selectedBooking = observedList.getModel().getElementAt(index);
+                    int result = JOptionPane.showConfirmDialog(null, "Do you want to quit observing this booking?\n" + selectedBooking, "Confirm your cancelation", JOptionPane.YES_NO_OPTION);
+                    if (result == JOptionPane.YES_OPTION) {
+                        // Dodaj logikę rezerwacji
+                        BookingId bookingId = BookingService.getInstance().getBookingId(selectedBooking);
+                        if (bookingId != null) {
+                            BookingService.getInstance().removeObserver(user, bookingId);
+                            System.out.println("Observing canceled: " + selectedBooking);
+                            parentFrame.dispose();
+                            new UserMenuGUI(user);
+                        } else {
+                            System.out.println("Booking ID is null for selected booking: " + selectedBooking);
+                        }
+                    }
+                }
+            }
+        });
+        JPanel observedPanel = new JPanel();
+        observedList.setLayout(new BoxLayout(observedList, BoxLayout.Y_AXIS));
+        JScrollPane scrollPane1 = new JScrollPane(observedList);
         bookingsInUserMenu.setLayout(new BoxLayout(bookingsInUserMenu, BoxLayout.Y_AXIS));
         JScrollPane scrollPane = new JScrollPane(bookingsInUserMenu);
         bookingsPanel.setLayout(new BoxLayout(bookingsPanel, BoxLayout.Y_AXIS));
+        observedPanel.setLayout(new BoxLayout(observedPanel, BoxLayout.Y_AXIS));
         bookingsPanel.add(scrollPane, BorderLayout.EAST);
+        observedPanel.add(scrollPane1, BorderLayout.EAST);
         setVisible(true);
         //panel z zakładakami
         JTabbedPane tabbedPane = new JTabbedPane();
         tabbedPane.addTab("My bookings", bookingsPanel);
+        tabbedPane.addTab("Observed bookings", observedPanel);
         tabbedPane.addTab("User info", panel);
 
         //dodanie do panelu główneg
