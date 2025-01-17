@@ -98,16 +98,17 @@ public class MainMenuPanel extends JPanel {
 
 
         filtersPanel.add(applyFiltersButton);
-        filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+        filtersPanel.add(Box.createRigidArea(new Dimension(0, 10)));
         filtersPanel.add(priceLabel);
         filtersPanel.add(minPriceLabel);
         filtersPanel.add(minPriceField);
         filtersPanel.add(maxPriceLabel);
         filtersPanel.add(maxPriceField);
-        filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+        filtersPanel.add(Box.createRigidArea(new Dimension(0, 10)));
         filtersPanel.add(locationLabel);
         filtersPanel.add(locationButton);
-        filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+        locationButton.setPreferredSize(new Dimension(150,25));
+        filtersPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 
         locationButton.addActionListener(new LocationsActionListener());
         minPriceField.addFocusListener(new FocusListener() {
@@ -269,8 +270,8 @@ public class MainMenuPanel extends JPanel {
     }
 
     private void updateButtonText(JButton button, String text) {
-        if (text.length() > 16) {
-            text = text.substring(0, 16) + "...";
+        if (text.length() > 18) {
+            text = text.substring(0, 15) + "...";
         }
         button.setText(text);
     }
@@ -339,19 +340,21 @@ public class MainMenuPanel extends JPanel {
             filtersPanel.removeAll();
 
             filtersPanel.add(applyFiltersButton);
-            filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+            filtersPanel.add(Box.createRigidArea(new Dimension(0, 10)));
             filtersPanel.add(priceLabel);
             filtersPanel.add(minPriceLabel);
             filtersPanel.add(minPriceField);
             filtersPanel.add(maxPriceLabel);
             filtersPanel.add(maxPriceField);
-            filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+            filtersPanel.add(Box.createRigidArea(new Dimension(0, 10)));
             filtersPanel.add(locationLabel);
             filtersPanel.add(locationButton);
-            filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+            locationButton.setPreferredSize(new Dimension(150,25));
+            filtersPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 
             JLabel carTypesLabel = new JLabel("Car Type");
             carTypeFilterButton = new JButton("Choose car type");
+            carTypeFilterButton.setPreferredSize(new Dimension(150,25));
 
             filtersPanel.add(carTypesLabel);
             filtersPanel.add(carTypeFilterButton);
@@ -374,19 +377,20 @@ public class MainMenuPanel extends JPanel {
             filtersPanel.removeAll();
 
             filtersPanel.add(applyFiltersButton);
-            filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+            filtersPanel.add(Box.createRigidArea(new Dimension(0, 10)));
             filtersPanel.add(priceLabel);
             filtersPanel.add(minPriceLabel);
             filtersPanel.add(minPriceField);
             filtersPanel.add(maxPriceLabel);
             filtersPanel.add(maxPriceField);
-            filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+            filtersPanel.add(Box.createRigidArea(new Dimension(0, 10)));
             filtersPanel.add(locationLabel);
+            locationButton.setPreferredSize(new Dimension(150,25));
             filtersPanel.add(locationButton);
-            filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+            filtersPanel.add(Box.createRigidArea(new Dimension(0, 10)));
             filtersPanel.add(minRatingLabel);
             filtersPanel.add(minRatingField);
-            filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+            filtersPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 
             JLabel roomLabel = new JLabel("Room Count");
             JTextField minRoomCountField = new JTextField("Min room count");
@@ -395,7 +399,7 @@ public class MainMenuPanel extends JPanel {
             JTextField minRatingField = new JTextField("Min rating");
             filtersPanel.add(roomLabel);
             filtersPanel.add(minRoomCountField);
-            filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+            filtersPanel.add(Box.createRigidArea(new Dimension(0, 10)));
             filtersPanel.add(ratingLabel);
             filtersPanel.add(minRatingField);
             filtersPanel.revalidate();
@@ -418,23 +422,26 @@ public class MainMenuPanel extends JPanel {
             filtersPanel.removeAll();
 
             filtersPanel.add(applyFiltersButton);
-            filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+            filtersPanel.add(Box.createRigidArea(new Dimension(0, 10)));
             filtersPanel.add(priceLabel);
             filtersPanel.add(minPriceLabel);
             filtersPanel.add(minPriceField);
             filtersPanel.add(maxPriceLabel);
             filtersPanel.add(maxPriceField);
-            filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+            filtersPanel.add(Box.createRigidArea(new Dimension(0, 10)));
             filtersPanel.add(locationLabel);
+            locationButton.setPreferredSize(new Dimension(150,25));
             filtersPanel.add(locationButton);
-            filtersPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+            filtersPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 
             JLabel eventTypesLabel = new JLabel("Event Type");
             eventTypeFilterButton = new JButton("Choose event type");
             eventTypeFilterButton.addActionListener(new EventFilterActionListener());
 
             filtersPanel.add(eventTypesLabel);
+            eventTypeFilterButton.setPreferredSize(new Dimension(150,25));
             filtersPanel.add(eventTypeFilterButton);
+
             filtersPanel.revalidate();
             filtersPanel.repaint();
             type_lol = 3;
@@ -468,7 +475,7 @@ public class MainMenuPanel extends JPanel {
                     locationButton.setText("Select Locations");
                     selectedLocations = null;
                 } else {
-                    locationButton.setText(selectedLocationsSB.toString());
+                    updateButtonText(locationButton, selectedLocationsSB.toString());
                     selectedLocations = Arrays.asList(selectedLocationsSB.toString().split(","));
                 }
             }
@@ -499,10 +506,10 @@ public class MainMenuPanel extends JPanel {
                         selectedEventsSB.append(checkBox.getText());
                     }
                 }
-                if (selectedEventsSB.length() == 0) {
+                if (selectedEventsSB.isEmpty()) {
                     eventTypeFilterButton.setText("Select Event Types");
                 } else {
-                    eventTypeFilterButton.setText(selectedEventsSB.toString());
+                    updateButtonText(eventTypeFilterButton, selectedEventsSB.toString());
                 }
                 
                 type_lol = 3;
@@ -538,7 +545,7 @@ public class MainMenuPanel extends JPanel {
                 if (selectedCarTypesSB.length() == 0) {
                     carTypeFilterButton.setText("Select Car Types");
                 } else {
-                    carTypeFilterButton.setText(selectedCarTypesSB.toString());
+                    updateButtonText(carTypeFilterButton, selectedCarTypesSB.toString());
                 }
 
                 type_lol = 2;
@@ -546,4 +553,5 @@ public class MainMenuPanel extends JPanel {
             }
         }
     }
+
 }
