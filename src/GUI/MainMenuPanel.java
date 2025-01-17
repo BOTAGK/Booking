@@ -49,7 +49,7 @@ public class MainMenuPanel extends JPanel {
     JButton eventTypeFilterButton;
     JButton carTypeFilterButton;
 
-    JButton applyFiltersButton = new JButton("FILTUR");
+    JButton applyFiltersButton = new JButton("Apply filters");
 
     JList<String> offersList;
 
@@ -297,31 +297,29 @@ public class MainMenuPanel extends JPanel {
     }
 
     private void applyFilters() {
-        this.filters.clear();
-
-        this.filters.add(new PriceFilterStrategy(
-            Double.parseDouble(minPriceField.getText()),
-            Double.parseDouble(maxPriceField.getText())));
-        this.filters.add(new LocationFilterStrategy(selectedLocations));
-
+        filters.clear();
         switch(type_lol) {
             case 1:
-                this.filters.add(new ApartmentFilterStrategy(minRoomCount, maxRoomCount));
+                filters.add(new ApartmentFilterStrategy(minRoomCount, maxRoomCount));
                 break;
             case 2:
-                this.filters.add(new CarRentalFilterStrategy(selectedCarTypes));
+                filters.add(new CarRentalFilterStrategy(selectedCarTypes));
                 break;
             case 3:
-                this.filters.add(new EventTicketFilterStrategy(selectedEventTypes));
+                filters.add(new EventTicketFilterStrategy(selectedEventTypes));
                 break;
             default:
                 break;
         }
+        filters.add(new PriceFilterStrategy(
+            Double.parseDouble(minPriceField.getText()),
+            Double.parseDouble(maxPriceField.getText())));
+        filters.add(new LocationFilterStrategy(selectedLocations));
         
-        List<Booking> bookings = BookingService.getInstance().filterBookings(this.filters);
-        this.listModel.clear();
+        List<Booking> bookings = BookingService.getInstance().filterBookings(filters);
+        listModel.clear();
         for(Booking booking : bookings) {
-            this.listModel.addElement(booking);
+            listModel.addElement(booking);
         }
     }
 
@@ -359,8 +357,8 @@ public class MainMenuPanel extends JPanel {
             filtersPanel.add(carTypeFilterButton);
             filtersPanel.revalidate();
             filtersPanel.repaint();
-
-            carTypeFilterButton.addActionListener(new CarTypeFilterActionListener());
+            type_lol = 2;
+           carTypeFilterButton.addActionListener(new CarTypeFilterActionListener());
         }
     }
 
@@ -439,6 +437,7 @@ public class MainMenuPanel extends JPanel {
             filtersPanel.add(eventTypeFilterButton);
             filtersPanel.revalidate();
             filtersPanel.repaint();
+            type_lol = 3;
         }
     }
 
@@ -495,7 +494,7 @@ public class MainMenuPanel extends JPanel {
                 for (JCheckBox checkBox : checkBoxes) {
                     if (checkBox.isSelected()) {
                         if (selectedEventsSB.length() > 0) {
-                            selectedEventsSB.append(", ");
+                            selectedEventsSB.append(",");
                         }
                         selectedEventsSB.append(checkBox.getText());
                     }
@@ -531,7 +530,7 @@ public class MainMenuPanel extends JPanel {
                 for (JCheckBox checkBox : checkBoxes) {
                     if (checkBox.isSelected()) {
                         if (selectedCarTypesSB.length() > 0) {
-                            selectedCarTypesSB.append(", ");
+                            selectedCarTypesSB.append(",");
                         }
                         selectedCarTypesSB.append(checkBox.getText());
                     }
