@@ -46,15 +46,15 @@ public class UserMenuPanel extends JPanel {
 
         JPanel infoPanel = new JPanel();
         infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
-        Font font =new Font("Arial MS", Font.BOLD, 18);
+        Font labelFont =new Font("Arial MS", Font.BOLD, 18);
         labelName = new JLabel("Name: "+ user.getName());
         labelLastName = new JLabel("Last Name: "+ user.getLastname());
         labelEmail = new JLabel("Email: "+ user.getEmail());
         labelUsername = new JLabel("Username: "+ user.getUsername());
-        labelUsername.setFont(font);
-        labelName.setFont(font);
-        labelLastName.setFont(font);
-        labelEmail.setFont(font);
+        labelUsername.setFont(labelFont);
+        labelName.setFont(labelFont);
+        labelLastName.setFont(labelFont);
+        labelEmail.setFont(labelFont);
         infoPanel.add(labelName);
         infoPanel.add(labelLastName);
         infoPanel.add(labelUsername);
