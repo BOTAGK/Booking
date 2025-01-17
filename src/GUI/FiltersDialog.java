@@ -215,11 +215,7 @@ public class FiltersDialog extends JDialog {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.add(eventTypeCheckBox);
-<<<<<<< Updated upstream
-
-=======
     
->>>>>>> Stashed changes
         JScrollPane scrollPane = new JScrollPane(panel);
         scrollPane.setPreferredSize(new Dimension(200, 150));
         int result = JOptionPane.showConfirmDialog(null, scrollPane, "Select Event Types", JOptionPane.OK_CANCEL_OPTION);
@@ -252,11 +248,7 @@ public class FiltersDialog extends JDialog {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.add(carTypeCheckBox);
-<<<<<<< Updated upstream
-
-=======
     
->>>>>>> Stashed changes
         JScrollPane scrollPane = new JScrollPane(panel);
         scrollPane.setPreferredSize(new Dimension(200, 150));
         int result = JOptionPane.showConfirmDialog(null, scrollPane, "Select Car Types", JOptionPane.OK_CANCEL_OPTION);
