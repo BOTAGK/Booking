@@ -20,7 +20,7 @@ public class LocationFilterStrategy implements FilterStrategy{
     public List<Pair<Booking, BookingId>> filter(List<Pair<Booking, BookingId>> entries) {
         List<Pair<Booking, BookingId>> filteredBookings = new ArrayList<>();
         for(Pair<Booking, BookingId> pair : entries) {
-            if(locations == null || locations.contains(pair.first.getLocation())){
+            if(locations.isEmpty() || locations.contains(pair.first.getLocation())){
                 filteredBookings.add(pair);
             }
         }
