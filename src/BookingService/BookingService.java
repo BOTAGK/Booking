@@ -19,6 +19,7 @@ public class BookingService implements Serializable, Observable {
 
     private BookingService() {
         this.entries = new ArrayList<>();
+        this.observers = new ArrayList<>();
     }
 
     public static BookingService getInstance() {
@@ -59,10 +60,14 @@ public class BookingService implements Serializable, Observable {
     }
 
     public ArrayList<Booking> getBookedBookings(User user) {
+        System.out.println(user);
+
         ArrayList<Booking> booked = new ArrayList<>();
         for(Pair<Booking,BookingId> pair : entries ) {
             if(!pair.first.getAvailable() && !user.hasBooking(pair.second)) {
                 booked.add(pair.first);
+                System.out.println(user.hasBooking(pair.second));
+                System.out.println(pair.second);
             }
         }
         return booked;

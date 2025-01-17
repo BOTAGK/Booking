@@ -555,9 +555,12 @@ public class MainMenuPanel extends JPanel {
     public void observerwindow() {
         BookingService bookInstance = BookingService.getInstance();
         ArrayList<Booking> bookings = bookInstance.getBookedBookings(user);
+        for(Booking booking : bookings) {
+            System.out.println(booking);
+        }
 
         JFrame observables = new JFrame("Booked bookings");
-        observables.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        observables.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         observables.setSize(300, 400);
 
         DefaultListModel<Booking> listModel = new DefaultListModel<>();
@@ -588,4 +591,5 @@ public class MainMenuPanel extends JPanel {
 
         observables.setVisible(true);
     }
+
 }
