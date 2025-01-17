@@ -13,12 +13,11 @@ import java.util.List;
 
 public class BookingService implements Serializable, Observable {
 
-    private static BookingService instance;
+    private static BookingService instance = new BookingService();
     private ArrayList<Pair<Booking, BookingId>> entries;
     private ArrayList<Pair<Observer,BookingId>> observers;
 
     private BookingService() {
-        this.observers = new ArrayList<Pair<Observer,BookingId>>();
         this.entries = new ArrayList<>();
         this.observers = new ArrayList<>();
     }
@@ -30,6 +29,10 @@ public class BookingService implements Serializable, Observable {
         return instance;
     }
 
+    protected Object readResolve() {
+        return instance;
+    }
+
     @Override
     public void addObserver(Observer observer, BookingId bookingId) {
         observers.add(new Pair(observer, bookingId));
@@ -37,7 +40,15 @@ public class BookingService implements Serializable, Observable {
 
     @Override
     public void removeObserver(Observer observer, BookingId bookingId) {
-        observers.remove(new Pair(observer, bookingId));
+        System.out.println("Usuwanie: " + observer + ": " + bookingId);
+
+        for(int i = 0; i<observers.size(); i++) {
+            Pair<Observer,BookingId> pair = observers.get(i);
+            if(pair.first.equals(observer) && pair.second.equals(bookingId)) {
+                observers.remove(i);
+                break;
+            }
+        }
     }
 
     @Override
@@ -54,6 +65,7 @@ public class BookingService implements Serializable, Observable {
     public ArrayList<BookingId> getUsersObservables(Observer observer) {
         ArrayList<BookingId> observables = new ArrayList<>();
         for(Pair<Observer,BookingId> pair : observers) {
+            //System.out.println(pair.first + ": " + pair.second);
             if(pair.first.equals(observer)) {
                 observables.add(pair.second);
             }
@@ -62,9 +74,10 @@ public class BookingService implements Serializable, Observable {
     }
 
     public ArrayList<Booking> getBookedBookings(User user) {
+        ArrayList<BookingId> observed = getUsersObservables(user);
         ArrayList<Booking> booked = new ArrayList<>();
         for(Pair<Booking,BookingId> pair : entries ) {
-            if(!pair.first.getAvailable() && !user.hasBooking(pair.second)) {
+            if(!pair.first.getAvailable() && !user.hasBooking(pair.second) && !observed.contains(pair.second)) {
                 booked.add(pair.first);
             }
         }

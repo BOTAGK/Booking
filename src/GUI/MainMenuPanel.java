@@ -351,13 +351,6 @@ public class MainMenuPanel extends JPanel {
             for (CarRentalBooking carRental : carRentals) {
                 listModel.addElement(carRental);
             }
-            for(Booking booking : BookingService.getInstance().getGoodBookings()) {
-                if(booking instanceof CarRentalBooking) {
-                    listModel.addElement(booking);
-                }
-            }
-
-
 
             filtersPanel.removeAll();
 
@@ -391,18 +384,15 @@ public class MainMenuPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             listModel.clear();
-
             List<ApartmentBooking> apartmentRentals = ResourceManager.getInstance().getApartmentBookings();
-            /*for (ApartmentBooking booking : apartmentRentals) {
+            for (ApartmentBooking booking : apartmentRentals) {
                 listModel.addElement(booking);
             }
-             */
-            for(Booking booking : BookingService.getInstance().getGoodBookings()) {
+            /*for(Booking booking : BookingService.getInstance().getGoodBookings()) {
                 if(booking instanceof ApartmentBooking) {
                     listModel.addElement(booking);
                 }
-            }
-
+            }*/
 
 
             filtersPanel.removeAll();
@@ -445,15 +435,15 @@ public class MainMenuPanel extends JPanel {
         public void actionPerformed(ActionEvent e) {
             listModel.clear();
 
-            /*List<EventTicketBooking> eventTickets = ResourceManager.getInstance().getEventTicketBookings();
+            List<EventTicketBooking> eventTickets = ResourceManager.getInstance().getEventTicketBookings();
             for (EventTicketBooking booking : eventTickets) {
                 listModel.addElement(booking);
-            }*/
-            for(Booking booking : BookingService.getInstance().getGoodBookings()) {
+            }
+            /*for(Booking booking : BookingService.getInstance().getGoodBookings()) {
                 if(booking instanceof EventTicketBooking) {
                     listModel.addElement(booking);
                 }
-            }
+            }*/
 
             filtersPanel.removeAll();
 
@@ -597,6 +587,7 @@ public class MainMenuPanel extends JPanel {
         JFrame observables = new JFrame("Booked bookings");
         observables.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         observables.setSize(300, 400);
+        observables.setLocationRelativeTo(null);
 
         DefaultListModel<Booking> listModel = new DefaultListModel<>();
         for (Booking booking : bookings) {
@@ -614,7 +605,11 @@ public class MainMenuPanel extends JPanel {
                 if (!e.getValueIsAdjusting()) { // Zapobiega wielokrotnemu wywołaniu
                     Booking selectedItem = objectList.getSelectedValue();
                     if (selectedItem != null) {
-                        bookInstance.addObserver(user,bookInstance.getBookingId(selectedItem));
+                        int result = JOptionPane.showConfirmDialog(null, "Do you want to observe this booking?\n" + selectedItem, "Confirm your reservation", JOptionPane.YES_NO_OPTION);
+                        if (result == JOptionPane.YES_OPTION) {
+                            bookInstance.addObserver(user,bookInstance.getBookingId(selectedItem));
+                            listModel.removeElement(selectedItem);
+                        }
                     }
                 }
             }

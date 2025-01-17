@@ -65,11 +65,9 @@ public class User implements Serializable, Observer {
 
     public void addBooking(BookingId id) {
         bookingIds.add(id);
-        System.out.println("dodano");
     }
     public void removeBooking(BookingId id) {
         bookingIds.remove(id);
-        System.out.println("usunieto");
     }
     public Boolean hasBooking(BookingId id) {
         if(bookingIds.contains(id)) {

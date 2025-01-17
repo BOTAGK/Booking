@@ -8,6 +8,12 @@ import GUI.MainMenuGui;
 public class Main {
     public static void main(String[] args) {
         new Main().run();
+
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            System.out.println("Program is closing. Perform cleanup tasks here.");
+            ResourceManager.getInstance().seriaizeUsers();
+            ResourceManager.getInstance().seriaizeBookings();
+        }));
     }
 
     public void run() {
@@ -15,13 +21,9 @@ public class Main {
         ResourceManager.getInstance().readFileCarRentalBooking();
         ResourceManager.getInstance().readFileEventTicketBooking();
         ResourceManager.getInstance().readFileUser();
-        ResourceManager.getInstance().seriaizeUsers();
-        ResourceManager.getInstance().seriaizeBookings();
-        ResourceManager.getInstance().deseriaizeBookings();
-        ResourceManager.getInstance().deseriaizeUsers();
+        //ResourceManager.getInstance().deseriaizeBookings();
+        //ResourceManager.getInstance().deseriaizeUsers();
 
         new LoginGui();
-
-
     }
 }
