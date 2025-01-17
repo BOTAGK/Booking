@@ -213,7 +213,6 @@ public class MainMenuPanel extends JPanel {
 
                     setText(value.toString());
                     Image image=((Booking) value).getIcon().getImage();
-                    image=image.getScaledInstance(200, 200, Image.SCALE_FAST);
                     ImageIcon icon=new ImageIcon(image);
                     setIcon(icon);
                 }
@@ -317,7 +316,7 @@ public class MainMenuPanel extends JPanel {
 
     private void applyFilters() {
         filters.clear();
-        
+
         filters.add(new PriceFilterStrategy(
             Double.parseDouble(minPriceField.getText()),
             Double.parseDouble(maxPriceField.getText())));
@@ -599,6 +598,7 @@ public class MainMenuPanel extends JPanel {
         JFrame observables = new JFrame("Booked bookings");
         observables.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         observables.setSize(300, 400);
+        observables.setLocationRelativeTo(null);
 
         DefaultListModel<Booking> listModel = new DefaultListModel<>();
         for (Booking booking : bookings) {
@@ -616,7 +616,11 @@ public class MainMenuPanel extends JPanel {
                 if (!e.getValueIsAdjusting()) { // Zapobiega wielokrotnemu wywołaniu
                     Booking selectedItem = objectList.getSelectedValue();
                     if (selectedItem != null) {
-                        bookInstance.addObserver(user,bookInstance.getBookingId(selectedItem));
+                        int result = JOptionPane.showConfirmDialog(null, "Do you want to observe this booking?\n" + selectedItem, "Confirm your reservation", JOptionPane.YES_NO_OPTION);
+                        if (result == JOptionPane.YES_OPTION) {
+                            bookInstance.addObserver(user,bookInstance.getBookingId(selectedItem));
+                            listModel.removeElement(selectedItem);
+                        }
                     }
                 }
             }

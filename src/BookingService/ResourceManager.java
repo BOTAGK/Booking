@@ -96,6 +96,7 @@ public class ResourceManager {
                     double rating = Double.parseDouble(data[6].trim());
                     String path = data[7].trim();
                     bookingList.createBooking(new ApartmentBooking(name, location, price, startDate, endDate, roomCount, rating, path));
+                    apartmentBookings.add(new ApartmentBooking(name, location, price, startDate, endDate, roomCount, rating, path));
                 }
             }
         } catch (FileNotFoundException e) {
@@ -121,6 +122,7 @@ public class ResourceManager {
                     String carModel = data[6].trim();
                     String path =data[7].trim();
                     bookingList.createBooking(new CarRentalBooking(name, location, price, startDate, endDate, carType, carModel, path));
+                    carRentalBookings.add(new CarRentalBooking(name, location, price, startDate, endDate, carType, carModel, path));
                 }
             }
         } catch (FileNotFoundException e) {
@@ -147,6 +149,7 @@ public class ResourceManager {
                     int availableTickets = Integer.parseInt(data[6].trim());
                     String path =data[7].trim();
                     bookingList.createBooking(new EventTicketBooking(name, location, price, startDate, endDate, eventType, artistOrTeam, availableTickets, path));
+                    eventTicketBookings.add(new EventTicketBooking(name, location, price, startDate, endDate, eventType, artistOrTeam, availableTickets, path));
                 }
             }
         } catch (FileNotFoundException e) {
@@ -160,7 +163,7 @@ public class ResourceManager {
         String outputFilePath = "bookings_data.ser";
 
         try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(outputFilePath))){
-            oos.writeObject(bookingList.getBookings());
+            oos.writeObject(bookingList);
             System.out.println("Dane bookingow zostały zapisane do pliku " + outputFilePath);
         } catch (FileNotFoundException e) {
             System.out.println("Błąd plik" + outputFilePath + " nie został znaleziony." + e.getMessage());
@@ -173,9 +176,12 @@ public class ResourceManager {
     public void deseriaizeBookings(){
         String filePath = "bookings_data.ser";
         ArrayList<Booking> deserializedBookigns;
-
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))){
-            deserializedBookigns = (ArrayList<Booking>) ois.readObject();
+            bookingList = (BookingService) ois.readObject();
+            for(Booking booking : bookingList.getBookings()){
+                System.out.println(booking);
+            }
+            //deserializedBookigns = (ArrayList<Booking>) ois.readObject();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
@@ -184,7 +190,7 @@ public class ResourceManager {
             throw new RuntimeException(e);
         }
 
-        for(Booking booking: deserializedBookigns) {
+        /*for(Booking booking: deserializedBookigns) {
             if(booking instanceof ApartmentBooking){
                 apartmentBookings.add((ApartmentBooking) booking);
             } else if(booking instanceof CarRentalBooking){
@@ -192,8 +198,10 @@ public class ResourceManager {
             } else if(booking instanceof EventTicketBooking){
                 eventTicketBookings.add((EventTicketBooking) booking);
             }
-}
+        }*/
+
     }
+
     public List<ApartmentBooking> getApartmentBookings() {
         List<ApartmentBooking> availableApartments = new ArrayList<>();
         for(int i=0; i<apartmentBookings.size(); i++){
@@ -247,6 +255,6 @@ public class ResourceManager {
     public static void main(String[] args) {
         ResourceManager rm = new ResourceManager();
         rm.seriaizeBookings();
-        rm.deseriaizeBookings();
+        rm. deseriaizeBookings();
     }
 }
