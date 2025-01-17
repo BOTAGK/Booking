@@ -210,7 +210,6 @@ public class MainMenuPanel extends JPanel {
 
                     setText(value.toString());
                     Image image=((Booking) value).getIcon().getImage();
-                    image=image.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
                     ImageIcon icon=new ImageIcon(image);
                     setIcon(icon);
                 }
@@ -296,7 +295,7 @@ public class MainMenuPanel extends JPanel {
         for(Booking booking : BookingService.getInstance().getGoodBookings())
             listModel.addElement(booking);
 
-        List<ApartmentBooking> apartmentRentals = ResourceManager.getInstance().getApartmentBookings();
+        /*List<ApartmentBooking> apartmentRentals = ResourceManager.getInstance().getApartmentBookings();
         for (ApartmentBooking booking : apartmentRentals) {
             listModel.addElement(booking);
         }
@@ -309,7 +308,7 @@ public class MainMenuPanel extends JPanel {
         List<EventTicketBooking> eventTickets = ResourceManager.getInstance().getEventTicketBookings();
         for (EventTicketBooking eventTicket : eventTickets) {
             listModel.addElement(eventTicket);
-        }
+        }*/
     }
 
     private void applyFilters() {
@@ -347,9 +346,15 @@ public class MainMenuPanel extends JPanel {
         public void actionPerformed(ActionEvent e) {
             listModel.clear();
 
-            List<CarRentalBooking> carRentals = ResourceManager.getInstance().getCarRentalBookings();
+            /*List<CarRentalBooking> carRentals = ResourceManager.getInstance().getCarRentalBookings();
             for (CarRentalBooking carRental : carRentals) {
                 listModel.addElement(carRental);
+            }*/
+
+            for (Booking booking : BookingService.getInstance().getGoodBookings()) {
+                if(booking instanceof CarRentalBooking) {
+                    listModel.addElement(booking);
+                }
             }
 
             filtersPanel.removeAll();
@@ -383,17 +388,23 @@ public class MainMenuPanel extends JPanel {
     private class ApartmentRentButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+
             listModel.clear();
-            List<ApartmentBooking> apartmentRentals = ResourceManager.getInstance().getApartmentBookings();
+            System.out.println("Start");
+
+            /*List<ApartmentBooking> apartmentRentals = ResourceManager.getInstance().getApartmentBookings();
             for (ApartmentBooking booking : apartmentRentals) {
                 listModel.addElement(booking);
-            }
-            /*for(Booking booking : BookingService.getInstance().getGoodBookings()) {
+            }*/
+
+            for(Booking booking : BookingService.getInstance().getGoodBookings()) {
+                System.out.println(booking);
                 if(booking instanceof ApartmentBooking) {
                     listModel.addElement(booking);
                 }
-            }*/
+            }
 
+            System.out.println("Middle");
 
             filtersPanel.removeAll();
 
@@ -435,15 +446,16 @@ public class MainMenuPanel extends JPanel {
         public void actionPerformed(ActionEvent e) {
             listModel.clear();
 
-            List<EventTicketBooking> eventTickets = ResourceManager.getInstance().getEventTicketBookings();
+            /*List<EventTicketBooking> eventTickets = ResourceManager.getInstance().getEventTicketBookings();
             for (EventTicketBooking booking : eventTickets) {
                 listModel.addElement(booking);
-            }
-            /*for(Booking booking : BookingService.getInstance().getGoodBookings()) {
+            }*/
+
+            for(Booking booking : BookingService.getInstance().getGoodBookings()) {
                 if(booking instanceof EventTicketBooking) {
                     listModel.addElement(booking);
                 }
-            }*/
+            }
 
             filtersPanel.removeAll();
 
