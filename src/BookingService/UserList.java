@@ -1,6 +1,7 @@
 package BookingService;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import Exceptions.InvalidLoginException;
 
@@ -28,9 +29,7 @@ public class UserList {
     public void setUsers(ArrayList<User> users) { this.users = users; }
 
     public void createrUser(String name, String lastName, String email, String username, String password) {
-        rm.deseriaizeUsers();
         getUsers().add(new User(name, lastName, email, username, password));
-        rm.seriaizeUsers();
     }
 
     public void deleteUser(String username) {
@@ -59,5 +58,21 @@ public class UserList {
         }
         
         return user;
+    }
+
+    public List<String> getTakenUsernames(){
+        List<String> takenUsernames = new ArrayList<>();
+        for (User user : users) {
+            takenUsernames.add(user.getUsername());
+        }
+        return takenUsernames;
+    }
+
+    public List<String> getTakenEmails() {
+        List<String> takenEmails = new ArrayList<>();
+        for (User user : users) {
+            takenEmails.add(user.getEmail());
+        }
+        return takenEmails;
     }
 }

@@ -12,19 +12,23 @@ import java.util.Set;
 
 import BookingService.BookingId;
 
+import javax.swing.*;
+
 public class CarRentalBooking extends Booking {
 
     private String carType;
     private String carModel;
-    
+    private ImageIcon icon=null;
     public CarRentalBooking() {}
 
     public CarRentalBooking(String name, String location, double price, LocalDate startDate, LocalDate endDate,
-                            String carType, String carModel) {
-        super(name, location, price, startDate, endDate);
+                            String carType, String carModel, String path) {
+        super(name, location, price, startDate, endDate, path);
+        icon=new ImageIcon(path);
         this.carType = carType;
         this.carModel = carModel;
     }
+
 
     public String getCarType() {
         return carType;
@@ -44,7 +48,7 @@ public class CarRentalBooking extends Booking {
         for (String[] parts : data) {
                 bookings.add(new CarRentalBooking(
                     parts[0], parts[1], Double.parseDouble(parts[2]), LocalDate.parse(parts[3]),
-                    LocalDate.parse(parts[4]), parts[5], parts[6]
+                    LocalDate.parse(parts[4]), parts[5], parts[6], parts[7]
                 ));
         }
         return bookings;

@@ -11,15 +11,18 @@ import java.util.Set;
 
 import BookingService.BookingId;
 
+import javax.swing.*;
+
 public class EventTicketBooking extends Booking {
     private String eventType;
     private String artistOrTeam;
     private int availableTickets;
-    
+    private ImageIcon icon=null;
     public EventTicketBooking() {}
 
-    public EventTicketBooking(String name, String location, double price, LocalDate startDate, LocalDate endDate, String eventType, String artistOrTeam, int availableTickets) {
-        super(name, location, price, startDate, endDate);
+    public EventTicketBooking(String name, String location, double price, LocalDate startDate, LocalDate endDate, String eventType, String artistOrTeam, int availableTickets, String path) {
+        super(name, location, price, startDate, endDate, path);
+        this.icon=new ImageIcon(path);
         this.eventType = eventType;
         this.artistOrTeam = artistOrTeam;
         this.availableTickets = availableTickets;
@@ -52,7 +55,7 @@ public class EventTicketBooking extends Booking {
         for (String[] parts : data) {
             bookings.add(new EventTicketBooking(
                     parts[0], parts[1], Double.parseDouble(parts[2]), LocalDate.parse(parts[3]), null,
-                    parts[4], parts[5], Integer.parseInt(parts[6])
+                    parts[4], parts[5], Integer.parseInt(parts[6]),parts[7]
             ));
         }
         return bookings;

@@ -1,9 +1,11 @@
 package BookingService;
 
+import Observers.Observer;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class User implements Serializable {
+public class User implements Serializable, Observer {
 
     private String username;
     private String name;
@@ -21,6 +23,12 @@ public class User implements Serializable {
         this.password = password;
 
         bookingIds = new ArrayList<BookingId>();
+    }
+
+    @Override
+    public void update(BookingId bookingId) {
+        BookingService.getInstance().removeObserver(this,bookingId);
+        BookingService.getInstance().bookBooking(this, bookingId);
     }
 
     public String getUsername() {
@@ -47,6 +55,12 @@ public class User implements Serializable {
     }
     public ArrayList<BookingId> getBookingIds() {
         return bookingIds;
+    }
+
+    public void writeBookingIds() {
+        for (BookingId bookingId : bookingIds) {
+            System.out.println(bookingId);
+        }
     }
 
     public void addBooking(BookingId id) {

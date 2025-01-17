@@ -6,14 +6,16 @@ import java.util.List;
 
 import BookingService.BookingId;
 
+import javax.swing.*;
+
 public class ApartmentBooking extends Booking {
     private int roomCount;
     private double rating;
-
+    private ImageIcon icon=null;
     public ApartmentBooking() {}
-    
-    public ApartmentBooking(String name, String location, double price, LocalDate startDate, LocalDate endDate, int roomCount,double rating) {
-        super(name, location, price, startDate, endDate);
+
+    public ApartmentBooking(String name, String location, double price, LocalDate startDate, LocalDate endDate, int roomCount,double rating, String path) {
+        super(name, location, price, startDate, endDate, path);
         this.roomCount = roomCount;
         this.rating = rating;
     }
@@ -38,7 +40,7 @@ public class ApartmentBooking extends Booking {
         for (String[] parts : data) {
             bookings.add(new ApartmentBooking(
                     parts[0], parts[1], Double.parseDouble(parts[2]), LocalDate.parse(parts[3]),
-                    LocalDate.parse(parts[4]), Integer.parseInt(parts[5]), Double.parseDouble(parts[6])
+                    LocalDate.parse(parts[4]), Integer.parseInt(parts[5]), Double.parseDouble(parts[6]), parts[7]
             ));
         }
         return bookings;
