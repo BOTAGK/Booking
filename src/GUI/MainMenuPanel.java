@@ -347,15 +347,15 @@ public class MainMenuPanel extends JPanel {
         public void actionPerformed(ActionEvent e) {
             listModel.clear();
 
-            /*List<CarRentalBooking> carRentals = ResourceManager.getInstance().getCarRentalBookings();
+            List<CarRentalBooking> carRentals = ResourceManager.getInstance().getCarRentalBookings();
             for (CarRentalBooking carRental : carRentals) {
                 listModel.addElement(carRental);
-            }*/
-            for(Booking booking : BookingService.getInstance().getGoodBookings()) {
+            }
+            /*for(Booking booking : BookingService.getInstance().getGoodBookings()) {
                 if(booking instanceof CarRentalBooking) {
                     listModel.addElement(booking);
                 }
-            }
+            }*/
 
             filtersPanel.removeAll();
 
@@ -390,15 +390,15 @@ public class MainMenuPanel extends JPanel {
         public void actionPerformed(ActionEvent e) {
             listModel.clear();
 
-            /*List<ApartmentBooking> apartmentRentals = ResourceManager.getInstance().getApartmentBookings();
+            List<ApartmentBooking> apartmentRentals = ResourceManager.getInstance().getApartmentBookings();
             for (ApartmentBooking booking : apartmentRentals) {
                 listModel.addElement(booking);
-            }*/
-            for(Booking booking : BookingService.getInstance().getGoodBookings()) {
+            }
+            /*for(Booking booking : BookingService.getInstance().getGoodBookings()) {
                 if(booking instanceof ApartmentBooking) {
                     listModel.addElement(booking);
                 }
-            }
+            }*/
 
 
             filtersPanel.removeAll();
@@ -441,15 +441,15 @@ public class MainMenuPanel extends JPanel {
         public void actionPerformed(ActionEvent e) {
             listModel.clear();
 
-            /*List<EventTicketBooking> eventTickets = ResourceManager.getInstance().getEventTicketBookings();
+            List<EventTicketBooking> eventTickets = ResourceManager.getInstance().getEventTicketBookings();
             for (EventTicketBooking booking : eventTickets) {
                 listModel.addElement(booking);
-            }*/
-            for(Booking booking : BookingService.getInstance().getGoodBookings()) {
+            }
+            /*for(Booking booking : BookingService.getInstance().getGoodBookings()) {
                 if(booking instanceof EventTicketBooking) {
                     listModel.addElement(booking);
                 }
-            }
+            }*/
 
             filtersPanel.removeAll();
 
