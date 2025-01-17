@@ -5,6 +5,7 @@ import Booking.CarRentalBooking;
 import BookingService.BookingId;
 import Util.Pair;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,9 +20,16 @@ public class CarRentalFilterStrategy implements FilterStrategy {
 
     @Override
     public List<Pair<Booking, BookingId>> filter(List<Pair<Booking, BookingId>> entries) {
-        return entries.stream()
-            .filter(entry -> entry.second.matchesType(new BookingId(BookingId.Prefix.CRT)))
-            .filter(entry -> carTypes==null || carTypes.contains(((CarRentalBooking)entry.first).getCarType()))
-            .collect(Collectors.toList());
+        List<Pair<Booking, BookingId>> filteredBookings= new ArrayList<>();
+        for(Pair<Booking, BookingId> pair: entries) {
+            if(pair.first instanceof CarRentalBooking) {
+                CarRentalBooking carRentalBooking = (CarRentalBooking) pair.first;
+                if(carTypes.isEmpty() || carTypes.contains(carRentalBooking.getCarType())) {
+                    filteredBookings.add(pair);
+
+                }
+            }
+        }
+        return filteredBookings;
     }
 }

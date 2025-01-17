@@ -5,6 +5,7 @@ import BookingService.BookingId;
 import Util.Pair;
 import Booking.Booking;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,9 +20,15 @@ public class EventTicketFilterStrategy implements FilterStrategy {
 
     @Override
     public List<Pair<Booking, BookingId>> filter(List<Pair<Booking, BookingId>> entries) {
-        return entries.stream()
-            .filter(entry -> entry.second.matchesType(new BookingId(BookingId.Prefix.EVT)))
-            .filter(entry -> eventTypes==null || eventTypes.contains(((EventTicketBooking)entry.first).getEventType()))
-            .collect(Collectors.toList());
+        List<Pair<Booking, BookingId>> filteredBookings= new ArrayList<>();
+        for(Pair<Booking, BookingId> pair: entries) {
+            if(pair.first instanceof EventTicketBooking) {
+                EventTicketBooking eventTicketBooking = (EventTicketBooking) pair.first;
+                if(eventTypes.isEmpty()  || eventTypes.contains(eventTicketBooking.getEventType())) {
+                    filteredBookings.add(pair);
+                }
+            }
+        }
+        return filteredBookings;
     }
 }
