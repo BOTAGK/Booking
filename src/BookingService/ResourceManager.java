@@ -160,7 +160,7 @@ public class ResourceManager {
         String outputFilePath = "bookings_data.ser";
 
         try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(outputFilePath))){
-            oos.writeObject(bookingList.getBookings());
+            oos.writeObject(bookingList);
             System.out.println("Dane bookingow zostały zapisane do pliku " + outputFilePath);
         } catch (FileNotFoundException e) {
             System.out.println("Błąd plik" + outputFilePath + " nie został znaleziony." + e.getMessage());
@@ -175,7 +175,9 @@ public class ResourceManager {
         ArrayList<Booking> deserializedBookigns;
 
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))){
-            deserializedBookigns = (ArrayList<Booking>) ois.readObject();
+            Object object = ois.readObject();
+            bookingList = (BookingService)object;
+            //deserializedBookigns = (ArrayList<Booking>) ois.readObject();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
@@ -184,7 +186,7 @@ public class ResourceManager {
             throw new RuntimeException(e);
         }
 
-        for(Booking booking: deserializedBookigns) {
+        /*for(Booking booking: deserializedBookigns) {
             if(booking instanceof ApartmentBooking){
                 apartmentBookings.add((ApartmentBooking) booking);
             } else if(booking instanceof CarRentalBooking){
@@ -192,8 +194,10 @@ public class ResourceManager {
             } else if(booking instanceof EventTicketBooking){
                 eventTicketBookings.add((EventTicketBooking) booking);
             }
-}
+        }*/
+
     }
+
     public List<ApartmentBooking> getApartmentBookings() {
         List<ApartmentBooking> availableApartments = new ArrayList<>();
         for(int i=0; i<apartmentBookings.size(); i++){

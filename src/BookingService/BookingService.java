@@ -37,7 +37,15 @@ public class BookingService implements Serializable, Observable {
 
     @Override
     public void removeObserver(Observer observer, BookingId bookingId) {
-        observers.remove(new Pair(observer, bookingId));
+        System.out.println("Usuwanie: " + observer + ": " + bookingId);
+
+        for(int i = 0; i<observers.size(); i++) {
+            Pair<Observer,BookingId> pair = observers.get(i);
+            if(pair.first.equals(observer) && pair.second.equals(bookingId)) {
+                observers.remove(i);
+                break;
+            }
+        }
     }
 
     @Override
@@ -54,6 +62,7 @@ public class BookingService implements Serializable, Observable {
     public ArrayList<BookingId> getUsersObservables(Observer observer) {
         ArrayList<BookingId> observables = new ArrayList<>();
         for(Pair<Observer,BookingId> pair : observers) {
+            //System.out.println(pair.first + ": " + pair.second);
             if(pair.first.equals(observer)) {
                 observables.add(pair.second);
             }

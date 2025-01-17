@@ -29,9 +29,7 @@ public class UserList {
     public void setUsers(ArrayList<User> users) { this.users = users; }
 
     public void createrUser(String name, String lastName, String email, String username, String password) {
-        rm.deseriaizeUsers();
         getUsers().add(new User(name, lastName, email, username, password));
-        rm.seriaizeUsers();
     }
 
     public void deleteUser(String username) {
